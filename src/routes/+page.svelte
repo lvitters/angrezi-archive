@@ -1,15 +1,8 @@
 <script>
-	import jQuery from 'jquery';
-	import { onMount } from "svelte";
-	import "../lib/airtime-player.js";
-	import "../lib/airtime-schedule.js";
-	import "../lib/moment.js";
-	import "../lib/mrp.js";
-
-	onMount(async () => {
-		jQuery.noConflict(true);
-	});
-
+	//import "../lib/airtime-player";
+	//import "../lib/airtime-schedule";
+	//import "../lib/moment";
+	//import "../lib/mrp";
 </script>
 
 <div class="wrapper">
