@@ -30,6 +30,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@selemondev/svelte-marquee": "^0.0.2"
+		"@selemondev/svelte-marquee": "^0.0.2",
+		"@types/jquery": "^3.5.30",
+		"jquery": "^3.7.1"
 	}
 }
