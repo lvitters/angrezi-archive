@@ -2,6 +2,8 @@
 	<script type="text/javascript" src="/js/jquery_1.4.2.js"></script>
 	<script type="text/javascript" src="/js/mrp.js"></script>
 	<script type="text/javascript" src="/js/airtime-player.js"></script>
+	<script type="text/javascript" src="/js/vendor/moment/moment.js"></script>
+	<script type="text/javascript" src="/js/airtime-schedule.js"></script>
 </svelte:head>
 
 <script>
@@ -27,7 +29,7 @@
 					<div id="player">
 						<div class="airtime_player">
 							<div class="airtime_box">
-								<div id="play" class="box" onclick="musesPlayer.toggle()">START LIVESTREAM</div>
+								<div id="play" class="box" onclick="musesPlayer.toggle()">START LIVESTREAM</div> <!-- TODO: why does this work lol? -->
 							</div>
 						</div>
 					</div>
@@ -85,6 +87,38 @@
 			</div>
 		</div>
 	</section>
+
+	<template id="schedule-no-show-regular">
+		<article class='show-item'>
+			<div class='headlines'>
+			<img class='pixel' src='../../images/MrPixel-moon.svg'>
+			<!-- <h1 class='show-time'>SENDE-<br/>PAUSE?!</h1> -->
+			<h1 class='show-title'>We have no broadcasts scheduled within the next week. <br/>Can't stand the silence? <a href="/special.html">Contribute</a> to the programme with your production.</h1>
+			</div>
+		</article>
+	</template> 
+	
+	<template id="schedule-no-show">
+		<article class='show-item'>
+			<div class='headlines'>
+			<img class='pixel' src='../../images/MrPixel-moon.svg'>
+			<h1 class='show-time'>INTER-<br/>MISSION</h1>
+				
+			<h1 class='show-title'>Until the 9th of september the radio will be turned off.<br/>
+			We are eager to be back in september. You won't be disappointed.</h1>
+			</div>
+		</article>
+	</template>
+	
+	<template id="schedule-fail">
+		<article class='show-item'>
+			<div class='headlines'>
+			<img class='pixel' src='../../images/MrPixel-tear.svg'>
+			<h1 class='show-time'>UUPZZ</h1>
+			<h1 class='show-title'>Can't connect to the studio: Schedule currently not available right now. Sorry!</h1>
+			</div>
+		</article>
+	</template> 	
 
 	<footer id="anchor-footer" class="site-footer">
 		<p>Radio Angrezi is an experimental ground for sound, music, voice and live performance. It broadcasts weekly from its studio at Speicher XI (Bremen) on radioangrezi.de, as well as occasionally on 92,5 FM, receivable in the Bremen and the surrounding area. In addition special broadcasts covering concerts, lectures, presentations and exhibition openings are produced regularly.
