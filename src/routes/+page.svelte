@@ -7,12 +7,6 @@
 </svelte:head>
 
 <script>
-	import { onMount } from  'svelte';
-	import jQuery from 'jquery';
-
-	onMount(async () => {
-		jQuery.noConflict();
-	})
 </script>
 
 <div class="wrapper">
@@ -722,7 +716,7 @@
 		margin: 2rem
 	}
 
-	article>img {
+	article > img {
 		order: -1;
 		align-self: center;
 		margin: 2rem;
@@ -782,7 +776,7 @@
 		white-space: pre-wrap
 	}
 
-	article>p {
+	article > p {
 		margin: 0.25em 1rem 1rem;
 		text-align: left;
 		font-family: 'Sporting Grotesque_Regular', Arial;
@@ -836,73 +830,6 @@
 		src: url("fonts/terminal-grotesque-webfont.eot?#iefix") format("embedded-opentype"),url("fonts/terminal-grotesque-webfont.woff2") format("woff2"),url("fonts/terminal-grotesque-webfont.woff") format("woff"),url("fonts/terminal-grotesque-webfont.ttf") format("truetype"),url("fonts/terminal-grotesque-webfont.svg#terminal_grotesqueregular") format("svg");
 		font-weight: normal;
 		font-style: normal
-	}
-
-	.inverted {
-		background: black;
-		color: #ffff00
-	}
-
-	.venezia {
-		font-family: Millimetre;
-		line-height: 30px;
-		text-align: center
-	}
-
-	.coin-overlay {
-		position: fixed;
-		height: 200px;
-		width: 200px;
-		right: 30px;
-		bottom: 30px;
-		z-index: 9998;
-		transition: transform .3s
-	}
-
-	@media (max-width: 500px) {
-		.coin-overlay {
-			height:150px;
-			width: 150px;
-			right: 0px;
-			bottom: 0px
-		}
-	}
-
-	.coin-overlay:hover {
-		text-decoration: none;
-		transform: scale(1.2)
-	}
-
-	.coin-overlay .coin {
-		position: absolute;
-		top: 14%;
-		left: 15%;
-		width: 70%;
-		height: 70%;
-		transition: transform 0.5s;
-		z-index: 9999
-	}
-
-	.coin-overlay .coin:active {
-		transform: translateY(-100vh) translateX(-100vh)
-	}
-
-	.rotate {
-		animation: rotate 11s linear infinite
-	}
-
-	.rotate.reverse {
-		animation-direction: reverse
-	}
-
-	@keyframes rotate {
-		from {
-			transform: rotate(0deg)
-		}
-
-		to {
-			transform: rotate(360deg)
-		}
 	}
 
 </style>
