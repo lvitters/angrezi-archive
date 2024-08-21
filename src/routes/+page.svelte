@@ -149,17 +149,17 @@
 	}
 
 	body {
-		font-family: 'Sporting Grotesque_Regular', sans-serif
+		font-family: 'Sporting Grotesque_Regular', sans-serif;
 	}
 
 	body,.wrapper,p {
 		margin: 0;
-		padding: 0
+		padding: 0;
 	}
 
 	body {
 		padding: 2rem;
-		background-color: #ffff00
+		background-color: #000000;
 	}
 
 	svg {
@@ -168,7 +168,8 @@
 
 	.wrapper {
 		display: grid;
-		grid-template-areas: "header" "shoutbox" "main" "footer"
+		grid-template-areas: "header" "shoutbox" "main" "footer";
+		color: yellow
 	}
 
 	ul {
@@ -181,13 +182,13 @@
 
 	.main-head {
 		grid-area: header;
-		background-color: #ffff00;
-		outline: 1px solid black;
+		background-color: black;
+		outline: 1px solid yellow;
 		z-index: 1
 	}
 
 	a,a:visited {
-		color: black
+		color: yellow
 	}
 
 	a:hover,a:active {
@@ -195,7 +196,7 @@
 	}
 
 	.inverted a,.inverted a:hover,.inverted a:visited,.inverted a:active {
-		color: #ffff00
+		color: black
 	}
 
 	.row {
@@ -218,7 +219,7 @@
 	}
 
 	.grid-outline-block {
-		box-shadow: 0 0 0 1px black
+		box-shadow: 0 0 0 1px yellow
 	}
 
 	.notification-section {
@@ -272,11 +273,11 @@
 	.mailinglist-form .submit {
 		width: 20%;
 		border: 0;
-		background: black;
-		color: yellow;
+		background: yellow;
+		color: black;
 		margin: 0;
 		padding: 0;
-		border-left: 1px solid black;
+		border-left: 1px solid yellow;
 		cursor: pointer;
 		position: absolute;
 		top: 0;
@@ -285,14 +286,14 @@
 
 	.mailinglist-form .submit:hover {
 		background: transparent;
-		color: black
+		color: yellow
 	}
 
 	.mailinglist-form a.btn,.mailinglist-form input,.mailinglist-form button {
 		background: transparent;
 		outline: 0;
 		padding: 0 0.5em;
-		color: black;
+		color: yellow;
 		margin: 0.5em 0 0.5em 0;
 		text-align: center;
 		line-height: 2.2em;
@@ -304,7 +305,7 @@
 	}
 
 	.mailinglist-form a.btn::placeholder,.mailinglist-form input::placeholder,.mailinglist-form button::placeholder {
-		color: black
+		color: yellow
 	}
 
 	.mailinglist-form a.btn:focus,.mailinglist-form input:focus,.mailinglist-form button:focus {
@@ -316,7 +317,7 @@
 	}
 
 	.mailinglist-form a.btn:active::placeholder,.mailinglist-form input:active::placeholder,.mailinglist-form button:active::placeholder {
-		color: black
+		color: yellow
 	}
 
 	.page main>p {
@@ -330,8 +331,8 @@
 	}
 
 	.page main strong {
-		background: black;
-		color: yellow
+		background: yellow;
+		color: black
 	}
 
 	main {
@@ -339,7 +340,7 @@
 		margin: 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		font-family: 'Sporting Grotesque_Regular'
 	}
 
@@ -349,7 +350,7 @@
 
 	.show-section {
 		grid-area: main;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		overflow-wrap: break-word
 	}
 
@@ -363,8 +364,8 @@
 		font-size: 2rem;
 		text-align: center;
 		padding: 1rem;
-		color: black;
-		background: #ffff00;
+		color: yellow;
+		background: black;
 		cursor: pointer;
 		transition: all 0.25s ease-out
 	}
@@ -388,7 +389,7 @@
 	.collapsible-content {
 		max-height: 0px;
 		overflow: hidden;
-		transition: max-height .25s ease-in-out
+		transition: max-height .25s ease-in-out;
 	}
 
 	.toggle:checked+.lbl-toggle+.collapsible-content {
@@ -411,7 +412,7 @@
 
 	.shoutbox-section {
 		grid-area: shoutbox;
-		outline: 1px solid black
+		outline: 1px solid yellow
 	}
 
 	.ys-post-post {
@@ -492,7 +493,7 @@
 		padding: 2rem;
 		font-family: 'Sporting Grotesque_Regular';
 		background-color: inherit;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		grid-area: footer
 	}
 
@@ -505,7 +506,7 @@
 	.marquee-wrapper {
 		color: black;
 		font-family: 'terminal_grotesque';
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid yellow;
 		font-size: 1.5rem;
 		text-transform: uppercase
 	}
@@ -579,14 +580,14 @@
 	}
 
 	.black-link {
-		color: black
+		color: yellow
 	}
 
 	.logo-link {
 		width: 300px;
 		height: 60px;
 		padding: 0;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		box-shadow: 5px 5px;
 		box-sizing: border-box
 	}
@@ -608,9 +609,9 @@
 		width: 300px;
 		height: 60px;
 		background-color: inherit;
-		color: black;
+		color: yellow;
 		padding-top: 1rem;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		box-shadow: 5px 5px;
 		box-sizing: border-box;
 		font-family: 'Sporting Grotesque_Regular';
@@ -641,7 +642,7 @@
 		background-color: inherit;
 		color: black;
 		padding-top: 1rem;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		box-shadow: 5px 5px;
 		box-sizing: border-box;
 		font-family: 'Sporting Grotesque_Regular';
@@ -664,7 +665,7 @@
 		padding: 1rem 0;
 		font-family: 'Archivo Narrow', sans-serif;
 		background-color: inherit;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		cursor: pointer;
 		box-shadow: 5px 5px;
 		box-sizing: border-box;
@@ -711,7 +712,7 @@
 		flex-flow: column;
 		padding: 1.8rem;
 		text-align: center;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		background-color: inherit
 	}
 
@@ -744,7 +745,7 @@
 		flex-flow: column;
 		padding: 1.8rem;
 		text-align: center;
-		outline: 1px solid black;
+		outline: 1px solid yellow;
 		background-color: inherit;
 		justify-content: center
 	}
@@ -837,8 +838,8 @@
 	}
 
 	.inverted {
-		background: black;
-		color: #ffff00
+		background: yellow;
+		color: black
 	}
 
 	.venezia {
