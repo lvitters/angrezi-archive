@@ -68,23 +68,25 @@
 	</div>
 </header>
 
+	<main class="show-section">
+	</main>
+
 	<section class="shoutbox-section">
 		<div class="wrap-collabsible">
 			<input id="collapsible" class="toggle" type="checkbox">
 			<label for="collapsible" class="lbl-toggle">Angrezi Chat</label>
 			<div class="collapsible-content">
 				<div class="content-inner">
+
 					<div class="shoutbox-wrapper">
 						<!-- HACK: because we can not share the cookie across origins (subdomains) we need to embed from an iframe. How shit! -->
 						<iframe width="100%" height="960px" src="http://talk.radioangrezi.de/embed.html?1705674130862506274" border="0" outline="0" loading="lazy"></iframe>  
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<main class="show-section">
-	</main>
 
 	<template id="schedule-no-show-regular">
 		<article class='show-item'>
