@@ -352,7 +352,7 @@
   }
 	
   .slider.focus .fill {
-    background-color: hsla(182, 100%, 40%, 1);
+    background-color: yellow;
   }
 	
   .slider.focus .nub {

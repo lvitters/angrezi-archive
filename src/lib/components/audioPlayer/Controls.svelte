@@ -105,37 +105,16 @@
 />
 
 <div class='box'>
+	
+	<PlayButton controls/>
 
 	<div class='info'>
 		<div class='title'>
-			<p><strong>Title</strong></p><p>{title}</p>
+			<p><strong>Show</strong></p><p>{title}</p>
 		</div>
 		<div class='artist'>
 			<p><strong>Artist</strong></p><p>{artist}</p>
 		</div>
-	</div>
-	
-	<div class='buttons'>
-		
-		<button class='prev' on:click={previousTrack}>Prev</button>
-		
-		<PlayButton controls/>
-		
-		<button class='next' on:click={nextTrack}>Next</button>
-		
-		<p><strong>Volume</strong></p>
-		
-		<div class='volume-slider'>
-			<Slider
-				min={0}
-				max={1}
-				step={0.01}
-				precision={2}
-				formatter='{v => Math.round(v * 100)}'
-				bind:value={volume}
-			/>
-		</div>
-		
 	</div>
 
 	<div class='progress'>
@@ -183,16 +162,6 @@
 		grid-auto-flow: row;
 	}
 	
-	button {
-		margin: 0;
-		padding: 0;
-		width: 4rem;
-		height: 2rem;
-		/* border-radius: 4px; */
-		border: 1px solid black;
-		background: #ffff00;
-	}
-	
 	p {
 		margin: 0;
 		padding: 0;
@@ -203,7 +172,7 @@
 	strong {
 		margin: 0;
 		padding: 0;
-		font-size: 14px;
+		font-size: 18px;
 		line-height: 1;
 	}
 	
@@ -212,9 +181,7 @@
 		margin: 0;
 		padding: 0.25rem 0.75rem;
 		width: 2.5rem;
-		background: #ffff00;
-		border: 1px solid black;
-		/* border-radius: 6px; */
+		border-radius: 6px;
 		place-items: center;
 		font-size: 14px;
 	}
@@ -223,22 +190,20 @@
 		margin: 0;
 		padding: 1rem;
 		padding-top: 1.5rem;
-		background: yellow;
-		grid-auto-flow: row;
+		background: hsl(60, 100%, 39.2%);;
+		display: flex;
 		row-gap: 1rem;
 		align-items: center;
-		border: 2px solid black;
-		/* border-radius: 10px; */
+		border-radius: 8px;
 	}
 	
 	.info {
 		margin: 0;
-		padding: 0;
-		width: 100%;
+		padding: 2rem;
 		grid-template-columns: 1fr;
 		grid-template-rows: 2;
 		justify-items: start;
-		row-gap: 0.75rem;
+		row-gap: .2rem;
 	}
 	
 	.title, .artist {
@@ -257,22 +222,11 @@
 	.artist {
 		grid-row: 2 / 3;
 	}
-
-	.buttons {
-		grid-template-columns: 4rem 4rem 4rem 4rem 1fr;
-		place-items: center;
-		column-gap: 1rem
-	}
-	
-	.volume-slider {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-	}
 	
 	.progress {
 		grid-template-columns: 6rem 1fr 6rem;
 		place-items: center;
+		width: 100%;
 	}
 	
 	.time {
@@ -285,10 +239,6 @@
 	
 	.progress-slider {
 		width: 100%;
-	}
-	
-	.prev, .next {
-		border-radius: 2rem;
 	}
 	
 /* 	.debugger {

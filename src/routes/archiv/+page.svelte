@@ -8,15 +8,22 @@
 
 <YearSlider/>
 
-<Controls/>
 
 <div class="tracks">
 
-	<Track/>
-	<Track/>
-	<Track/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
+	<Controls/>
 
 </div>
+
+
 
 <style>
 
@@ -40,7 +47,7 @@
 	.tracks {
 		margin: 0;
 		padding: 1rem;
-		display: flex;
+		display: grid;
 		column-gap: 1rem;
 		row-gap: 1rem;
 	}

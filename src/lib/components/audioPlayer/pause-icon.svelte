@@ -14,7 +14,7 @@
 		fill: none;
 	}
 	path {
-		fill: #000;
+		fill: red;
 		stroke: none;
 	}
 </style>

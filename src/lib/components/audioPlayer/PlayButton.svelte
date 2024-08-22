@@ -125,23 +125,17 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		/* border-radius: 4rem; */
-		border: 1px solid black;
-		background: yellow;
+		border: 0px;
+		background-color: hsl(60, 100%, 39.2%);
 	}
 	
 	.controls {
 		width: 4rem;
 		height: 4rem;
-		border: 1px solid #000;
 	}
 	
 	.track {
 		width: 4rem;
 		height: 4rem;
-	}
-	
-	.playing {
-		border: 0px solid #000;
 	}
 </style>
