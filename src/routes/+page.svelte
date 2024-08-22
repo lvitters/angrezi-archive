@@ -23,7 +23,7 @@
 					<div id="player">
 						<div class="airtime_player">
 							<div class="airtime_box">
-								<div id="play" class="box" onclick="musesPlayer.toggle()">START LIVESTREAM</div> <!-- TODO: why does this work lol? -->
+								<div id="play" class="box" onclick="musesPlayer.toggle()">START LIVESTREAM</div> <!-- TODO: why does this work lol? it shouldn't-->
 							</div>
 						</div>
 					</div>
