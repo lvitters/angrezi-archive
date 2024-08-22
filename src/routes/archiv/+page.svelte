@@ -8,9 +8,9 @@
 
 <YearSlider/>
 
-<div class="app">
+<Controls/>
 
-	<Controls/>
+<div class="tracks">
 
 	<Track/>
 	<Track/>
@@ -37,10 +37,11 @@
 		font-size: 14px;
 	}
 	
-	.app {
+	.tracks {
 		margin: 0;
-		padding: 0;
-		display: grid;
+		padding: 1rem;
+		display: flex;
+		column-gap: 1rem;
 		row-gap: 1rem;
 	}
 

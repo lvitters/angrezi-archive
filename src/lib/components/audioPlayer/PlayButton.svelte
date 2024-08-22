@@ -126,8 +126,8 @@
 		align-items: center;
 		justify-content: center;
 		/* border-radius: 4rem; */
-		border: 1px solid #black;
-		background: #yellow;
+		border: 1px solid black;
+		background: yellow;
 	}
 	
 	.controls {
@@ -142,6 +142,6 @@
 	}
 	
 	.playing {
-		border: 1px solid #000;
+		border: 0px solid #000;
 	}
 </style>
