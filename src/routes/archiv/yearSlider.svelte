@@ -1,10 +1,17 @@
 <script>
 	import RangeSlider from "svelte-range-slider-pips";
+	
 	let values = [2024];
+	export let selectedYear = 2024;
+
+	function handleInput(value) {
+		selectedYear = value;
+		console.log(selectedYear);
+	}
 </script>
 
 <div id="yearSelectBox">
-	<RangeSlider bind:values id="yearSelect" pips pipstep={1} min={2018} max={2118} float />
+	<RangeSlider bind:values on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2018} max={2118} float />
 </div>
 
 <style>
@@ -32,6 +39,6 @@
   	}
 
 	#yearSelectBox {
-		margin-top: 2%;
+		margin-top: 2rem;
 	}
 </style>
