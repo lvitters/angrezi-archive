@@ -1,4 +1,4 @@
-<script lang=ts>
+<script lang="ts">
 	import YearSlider from './yearSlider.svelte';
 	import { onMount } from 'svelte';
 
