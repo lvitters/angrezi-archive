@@ -4,7 +4,7 @@
 	let values = [2024];
 	export let selectedYear = 2024;
 
-	function handleInput(value) {
+	function handleInput(value: number) {
 		selectedYear = value;
 		console.log(selectedYear);
 	}

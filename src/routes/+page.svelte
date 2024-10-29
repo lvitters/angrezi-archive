@@ -44,7 +44,7 @@
 		{#each audioFiles as file}
 			<li>
 			<audio controls>
-				<source src={file} type="audio/mpeg" />
+				<source src={file} type="audio/mp3" />
 				Your browser does not support the audio element.
 			</audio>
 			</li>
@@ -54,8 +54,6 @@
 		<p>No audio files available for {year}.</p>
 	{/if}
 </div>
-
-
 
 <style>
 
