@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import RangeSlider from "svelte-range-slider-pips";
 	
 	let values = [2024];
