@@ -2,7 +2,7 @@
 	import YearSlider from './yearSlider.svelte';
 	import { onMount } from 'svelte';
 
-	let year = $state(0);
+	let selectedYear = $state(0);
 	let audioFiles: string[] = [];
 	let audioData: {[year: number]: string[] } = {};
 
@@ -19,26 +19,26 @@
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 			audioData = await response.json();
-			loadAudioFiles(year);
+			loadAudioFiles(selectedYear);
 		} catch (error) {
 			console.error('Failed to load audio data:', error);
 		}
   	}
 
 	//load actual files according to year
-	function loadAudioFiles(year: number) {
-		console.log("loadAudioFiles: " + year);
+	function loadAudioFiles(yearToLoad: number) {
+		console.log("loadAudioFiles: " + yearToLoad);
 		// Safely access audioData[year] and handle undefined cases
-		const files = audioData[year];
+		const files = audioData[yearToLoad];
 		if (files) {
-			audioFiles = files.map(file => `/audio/${year}/${file}`);
+			audioFiles = files.map(file => `/audio/${yearToLoad}/${file}`);
 		} else {
 			audioFiles = []; // No files for this year, clear the array
 		}
   	}
 </script>
 
-<YearSlider bind:year={year}></YearSlider>
+<YearSlider bind:year={selectedYear}></YearSlider>
 
 <div class="audioFilesBox">
 	{#if audioFiles.length}
@@ -53,7 +53,7 @@
 		{/each}
 		</ul>
 	{:else}
-		<p>No audio files available for {year}.</p>
+		<p>No audio files available for {selectedYear}.</p>
 	{/if}
 </div>
 

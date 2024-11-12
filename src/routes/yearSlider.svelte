@@ -17,7 +17,7 @@
 </script>
 
 <div id="yearSelectBox">
-	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2018} max={2118} float />
+	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2018} max={2118} float /> <!-- TODO: is 'value' showing a warning because of a bug or because I did something wrong? -->
 </div>
 
 <style>
