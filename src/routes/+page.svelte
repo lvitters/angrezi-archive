@@ -3,23 +3,23 @@
 	import { onMount } from 'svelte';
 
 	let selectedYear = $state(0);
-	let audioFiles: string[] = [];
-	let audioData: {[year: number]: string[] } = {};
+	let audioFiles = $state([] as string[]);	//TODO: why does this need to be $state? selectedYear should trigger it, no? well
+	let audioData: {[year: number]: string[] } = {};	//TODO: I don't understand why it is declared like this
 
-	//do this on start
-	onMount(()=> {
-		loadAudioData();
+	//when a $state() changes
+	$effect(()=> {
+		loadAudioData(selectedYear);
 	})
 
 	//load the audio data
-	async function loadAudioData() {
+	async function loadAudioData(yearToLoad: number) {
 		try {
 			const response = await fetch('/audio/trackList.json');
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 			audioData = await response.json();
-			loadAudioFiles(selectedYear);
+			loadAudioFiles(yearToLoad);
 		} catch (error) {
 			console.error('Failed to load audio data:', error);
 		}
@@ -35,6 +35,7 @@
 		} else {
 			audioFiles = []; // No files for this year, clear the array
 		}
+		console.log(audioFiles.length);
   	}
 </script>
 
