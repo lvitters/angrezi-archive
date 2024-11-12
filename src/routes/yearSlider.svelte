@@ -1,17 +1,23 @@
 <script lang="ts">
+    import { onMount } from "svelte";
 	import RangeSlider from "svelte-range-slider-pips";
 	
-	let values = [2024];
-	export let selectedYear = 2024;
+	let now = new Date();
+	let { year = $bindable() } = $props();
 
-	function handleInput(value: number) {
-		selectedYear = value;
-		console.log(selectedYear);
+	//do this on start
+	onMount(()=> {
+		year = now.getFullYear();
+	})
+
+	function handleInput(inputValue: number) {
+		year = inputValue;
+		console.log("input: " + year);
 	}
 </script>
 
 <div id="yearSelectBox">
-	<RangeSlider bind:values on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2018} max={2118} float />
+	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2018} max={2118} float />
 </div>
 
 <style>

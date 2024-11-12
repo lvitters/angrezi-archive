@@ -2,9 +2,14 @@
 	import YearSlider from './yearSlider.svelte';
 	import { onMount } from 'svelte';
 
-	let year = 2024;	// default value for the slider
+	let year = $state(0);
 	let audioFiles: string[] = [];
 	let audioData: {[year: number]: string[] } = {};
+
+	//do this on start
+	onMount(()=> {
+		loadAudioData();
+	})
 
 	//load the audio data
 	async function loadAudioData() {
@@ -19,8 +24,10 @@
 			console.error('Failed to load audio data:', error);
 		}
   	}
+
 	//load actual files according to year
 	function loadAudioFiles(year: number) {
+		console.log("loadAudioFiles: " + year);
 		// Safely access audioData[year] and handle undefined cases
 		const files = audioData[year];
 		if (files) {
@@ -29,14 +36,9 @@
 			audioFiles = []; // No files for this year, clear the array
 		}
   	}
-
-	//reload files when year changes
-	$: loadAudioFiles(year);
-
-	onMount(loadAudioData);
 </script>
 
-<YearSlider bind:selectedYear={year}></YearSlider>
+<YearSlider bind:year={year}></YearSlider>
 
 <div class="audioFilesBox">
 	{#if audioFiles.length}
