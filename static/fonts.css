@@ -1,74 +1,74 @@
+@font-face {
+	font-family: 'Roboto Regular';
+	src:
+		url('fonts/Roboto-Regular.ttf') format('ttf');
+}
+
 @import url('https://fonts.googleapis.com/css?family=Archivo+Narrow');
-
-@font-face	{
-	font-family: 'Sporting Grotesque_Regular';
-	src: url('fonts/Sporting_Grotesque-Regular_web.eot');
-	src: url('fonts/Sporting_Grotesque-Regular_web.eot?#iefix') format('embedded-opentype'),
-	url('fonts/Sporting_Grotesque-Regular_web.woff') format('woff'),
-	url('fonts/Sporting_Grotesque-Regular_web.woff2') format('woff2'),
-	url('fonts/Sporting_Grotesque-Regular_web.ttf') format('truetype'),
-	url('fonts/Sporting_Grotesque-Regular_web.svg#svgFontName') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face	{
-	font-family: 'Sporting Grotesque_Bold';
-	src:    url('fonts/Sporting_Grotesque-Bold_web.eot');
-	src:    url('fonts/Sporting_Grotesque-Bold_web.eot?#iefix') format('embedded-opentype'),
-	url('fonts/Sporting_Grotesque-Bold_web.woff') format('woff'),
-	url('fonts/Sporting_Grotesque-Bold_web.woff2') format('woff2'),
-	url('fonts/Sporting_Grotesque-Bold_web.ttf') format('truetype'),
-	url('fonts/Sporting_Grotesque-Bold_web.svg#svgFontName') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-
-@font-face	{
-	font-family: 'savateregular';
-	src: url('fonts/savate-regular-webfont.eot');
-	src: url('fonts/savate-regular-webfont.eot?#iefix') format('embedded-opentype'),
-	url('fonts/savate-regular-webfont.woff2') format('woff2'),
-	url('fonts/savate-regular-webfont.woff') format('woff'),
-	url('fonts/savate-regular-webfont.ttf') format('truetype'),
-	url('fonts/savate-regular-webfont.svg#savateregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face	{
-	font-family: 'VG5000';
-	src: url('fonts/VG5000-Regular_web.eot');
-	src: url('fonts/VG5000-Regular_web.eot?#iefix') format('embedded-opentype'),
-	url('fonts/VG5000-Regular_web.woff') format('woff'),
-	url('fonts/VG5000-Regular_web.woff2') format('woff2'),
-	url('fonts/VG5000-Regular_web.ttf') format('truetype'),
-	url('fonts/VG5000-Regular_web.svg#svgFontName') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 
 @font-face {
 	font-family: 'Millimetre';
-	src: url('fonts/Millimetre/Bold/Millimetre-Bold_web.eot');
-	src: url('fonts/Millimetre/Bold/Millimetre-Bold_web.eot?#iefix') format('embedded-opentype'),
-	url('fonts/Millimetre/Bold/Millimetre-Bold_web.woff') format('woff'),
-	url('fonts/Millimetre/Bold/Millimetre-Bold_web.woff2') format('woff2'),
-	url('fonts/Millimetre/Bold/Millimetre-Bold_web.ttf') format('truetype'),
-	url('fonts/Millimetre/Bold/Millimetre-Bold_web.svg#svgFontName') format('svg');
+	src:
+		url('fonts/Millimetre-Bold_web.woff') format('woff'),
+		url('fonts/Millimetre-Bold_web.woff2') format('woff2'),
+		url('fonts/Millimetre-Bold_web.otf') format('otf'),
+		url('fonts/Millimetre-Bold_web.ttf') format('ttf');
 	font-weight: bold;
 	font-style: normal;
 }
 
 @font-face {
+	font-family: 'savateregular';
+	src:
+		url('fonts/savate-regular-webfont.woff') format('woff'),
+		url('fonts/savate-regular-webfont.woff2') format('woff2'),
+		url('fonts/savate-regular-webfont.ttf') format('ttf'),
+		url('fonts/savate-regular-webfont.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Sporting Grotesque_Regular';
+	src:
+		url('fonts/Sporting_Grotesque-Regular_web.woff') format('woff'),
+		url('fonts/Sporting_Grotesque-Regular_web.woff2') format('woff2'),
+		url('fonts/Sporting_Grotesque-Regular_web.otf') format('otf'),
+		url('fonts/Sporting_Grotesque-Regular_web.ttf') format('ttf'),
+		url('fonts/Sporting_Grotesque-Regular_web.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Sporting Grotesque_Bold';
+	src:
+		url('fonts/Sporting_Grotesque-Bold_web.woff') format('woff'),
+		url('fonts/Sporting_Grotesque-Bold_web.woff2') format('woff2'),
+		url('fonts/Sporting_Grotesque-Bold_web.otf') format('otf'),
+		url('fonts/Sporting_Grotesque-Bold_web.ttf') format('ttf'),
+		url('fonts/Sporting_Grotesque-Bold_web.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'terminal_grotesque';
-	src: url('fonts/terminal-grotesque-webfont.eot');
-	src: url('fonts/terminal-grotesque-webfont.eot?#iefix') format('embedded-opentype'),
-	url('fonts/terminal-grotesque-webfont.woff2') format('woff2'),
-	url('fonts/terminal-grotesque-webfont.woff') format('woff'),
-	url('fonts/terminal-grotesque-webfont.ttf') format('truetype'),
-	url('fonts/terminal-grotesque-webfont.svg#terminal_grotesqueregular') format('svg');
+	src: 
+		url('fonts/terminal-grotesque-webfont.woff') format('woff'),
+		url('fonts/terminal-grotesque-webfont.woff2') format('woff2'),
+		url('fonts/terminal-grotesque-webfont.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'VG5000';
+	src:
+		url('fonts/VG5000-Regular_web.woff') format('woff'),
+		url('fonts/VG5000-Regular_web.woff2') format('woff2'),
+		url('fonts/VG5000-Regular_web.otf') format('otf'),
+		url('fonts/VG5000-Regular_web.ttf') format('ttf');
 	font-weight: normal;
 	font-style: normal;
 }
