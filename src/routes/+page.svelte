@@ -63,7 +63,7 @@
 		{/each}
 		</ul>
 	{:else}
-		<p class={chooseRandomFont()}>No audio files available for {selectedYear}.</p>
+		<p id={chooseRandomFont()}>No audio files available for {selectedYear}.</p>
 	{/if}
 
 <style>
@@ -75,7 +75,8 @@
 
 	.audioFile {
 		display: flex;
-		margin-left: -2.5rem;
+		margin-left: -1.8rem;
+		margin-right: 1rem;
 		padding: .5rem;
 		border-style: solid;
 		border-width: 1px;
