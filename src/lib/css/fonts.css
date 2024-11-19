@@ -1,10 +1,8 @@
-@font-face {
-	font-family: 'Roboto Regular';
-	src:
-		url('fonts/Roboto-Regular.ttf') format('ttf');
-}
-
 @import url('https://fonts.googleapis.com/css?family=Archivo+Narrow');
+
+#Archivo_Narrow {
+	font-family: 'Archivo Narrow';
+}
 
 @font-face {
 	font-family: 'Millimetre';
@@ -17,6 +15,10 @@
 	font-style: normal;
 }
 
+#Millimetre {
+	font-family: 'Millimetre';
+}
+
 @font-face {
 	font-family: 'savateregular';
 	src:
@@ -26,6 +28,10 @@
 		url('fonts/savate-regular-webfont.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
+}
+
+#savateregular {
+	font-family: 'savateregular';
 }
 
 @font-face {
@@ -40,6 +46,10 @@
 	font-style: normal;
 }
 
+#Sporting_Grotesque_Regular {
+	font-family: 'Sporting Grotesque_Regular';
+}
+
 @font-face {
 	font-family: 'Sporting Grotesque_Bold';
 	src:
@@ -52,6 +62,10 @@
 	font-style: normal;
 }
 
+#Sporting_Grotesque_Bold {
+	font-family: 'Sporting Grotesque_Bold';
+}
+
 @font-face {
 	font-family: 'terminal_grotesque';
 	src: 
@@ -60,6 +74,10 @@
 		url('fonts/terminal-grotesque-webfont.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
+}
+
+#terminal_grotesque {
+	font-family: 'terminal_grotesque';
 }
 
 @font-face {
@@ -71,4 +89,8 @@
 		url('fonts/VG5000-Regular_web.ttf') format('ttf');
 	font-weight: normal;
 	font-style: normal;
+}
+
+#VG5000 {
+	font-family: 'VG5000';
 }
