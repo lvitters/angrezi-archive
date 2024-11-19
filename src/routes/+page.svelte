@@ -44,7 +44,7 @@
 		<ul class="audioFilesList">
 		{#each audioFiles as file}
 			<li>
-				<p>{file.replace("/audio/" + selectedYear + "/","").replace(".mp3", "")}</p>	<!-- remove path and file ending from name for display -->
+				<p class="audioFile">{file.replace("/audio/" + selectedYear + "/","").replace(".mp3", "")}</p>	<!-- remove path and file ending from name for display -->
 				<audio controls>
 					<source src={file} type="audio/mp3" />
 					Your browser does not support the audio element.
@@ -62,6 +62,16 @@
 	.audioFilesList {
 		display: flex-box;
 		list-style-type: none;
+	}
+
+	.audioFile {
+		/* font-family: 'Archivo Narrow' */
+		/* font-family: 'Sporting Grotesque_Regular' */
+		/* font-family: 'Sporting Grotesque_Bold' */
+		/* font-family: 'savateregular' */
+		/* font-family: 'VG5000'; */
+		/* font-family: 'Millimetre'; */
+		/* font-family: 'terminal_grotesque'; */
 	}
 
 </style>
