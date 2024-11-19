@@ -1,10 +1,9 @@
 <script lang="ts">
 	import YearSlider from './yearSlider.svelte';
-	import { onMount } from 'svelte';
 
 	let selectedYear = $state(0);
-	let audioFiles = $state([] as string[]);	//TODO: why does this need to be $state? selectedYear should trigger it, no? well
-	let audioData: {[year: number]: string[] } = {};	//TODO: I don't understand why it is declared like this
+	let audioFiles = $state([] as string[]);	//TODO: why does this need to be $state? selectedYear should trigger it, no?
+	let audioData: {[year: number]: string[] } = {};	//declare audioData object with array of strings for every year, init as empty
 
 	//when a $state() changes
 	$effect(()=> {
@@ -27,29 +26,29 @@
 
 	//load actual files according to year
 	function loadAudioFiles(yearToLoad: number) {
-		console.log("loadAudioFiles: " + yearToLoad);
-		// Safely access audioData[year] and handle undefined cases
+		//Safely access audioData and handle undefined cases
 		const files = audioData[yearToLoad];
 		if (files) {
 			audioFiles = files.map(file => `/audio/${yearToLoad}/${file}`);
 		} else {
-			audioFiles = []; // No files for this year, clear the array
+			audioFiles = []; //No files for this year, clear the array
 		}
-		console.log(audioFiles.length);
   	}
 </script>
 
 <YearSlider bind:year={selectedYear}></YearSlider>
 
+<!-- display files -->
 <div class="audioFilesBox">
 	{#if audioFiles.length}
-		<ul>
+		<ul class="audioFilesList">
 		{#each audioFiles as file}
 			<li>
-			<audio controls>
-				<source src={file} type="audio/mp3" />
-				Your browser does not support the audio element.
-			</audio>
+				<p>{file.replace("/audio/" + selectedYear + "/","").replace(".mp3", "")}</p>	<!-- remove path and file ending from name for display -->
+				<audio controls>
+					<source src={file} type="audio/mp3" />
+					Your browser does not support the audio element.
+				</audio>
 			</li>
 		{/each}
 		</ul>
@@ -60,10 +59,9 @@
 
 <style>
 
-	.audioFilesBox {
-		display: flex;
-		row-gap: 5px;
-		column-gap: 5px;
+	.audioFilesList {
+		display: flex-box;
+		list-style-type: none;
 	}
 
 </style>
