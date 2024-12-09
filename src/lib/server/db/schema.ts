@@ -1,4 +1,4 @@
-//https://omrecipes.dev/blog/sveltekit-crud-sqlite	https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
+//https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { generateRandomId } from '../../../../node_modules/utils';

@@ -1,4 +1,4 @@
-//https://omrecipes.dev/blog/sveltekit-crud-sqlite	https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
+//https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
 import Database from "better-sqlite3";
 import * as dotenv from "dotenv";

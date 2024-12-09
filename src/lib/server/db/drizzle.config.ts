@@ -1,4 +1,4 @@
-//https://omrecipes.dev/blog/sveltekit-crud-sqlite	https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
+//https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
 import * as dotenv from "dotenv";
 import type { Config } from "drizzle-kit";
