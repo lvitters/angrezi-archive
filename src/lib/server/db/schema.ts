@@ -3,18 +3,17 @@
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { generateRandomId } from '../../../../node_modules/utils';
 
-const audioFiles = sqliteTable('audioFiles', {
+const files = sqliteTable('audioFiles', {
 	id: text('id')
 		.primaryKey()
 		.notNull()
 		.$defaultFn(() => generateRandomId()),
 	title: text('title').notNull(),
 	artist: text('artist').notNull(),
-	show: text('show').notNull(),
 	date: text('date').notNull(),
 	filepath: text('filepath').notNull()
 });
 
-type inserAudioFilesParams = typeof audioFiles.$inferInsert;
+type inserAudioFilesParams = typeof files.$inferInsert;
 
-export { audioFiles, type inserAudioFilesParams };
+export { files, type inserAudioFilesParams };
