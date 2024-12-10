@@ -4,26 +4,15 @@ import { eq } from "drizzle-orm";
 import { db } from "./client";
 import { files } from "./schema";
 
-const getFileById = (id: string) => {
-	return db.select().from(files).where(eq(files.id, id)).get();
-};
-
-const getFileTitleById = (id: string) => {
+//write title and file path into database
+const createNewFile = (title: string, filePath: string ) => {
 	return db
-	  .select({
-		title: files.title,
-	  })
-	  .from(files)
-	  .where(eq(files.id, id))
-	  .get();
-};
-
-const createNewFile = (data: typeof files.$inferInsert) => {
-	return db.insert(files).values(data).returning().get();
+			.insert(files)
+			.values({ title, filePath })
+			.returning()
+			.get();
 };
 
 export {
-	getFileById,
-	getFileTitleById,
 	createNewFile,
 };
