@@ -2,7 +2,7 @@ import { createNewFile } from './files.ts' // from db utility file 'files.ts'
 import fs from 'fs';
 import path from 'path';
 
-const folderPath = '../../static/audio'; // Replace with your folder path
+const folderPath = '../../../../static/audio'; // Replace with your folder path
 
 //get audio files from folder into array
 async function populateDatabase() {
