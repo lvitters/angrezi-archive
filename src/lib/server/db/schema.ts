@@ -13,6 +13,4 @@ const files = sqliteTable('files', {
 	filePath: text('filePath').notNull()
 });
 
-type insertAudioFilesParams = typeof files.$inferInsert;
-
-export { files, type insertAudioFilesParams };
+export { files };

@@ -1,6 +1,5 @@
 //https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
-import { eq } from "drizzle-orm";
 import { db } from "./client";
 import { files } from "./schema";
 
