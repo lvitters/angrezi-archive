@@ -5,50 +5,59 @@ import path from 'path';
 // const folderPath = path.resolve(process.cwd(), 'static/audio'); // Replace with your folder path
 const folderPath = 'static/audio';
 
-// get audiofiles, even from subdirectories
-function getAudioFiles(dir: string): string[] {
+// get audiofiles from current or subdirectories, named after years
+function getAudioFiles(dir: string, currentYear?: string): { filePath: string; year: string }[] {
+	// get all the entries in the current directory
 	const entries = fs.readdirSync(dir, { withFileTypes: true });
-	let files: string[] = [];
-
+	let files: { filePath: string; year: string }[] = [];
+  
 	for (const entry of entries) {
 		const fullPath = path.join(dir, entry.name);
-
+	
+		// if it is a subdirectory
 		if (entry.isDirectory()) {
-			// get files from subdirectories (is this recursion?)
-			files = files.concat(getAudioFiles(fullPath));
+			// check if directory name is of year format and write to year
+			const year = /^[0-9]{4}$/.test(entry.name) ? entry.name : currentYear;
+			// do it again for the subdirectory
+			files = files.concat(getAudioFiles(fullPath, year));
+			// if it is a file
 		} else if (entry.isFile()) {
-			// check if file has an audio extension
+			// check if the file has an audio extension
 			const ext = path.extname(entry.name).toLowerCase();
 			if (['.mp3', '.wav'].includes(ext)) {
-				files.push(fullPath);
+				//and push to files array
+				files.push({ filePath: fullPath, year: currentYear ?? 'Unknown' });
 			}
 		}
 	}
-
+	
+	// return files array
 	return files;
-}
-
-// get audio files from folder into array
-async function populateDatabase() {
-	try {
-		const audioFiles = getAudioFiles(folderPath);
-
-		// fetch file paths from them
-		for (const file of audioFiles) {
-				const filePath = path.join(folderPath, file);
-
-			// try inserting into database
-			try {
-				await createNewFile(file, filePath);
-				console.log(`Inserted: ${file}`);
-			} catch (err) {
-				console.error(`Error inserting ${file}:`, err);
+  }
+  
+  // populate the database with the files from getAudioFiles()
+  async function populateDatabase() {
+		try {
+			// get all audio files
+			const audioFiles = getAudioFiles(folderPath);
+		
+			// get their names from the file path
+			for (const { filePath, year } of audioFiles) {
+				// file name without path or extension
+				const fileName = path.parse(filePath).name;
+		
+				// try inserting into the database
+				try {
+					createNewFile(fileName, filePath, year);
+					console.log(`Inserted: ${fileName} (Year: ${year})`);
+				} catch (err) {
+					console.error(`Error inserting ${fileName}:`, err);
+				}
 			}
+		} catch (err) {
+			console.error('Error reading directory:', err);
 		}
-	} catch (err) {
-		console.error('Error reading directory.', err);
-	}
-}
+  }
 
 // log when successful
 populateDatabase().then(() => {

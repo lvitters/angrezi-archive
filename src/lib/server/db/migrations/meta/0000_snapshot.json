@@ -1,16 +1,23 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "a3954094-b53d-4270-9fed-54a416fe4661",
+  "id": "067c9050-54fb-4404-b377-86ddadb7d711",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "audioFiles": {
-      "name": "audioFiles",
+    "files": {
+      "name": "files",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "year": {
+          "name": "year",
+          "type": "text",
+          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
@@ -21,29 +28,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "artist": {
-          "name": "artist",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "show": {
-          "name": "show",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "date": {
-          "name": "date",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "filepath": {
-          "name": "filepath",
+        "filePath": {
+          "name": "filePath",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

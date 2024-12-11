@@ -9,6 +9,7 @@ const files = sqliteTable('files', {
 		.primaryKey()
 		.notNull()
 		.$defaultFn(() => randomUUID()),
+	year: text('year').notNull(),
 	title: text('title').notNull(),
 	filePath: text('filePath').notNull()
 });
