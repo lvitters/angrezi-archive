@@ -10,6 +10,8 @@ const files = sqliteTable('files', {
 		.notNull()
 		.$defaultFn(() => randomUUID()),
 	year: text('year').notNull(),
+	show: text('show').notNull(),
+	artist: text('artist').notNull(),
 	title: text('title').notNull(),
 	filePath: text('filePath').notNull()
 });

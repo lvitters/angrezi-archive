@@ -43,12 +43,13 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 		
 			// get their names from the file path
 			for (const { filePath, year } of audioFiles) {
-				// file name without path or extension
+				// get info from file path
 				const fileName = path.parse(filePath).name;
+				const [artist, title, show] = fileName.split('-');
 		
 				// try inserting into the database
 				try {
-					createNewFile(fileName, filePath, year);
+					createNewFile(year, show, artist, title, filePath);
 					console.log(`Inserted: ${fileName} (Year: ${year})`);
 				} catch (err) {
 					console.error(`Error inserting ${fileName}:`, err);

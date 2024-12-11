@@ -4,10 +4,10 @@ import { db } from "./client";
 import { files } from "./schema";
 
 //write title and file path into database
-const createNewFile = (year: string, title: string, filePath: string ) => {
+const createNewFile = (year: string, show: string, artist: string, title: string, filePath: string ) => {
 	return db
 			.insert(files)
-			.values({ year, title, filePath })
+			.values({ year, show, artist, title, filePath })
 			.returning()
 			.get();
 };
