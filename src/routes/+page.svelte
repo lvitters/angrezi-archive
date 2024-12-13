@@ -3,7 +3,7 @@
 	import '$lib/css/fonts.css';
 	
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
-	let { data }: { data: load } = $props();
+	let { data } =  $props();
 	const { audioFiles } = data;
 
 	// selector for the year
@@ -34,7 +34,7 @@
 	{#each audioFiles as file}
 		{#if file.year == selectedYear}
 		<li class="audioFile">
-			<p id={chooseRandomFont()}>{file.show}</p>
+			<p id={chooseRandomFont()}>{file.date} {file.artist} {file.show} {file.title}</p>
 			<audio controls class="controls">
 				<source src={file.filePath} type="audio/mp3"/>
 				Your browser does not support the audio element.

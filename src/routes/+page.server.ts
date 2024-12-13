@@ -1,8 +1,8 @@
 import { getAllEntries } from '../lib/server/db/entries';
-import type { PageServerLoad } from './$types';
+//import type { PageServerLoad } from './$types'; //why don't I need this?
 
 //load from db with year provided, this is called a load function
-export const load: PageServerLoad = async ( {url} ) => {
+export const load = async ( {url} ) => {
 	try {
 		// fetch files for the specified year
 		const audioFiles = await getAllEntries();
