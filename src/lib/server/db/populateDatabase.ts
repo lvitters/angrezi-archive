@@ -1,4 +1,4 @@
-import { createNewFile } from './files.ts' // from db utility file 'files.ts'
+import { createNewEntry } from './entries.ts' // from db utility file 'files.ts'
 import fs from 'fs';
 import path from 'path';
 
@@ -20,7 +20,7 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 			const year = /^[0-9]{4}$/.test(entry.name) ? entry.name : currentYear;
 			// do it again for the subdirectory
 			files = files.concat(getAudioFiles(fullPath, year));
-			// if it is a file
+		// if it is a file
 		} else if (entry.isFile()) {
 			// check if the file has an audio extension
 			const ext = path.extname(entry.name).toLowerCase();
@@ -45,14 +45,19 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 			for (const { filePath, year } of audioFiles) {
 				// get info from file path
 				const fileName = path.parse(filePath).name;
-				const [artist, title, show] = fileName.split('-');
-		
-				// try inserting into the database
-				try {
-					createNewFile(year, show, artist, title, filePath);
-					console.log(`Inserted: ${fileName} (Year: ${year})`);
-				} catch (err) {
-					console.error(`Error inserting ${fileName}:`, err);
+				// split into three and only assign to values if the file path is of that structure
+				const data = fileName.split('-');
+				if (data.length === 4) {
+					const [date, artist, title, show] = data;
+					// try inserting into the database
+					try {
+						createNewEntry(year, date, show, artist, title, filePath);
+						console.log(`Inserted: ${fileName} (Year: ${year})`);
+					} catch (err) {
+						console.error(`Error inserting ${fileName}:`, err);
+					}
+				} else {
+					console.error('Unexpected file name format: ${fileName}');
 				}
 			}
 		} catch (err) {

@@ -3,17 +3,18 @@
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { randomUUID } from 'crypto';
 
-//create database schema
-const files = sqliteTable('files', {
+// create database schema
+const audioFiles = sqliteTable('audioFiles', {
 	id: text('id')
 		.primaryKey()
 		.notNull()
 		.$defaultFn(() => randomUUID()),
 	year: text('year').notNull(),
+	date: text('date').notNull(),
 	show: text('show').notNull(),
 	artist: text('artist').notNull(),
 	title: text('title').notNull(),
 	filePath: text('filePath').notNull()
 });
 
-export { files };
+export { audioFiles };
