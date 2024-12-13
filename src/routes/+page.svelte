@@ -4,16 +4,17 @@
 	
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
 	let data = $props();
-	const { audioFiles, year } = data;
+	const { audioFiles } = data;
 
 	// selector for the year
 	let selectedYear = $state(0);
 
-	//
+	// some random fonts from the regular radio website
 	let fonts: string[] = ['Archivo_Narrow', 'Millimetre', 'savateregular', 'Sporting_Grotesque_Regular', 'terminal_grotesque', 'VG5000'];
 
 	// when a $state() changes
 	$effect(()=> {
+		console.log(audioFiles);
 		chooseRandomFont();
 	})
 
@@ -29,7 +30,7 @@
 <YearSlider bind:year={selectedYear}></YearSlider>
 
 <!-- display files --> 
-{#if audioFiles.length}
+{#if audioFiles}
 	<ul class="audioFilesList">
 	{#each audioFiles as file}
 		{#if file.year == selectedYear}
