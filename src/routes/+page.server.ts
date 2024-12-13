@@ -1,7 +1,8 @@
 import { getAllEntries } from '../lib/server/db/entries';
+import type { PageServerLoad } from './$types';
 
 //load from db with year provided, this is called a load function
-export async function load( {url} ) {
+export const load: PageServerLoad = async ( {url} ) => {
 	try {
 		// fetch files for the specified year
 		const audioFiles = await getAllEntries();
