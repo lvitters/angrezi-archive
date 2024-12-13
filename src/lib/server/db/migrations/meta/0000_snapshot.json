@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "2eca89a8-dcae-4efc-b9e6-55cebb4cb3bd",
+  "id": "3a0c6ccb-7b76-4207-a7e6-5d4d1f675cf9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "audioFiles": {

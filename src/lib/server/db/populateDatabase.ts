@@ -12,7 +12,7 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 	let files: { filePath: string; year: string }[] = [];
   
 	for (const entry of entries) {
-		const fullPath = path.join(dir, entry.name);
+		let fullPath = path.join(dir, entry.name);
 	
 		// if it is a subdirectory
 		if (entry.isDirectory()) {
@@ -26,7 +26,7 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 			const ext = path.extname(entry.name).toLowerCase();
 			if (['.mp3', '.wav'].includes(ext)) {
 				//and push to files array
-				files.push({ filePath: fullPath, year: currentYear ?? 'Unknown' });
+				files.push({ filePath: fullPath.replace('static/', ''), year: currentYear ?? 'Unknown' });
 			}
 		}
 	}
