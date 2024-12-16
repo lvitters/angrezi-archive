@@ -1,5 +1,6 @@
 <script lang="ts">
 	import YearSlider from './yearSlider.svelte';
+	import AudioPlayer from './audioPlayer.svelte';
 	import '$lib/css/fonts.css';
 	
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
@@ -46,10 +47,7 @@
 						<div class="audio-box" id={chooseRandomFont()}>{file.show}</div>
 						<div class="audio-box" id={chooseRandomFont()}>{file.title}</div>
 						<div class="audio-box">
-							<audio controls id="controls">
-								<source src={file.filePath} type="audio/mp3"/>
-								Your browser does not support the audio element.
-							</audio>
+							<AudioPlayer bind:src={file.filePath}/>
 						</div>
 					</div>
 				{/if}
@@ -64,6 +62,7 @@
 	.audio-list {
 		display: flex;
 		flex-direction: column; /* Stack rows vertically */
+		margin-top: 2rem;
 		margin-left: 1rem;
 		margin-right: 1rem;
 	}	
