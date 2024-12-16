@@ -7,13 +7,10 @@
 	const { audioFiles } = data;
 
 	// selector for the year
-	let selectedYear = $state(0);
+	let selectedYear = $state();
 
-	//	filter for if there are any files with the same year as the selectedYear when side loads
+	//	filter for if there are any files with the same year as the selectedYear when side loads // TODO: why does this also need state? shouldn't it be triggered by selectedYear changing?
 	let filteredAudioFiles = $state([]);
-
-	// some random fonts from the regular radio website
-	let fonts: string[] = ['Archivo_Narrow', 'Millimetre', 'savateregular', 'Sporting_Grotesque_Regular', 'terminal_grotesque', 'VG5000'];
 
 	// when a $state() changes
 	$effect(()=> {
@@ -23,6 +20,9 @@
 		filteredAudioFiles = audioFiles.filter(file => file.year == selectedYear);
 		$inspect(filteredAudioFiles.length);
 	})
+
+	// some random fonts from the regular radio website
+	let fonts: string[] = ['Archivo_Narrow', 'Millimetre', 'savateregular', 'Sporting_Grotesque_Regular', 'terminal_grotesque', 'VG5000'];
 
 	// choose a random font for each audioFile, insert as class name in divs
 	function chooseRandomFont() {
@@ -41,19 +41,16 @@
 		{#each audioFiles as file}
 				{#if file.year == selectedYear}
 					<div class="audio-row">
-						<p class="audio-box" id={chooseRandomFont()}>{file.date}</p>
-						&emsp;
-						<p class="audio-box" id={chooseRandomFont()}>{file.artist}</p>
-						&emsp;
-						<p class="audio-box" id={chooseRandomFont()}>{file.show}</p>
-						&emsp;
-						<p class="audio-box" id={chooseRandomFont()}>{file.title}</p>
-						<p class="audio-box">
+						<div class="audio-box" id={chooseRandomFont()}>{file.date}</div>
+						<div class="audio-box" id={chooseRandomFont()}>{file.artist}</div>
+						<div class="audio-box" id={chooseRandomFont()}>{file.show}</div>
+						<div class="audio-box" id={chooseRandomFont()}>{file.title}</div>
+						<div class="audio-box">
 							<audio controls id="controls">
 								<source src={file.filePath} type="audio/mp3"/>
 								Your browser does not support the audio element.
 							</audio>
-						</p>
+						</div>
 					</div>
 				{/if}
 		{/each}
@@ -67,6 +64,8 @@
 	.audio-list {
 		display: flex;
 		flex-direction: column; /* Stack rows vertically */
+		margin-left: 1rem;
+		margin-right: 1rem;
 	}	
 	
 	.audio-row {
@@ -79,6 +78,8 @@
 		display: flex; /* Enable flexbox inside the box */
 		flex-grow: 1; /* Boxes grow dynamically based on content */
 		padding: 1rem; /* Add padding for spacing inside the box */
+		margin-top: -1px; /* make borders overlap so they remain 1px thick */
+		margin-left: -1px; /* make borders overlap so they remain 1px thick */
 		border: 1px solid;
 		text-align: left; /* Align text to the left */
 		word-wrap: break-word; /* Prevent long text from overflowing */
@@ -87,7 +88,7 @@
 	}
 
 	#controls {
-		margin-left: auto;
+		background-color: yellow;
 	}
 
 </style>
