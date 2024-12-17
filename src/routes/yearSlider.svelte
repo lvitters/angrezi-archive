@@ -2,7 +2,10 @@
     import { onMount } from "svelte";
 	import RangeSlider from "svelte-range-slider-pips";
 	
+	// for getting the current year
 	let now = new Date();
+
+	// get selected year from parent
 	let { year = $bindable() } = $props();
 
 	//do this when the program starts

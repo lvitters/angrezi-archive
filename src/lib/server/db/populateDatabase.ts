@@ -2,7 +2,6 @@ import { createNewEntry } from './entries.ts' // from db utility file 'files.ts'
 import fs from 'fs';
 import path from 'path';
 
-// const folderPath = path.resolve(process.cwd(), 'static/audio'); // Replace with your folder path
 const folderPath = 'static/audio';
 
 // get audiofiles from current or subdirectories, named after years
@@ -11,14 +10,15 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 	const entries = fs.readdirSync(dir, { withFileTypes: true });
 	let files: { filePath: string; year: string }[] = [];
   
+	// for each of the entries
 	for (const entry of entries) {
 		let fullPath = path.join(dir, entry.name);
 	
 		// if it is a subdirectory
 		if (entry.isDirectory()) {
-			// check if directory name is of year format and write to year
+			// check if directory name is of year format (via regex) and write to year
 			const year = /^[0-9]{4}$/.test(entry.name) ? entry.name : currentYear;
-			// do it again for the subdirectory
+			// do it again for the subdirectory (recursion!)
 			files = files.concat(getAudioFiles(fullPath, year));
 		// if it is a file
 		} else if (entry.isFile()) {
@@ -57,7 +57,7 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 						console.error(`Error inserting ${fileName}:`, err);
 					}
 				} else {
-					console.error('Unexpected file name format: ${fileName}');
+					console.error('Unexpected file name format');
 				}
 			}
 		} catch (err) {
