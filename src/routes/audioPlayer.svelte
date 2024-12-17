@@ -97,6 +97,7 @@
 
 	.play-button:hover {
 		color: red;
+		cursor: pointer;
 	}
 
 	.pause-button {
@@ -107,6 +108,7 @@
 
 	.pause-button:hover {
 		color: hsl(60, 100%, 39.2%);
+		cursor: pointer;
 	}
 
 	/* progress bar container */

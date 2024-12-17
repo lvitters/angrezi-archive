@@ -14,24 +14,14 @@
 	//	filter for if there are any files with the same year as the selectedYear when side loads // TODO: why does this also need state? shouldn't it be triggered by selectedYear changing?
 	let filteredAudioFiles = $state([]);
 
-	// when a $state() changes
-	$effect(()=> {
+	// when a $state() changes (need to understand this better)
+	$effect(() => {
 		chooseRandomFont();
 
 		// determine if there are any files with the same year as the selectedYear when the site updates
 		filteredAudioFiles = audioFiles.filter(file => file.year == selectedYear);
-		$inspect(filteredAudioFiles.length);
+		//$inspect(filteredAudioFiles.length);
 	})
-
-	// // some random fonts from the regular radio website
-	// let fonts: string[] = ['Archivo_Narrow', 'Millimetre', 'savateregular', 'Sporting_Grotesque_Regular', 'terminal_grotesque', 'VG5000'];
-
-	// // choose a random font for each audioFile, insert as class name in divs
-	// function chooseRandomFont() {
-	// 	let font = fonts[Math.floor(Math.random() * fonts.length)];
-	// 	//console.log(font);
-	// 	return font;
-	// }
 
 </script>
 

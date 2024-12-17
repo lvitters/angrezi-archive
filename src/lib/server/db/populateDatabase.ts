@@ -49,9 +49,11 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 				const data = fileName.split('-');
 				if (data.length === 4) {
 					const [date, artist, title, show] = data;
+					//change numbering scheme to date format
+					const namedDate = formatDate(data[0]);
 					// try inserting into the database
 					try {
-						createNewEntry(year, date, show, artist, title, filePath);
+						createNewEntry(year, namedDate, show, artist, title, filePath);
 						console.log(`Inserted: ${fileName} (Year: ${year})`);
 					} catch (err) {
 						console.error(`Error inserting ${fileName}:`, err);
@@ -63,6 +65,22 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 		} catch (err) {
 			console.error('Error reading directory:', err);
 		}
+  }
+
+  // format date format from files into strings with month names
+  function formatDate(date: string): string {
+	const paddedDate = date.padStart(4, '0'); // ensure string is four characters long
+    const monthNum = parseInt(paddedDate.substring(0, 2), 10); // first two digits are the month
+    const dayNum = paddedDate.substring(2, 4); // last two digits are the day
+
+    const months: string[] = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    const monthName = months[monthNum - 1]; // Get month name (index starts at 0)
+    
+    return `${monthName} ${dayNum}`;
   }
 
 // log when successful
