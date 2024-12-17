@@ -45,7 +45,7 @@
 		{/each}
 	</div>
 {:else}
-	<p id={chooseRandomFont()}>No audio files available for {selectedYear}.</p>
+	<p id={chooseRandomFont()}>{selectedYear} hasn't happened yet. Or nobody uploaded anything. The first one is more likely.</p>
 {/if}
 
 <style>
