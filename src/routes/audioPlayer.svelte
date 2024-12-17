@@ -61,9 +61,9 @@
 	</audio>
 	<!-- show button, depending on if something is playing -->
 	{#if !isPlaying}
-		<button class="play-button" onclick={playAudio}><Icon icon="mdi-play" style="font-size: 2rem;"/></button>
+		<button class="play-button" onclick={playAudio}><Icon icon="pixelarticons-play" style="font-size: 2rem;"/></button>
 	{:else}
-		<button class="pause-button" onclick={pauseAudio}><Icon icon="mdi-pause" style="font-size: 2rem;"/></button>
+		<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
 	{/if}
 	<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 	<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" onclick={seek}
@@ -130,7 +130,7 @@
 	.time-info {
 		flex-shrink: 0;
 		text-align: right;
-		font-size: 0.9rem;
-		color: gray;
+		font-size: 1rem;
+		color: black;
 	}
 </style>
