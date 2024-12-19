@@ -37,9 +37,7 @@
 						<div class="audio-box" id={chooseRandomFont()}>{file.artist}</div>
 						<div class="audio-box" id={chooseRandomFont()}>{file.show}</div>
 						<div class="audio-box" id={chooseRandomFont()}>{file.title}</div>
-						<div class="audio-box">
-							<AudioPlayer src={file.filePath}/>
-						</div>
+						<AudioPlayer src={file.filePath}/>
 					</div>
 				{/if}
 		{/each}

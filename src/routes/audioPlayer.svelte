@@ -59,25 +59,31 @@
 		<source src={src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
+	<div class="audio-box">
 	<!-- show button, depending on if something is playing -->
-	{#if !isPlaying}
-		<button class="play-button" onclick={playAudio}><Icon icon="pixelarticons-play" style="font-size: 2rem;"/></button>
-	{:else}
-		<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
-	{/if}
-	<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
-	<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" onclick={seek}
-		onkeydown = {(e) => {
-			if (e.key === 'Enter' || e.key === ' ') {
-				seek(e);
-			}
-		}}
- 	>
-		<div class="progress" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
+		{#if !isPlaying}
+			<button class="play-button" onclick={playAudio}><Icon icon="pixelarticons-play" style="font-size: 2rem;"/></button>
+		{:else}
+			<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
+		{/if}
 	</div>
-	<!-- show progress in numbers -->
-	<div class="time-info">
-		<span id={chooseRandomFont()}>{formatTime(currentTime)} / {formatTime(duration)}</span>
+	<div class="audio-box">
+		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
+		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" onclick={seek}
+			onkeydown = {(e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					seek(e);
+				}
+			}}
+		>
+			<div class="progress" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
+		</div>
+	</div>
+	<div class="audio-box">
+		<!-- show progress in numbers -->
+		<div class="time-info">
+			<span id={chooseRandomFont()}>{formatTime(currentTime)} / {formatTime(duration)}</span>
+		</div>
 	</div>
 </div>
 
@@ -85,8 +91,7 @@
 	.audio-player {
 		background-color: yellow;
 		display: inline-flex;
-		align-items: center;
-		gap: 10px;
+		align-items: stretch;
 	}
 
 	.play-button {
@@ -129,10 +134,24 @@
 		transition: width 0.1s linear;
 	}
 
+	/* progressed time in numbers */
 	.time-info {
 		flex-shrink: 0;
 		text-align: right;
 		font-size: 1rem;
 		color: black;
+	}
+
+	.audio-box {
+		display: flex; /* Enable flexbox inside the box */
+		flex-grow: 1; /* Boxes grow dynamically based on content */
+		padding: 1rem; /* Add padding for spacing inside the box */
+		margin-top: -1px; /* make borders overlap so they remain 1px thick */
+		margin-left: -1px; /* make borders overlap so they remain 1px thick */
+		border: 1px solid;
+		text-align: left; /* Align text to the left */
+		word-wrap: break-word; /* Prevent long text from overflowing */
+		align-items: center; /* Vertically center the text inside the box */
+		justify-content: center; /* Horizontally center the text inside the box */
 	}
 </style>
