@@ -67,7 +67,8 @@
 			<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
 		{/if}
 	</div>
-	<div class="progress-box">
+	{#if isPlaying}
+	<div class="audio-box" id="progress-box">
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" onclick={seek}
 			onkeydown = {(e) => {
@@ -79,6 +80,7 @@
 			<div class="progress" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
 		</div>
 	</div>
+	{/if}
 	<div class="audio-box">
 		<!-- show progress in numbers -->
 		<div class="time-info">
@@ -152,15 +154,7 @@
 		justify-content: center; /* horizontally center the text inside the box */
 	}
 
-	.progress-box {
-		display: flex; /* enable flexbox inside the box */
-		flex-grow: 1; /* boxes grow dynamically based on content */
-		margin-top: -1px; /* make borders overlap so they remain 1px thick */
-		margin-left: -1px; /* make borders overlap so they remain 1px thick */
-		border: 1px solid;
-		text-align: left; /* align text to the left */
-		word-wrap: break-word; /* prevent long text from overflowing */
-		align-items: center; /* vertically center the text inside the box */
-		justify-content: center; /* horizontally center the text inside the box */
+	#progress-box {
+		padding: 0; /* progress bar should fill its entire box */
 	}
 </style>

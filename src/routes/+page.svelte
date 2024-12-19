@@ -29,14 +29,14 @@
 
 <!-- display files --> 
 {#if filteredAudioFiles.length > 0}
-	<div class="audio-list">
+	<div class="files-list">
 		{#each audioFiles as file}
 				{#if file.year == selectedYear}
-					<div class="audio-row">
-						<div class="audio-box" id={chooseRandomFont()}>{file.date}</div>
-						<div class="audio-box" id={chooseRandomFont()}>{file.artist}</div>
-						<div class="audio-box" id={chooseRandomFont()}>{file.show}</div>
-						<div class="audio-box" id={chooseRandomFont()}>{file.title}</div>
+					<div class="files-row">
+						<div class="files-box" id={chooseRandomFont()}>{file.date}</div>
+						<div class="files-box" id={chooseRandomFont()}>{file.artist}</div>
+						<div class="files-box" id={chooseRandomFont()}>{file.show}</div>
+						<div class="files-box" id={chooseRandomFont()}>{file.title}</div>
 						<AudioPlayer src={file.filePath}/>
 					</div>
 				{/if}
@@ -48,7 +48,7 @@
 
 <style>
 
-	.audio-list {
+	.files-list {
 		display: flex;
 		flex-direction: column; /* Stack rows vertically */
 		margin-top: 2rem;
@@ -56,13 +56,13 @@
 		margin-right: 1rem;
 	}	
 	
-	.audio-row {
+	.files-row {
 		display: flex;
 		flex-direction: row; /* Align boxes horizontally in a row */
 		align-items: stretch; /* Ensure all cells stretch to the row's height */
 	}
 
-	.audio-box {
+	.files-box {
 		display: flex; /* enable flexbox inside the box */
 		flex-grow: 1; /* boxes grow dynamically based on content */
 		padding: 1rem; /* add padding for spacing inside the box */
