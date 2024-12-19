@@ -12,11 +12,13 @@
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let isPlaying = $state(false);
+	let wasPlaying = $state(false);
 
 	// start playback
 	function playAudio() {
 		audioElement.play();
 		isPlaying = true;
+		wasPlaying = true;
 	}
 
 	// pause playback
@@ -67,17 +69,12 @@
 			<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
 		{/if}
 	</div>
-	{#if isPlaying}
+	{#if wasPlaying}
 	<div class="audio-box" id="progress-box">
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" onclick={seek}
-			onkeydown = {(e) => {
-				if (e.key === 'Enter' || e.key === ' ') {
-					seek(e);
-				}
-			}}
-		>
-			<div class="progress" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
+		onkeydown = {(e) => { if (e.key === 'Enter' || e.key === ' ') { seek(e); }}} >
+			<div class="progress-indicator" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
 		</div>
 	</div>
 	{/if}
@@ -94,6 +91,19 @@
 		background-color: yellow;
 		display: inline-flex;
 		align-items: stretch;
+	}
+
+	.audio-box {
+		display: flex; /* enable flexbox inside the box */
+		flex-grow: 1; /* boxes grow dynamically based on content */
+		padding: 1rem;
+		margin-top: -1px; /* make borders overlap so they remain 1px thick */
+		margin-left: -1px; /* make borders overlap so they remain 1px thick */
+		border: 1px solid;
+		text-align: left; /* align text to the left */
+		word-wrap: break-word; /* prevent long text from overflowing */
+		align-items: center; /* vertically center the text inside the box */
+		justify-content: center; /* horizontally center the text inside the box */
 	}
 
 	.play-button {
@@ -126,12 +136,15 @@
 		cursor: pointer;
   	}
 
-	/* progress indicator */
-	.progress {
+	.progress-indicator {
 		background-color: red;
 		height: 100%;
 		width: 0%; /* initial width of progress */
 		transition: width 0.1s linear;
+	}
+
+	#progress-box {
+		padding: 0; /* progress bar should fill its entire box */
 	}
 
 	.time-info {
@@ -139,22 +152,5 @@
 		text-align: right;
 		font-size: 1rem;
 		color: black;
-	}
-
-	.audio-box {
-		display: flex; /* enable flexbox inside the box */
-		flex-grow: 1; /* boxes grow dynamically based on content */
-		padding: 1rem;
-		margin-top: -1px; /* make borders overlap so they remain 1px thick */
-		margin-left: -1px; /* make borders overlap so they remain 1px thick */
-		border: 1px solid;
-		text-align: left; /* align text to the left */
-		word-wrap: break-word; /* prevent long text from overflowing */
-		align-items: center; /* vertically center the text inside the box */
-		justify-content: center; /* horizontally center the text inside the box */
-	}
-
-	#progress-box {
-		padding: 0; /* progress bar should fill its entire box */
 	}
 </style>
