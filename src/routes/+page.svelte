@@ -63,16 +63,16 @@
 	}
 
 	.audio-box {
-		display: flex; /* Enable flexbox inside the box */
-		flex-grow: 1; /* Boxes grow dynamically based on content */
-		padding: 1rem; /* Add padding for spacing inside the box */
+		display: flex; /* enable flexbox inside the box */
+		flex-grow: 1; /* boxes grow dynamically based on content */
+		padding: 1rem; /* add padding for spacing inside the box */
 		margin-top: -1px; /* make borders overlap so they remain 1px thick */
 		margin-left: -1px; /* make borders overlap so they remain 1px thick */
 		border: 1px solid;
-		text-align: left; /* Align text to the left */
-		word-wrap: break-word; /* Prevent long text from overflowing */
-		align-items: center; /* Vertically center the text inside the box */
-		justify-content: center; /* Horizontally center the text inside the box */
+		text-align: left; /* align text to the left */
+		word-wrap: break-word; /* prevent long text from overflowing */
+		align-items: center; /* vertically center the text inside the box */
+		justify-content: center; /* horizontally center the text inside the box */
 	}
 
 </style>
