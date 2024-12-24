@@ -13,6 +13,7 @@
 	let duration = $state(0);
 	let isPlaying = $state(false);
 	let wasPlaying = $state(false);
+	let hoverIndicator = $state(null);
 
 	// start playback
 	function playAudio() {
@@ -39,6 +40,24 @@
 		const clickX = event.offsetX;
 		const newTime = (clickX / progressWidth) * duration;
 		audioElement.currentTime = newTime;
+	}
+
+	// show indicator when hovering over the progress bar
+	function handleMouseMove(event) {
+		const progressBar = event.currentTarget;
+		const rect = progressBar.getBoundingClientRect();
+
+		// calculate the x position relative to the progress bar
+		const x = event.clientX - rect.left;
+
+		// show the hover indicator and position it
+		hoverIndicator.style.display = 'block';
+		hoverIndicator.style.left = `${x}px`;
+  	}
+
+	// hide the indicator when moving out of the progress bar
+	function hideHoverIndicator() {
+		hoverIndicator.style.display = 'none';
 	}
 
 	// format time into MM:SS or HH:MM:SS directly from ChatGPT
@@ -72,8 +91,12 @@
 	{#if wasPlaying}
 	<div class="audio-box" id="progress-box">
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
-		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" onclick={seek}
+		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" 
+		onclick={seek}
+		onmousemove={handleMouseMove}
+		onmouseleave={hideHoverIndicator}
 		onkeydown = {(e) => { if (e.key === 'Enter' || e.key === ' ') { seek(e); }}} >
+			<div class="hover-indicator" bind:this={hoverIndicator}></div>
 			<div class="progress-indicator" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
 		</div>
 	</div>
@@ -130,6 +153,7 @@
 
 	.progress-bar {
 		background-color: hsl(60, 100%, 39.2%);
+		position: relative; /* so that children can be placed absolute */
 		height: 100%;
 		width: 20rem;
 		overflow: hidden;
@@ -141,6 +165,15 @@
 		height: 100%;
 		width: 0%; /* initial width of progress */
 		transition: width 0.1s linear;
+	}
+
+	.hover-indicator {
+		background-color: grey;
+		position: absolute; /* so that it is placed relative to parent */
+		height: 100%; /* full height of the progress bar */
+		width: 2px; /* thin bar */
+		display: none; /* hidden by default */
+		pointer-events: none; /* ensure it doesn't interfere with progress-indicator */
 	}
 
 	#progress-box {
