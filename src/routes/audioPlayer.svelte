@@ -11,6 +11,7 @@
 	let audioElement;
 	let currentTime = $state(0);
 	let duration = $state(0);
+	let currentProgress = 0;
 	let isPlaying = $state(false);
 	let wasPlaying = $state(false);
 	let hoverIndicator = $state(null);
@@ -32,27 +33,37 @@
 	function updateProgress() {
 		currentTime = audioElement.currentTime;
 		duration = audioElement.duration || 0; // Avoid NaN for duration
+		currentProgress = (audioElement.currentTime / duration) * 100;
 	}
 
 	// play from a specific time in the audio
 	function seek(event) {
 		const progressWidth = event.currentTarget.offsetWidth;
-		const clickX = event.offsetX;
-		const newTime = (clickX / progressWidth) * duration;
+		const mouseX = event.offsetX;
+		const newTime = (mouseX / progressWidth) * duration;
 		audioElement.currentTime = newTime;
 	}
 
 	// show indicator when hovering over the progress bar
-	function handleMouseMove(event) {
+	function showHoverIndicator(event) {
 		const progressBar = event.currentTarget;
 		const rect = progressBar.getBoundingClientRect();
 
 		// calculate the x position relative to the progress bar
-		const x = event.clientX - rect.left;
+		const mouseX = event.clientX - rect.left;
+
+		// determine the current progress position in pixels
+    	const progress = (currentProgress / 100) * rect.width;
+
+    	// check if hover is to the left or right of the current progress
+    	const isLeft = mouseX < progress;
+
+		// assign color based on position relative to play head
+		hoverIndicator.style.backgroundColor = isLeft ? 'black' : 'red';
 
 		// show the hover indicator and position it
 		hoverIndicator.style.display = 'block';
-		hoverIndicator.style.left = `${x}px`;
+		hoverIndicator.style.left = `${mouseX}px`;
   	}
 
 	// hide the indicator when moving out of the progress bar
@@ -93,7 +104,7 @@
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" 
 		onclick={seek}
-		onmousemove={handleMouseMove}
+		onmousemove={showHoverIndicator}
 		onmouseleave={hideHoverIndicator}
 		onkeydown = {(e) => { if (e.key === 'Enter' || e.key === ' ') { seek(e); }}} >
 			<div class="hover-indicator" bind:this={hoverIndicator}></div>
@@ -168,10 +179,10 @@
 	}
 
 	.hover-indicator {
-		background-color: grey;
+		background-color: red; /* start with red because there won't be a progress bar yet */
 		position: absolute; /* so that it is placed relative to parent */
 		height: 100%; /* full height of the progress bar */
-		width: 2px; /* thin bar */
+		width: 1.5px; /* thin bar */
 		display: none; /* hidden by default */
 		pointer-events: none; /* ensure it doesn't interfere with progress-indicator */
 	}
