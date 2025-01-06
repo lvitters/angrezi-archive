@@ -43,7 +43,7 @@
 		{/each}
 	</div>
 {:else}
-	<p id={chooseRandomFont()}>{selectedYear} hasn't happened yet. Or nobody uploaded anything. The first one is more likely.</p>
+	<p id={chooseRandomFont()}>{selectedYear} does not have any uploads. Yet.</p>
 {/if}
 
 <style>
