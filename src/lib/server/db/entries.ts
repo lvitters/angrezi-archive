@@ -13,6 +13,14 @@ const createNewEntry = (year: string, date: string, show: string, artist: string
 		.get();
 };
 
+//delete entry by id
+const deleteEntryById = (id: string) => {
+    return db
+        .delete(audioFiles)
+        .where(eq(audioFiles.id, id))
+        .run();
+}
+
 //get all entries from certain year
 const getEntriesByYear = (year: string) => {
 	
@@ -40,6 +48,7 @@ const getAllEntries = () => {
 
 export {
 	createNewEntry,
+	deleteEntryById,
 	getEntriesByYear,
 	getAllEntries,
 };

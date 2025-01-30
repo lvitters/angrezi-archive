@@ -11,7 +11,7 @@
 	// selector for the year
 	let selectedYear = $state();
 
-	//	filter for if there are any files with the same year as the selectedYear when side loads // TODO: why does this also need state? shouldn't it be triggered by selectedYear changing?
+	// filter for if there are any files with the same year as the selectedYear when site loads // TODO: why does this also need state? shouldn't it be triggered by selectedYear changing?
 	let filteredAudioFiles = $state([]);
 
 	// when a $state() changes (need to understand this better)
