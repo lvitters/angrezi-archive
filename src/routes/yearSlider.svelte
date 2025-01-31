@@ -20,7 +20,7 @@
 </script>
 
 <div id="yearSelectBox">
-	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2018} max={2068} float />
+	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2019} max={2069} float />
 </div>
 
 <style>

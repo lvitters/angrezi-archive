@@ -11,8 +11,6 @@ const audioFiles = sqliteTable('audioFiles', {
 		.$defaultFn(() => randomUUID()),
 	year: text('year').notNull(),
 	date: text('date').notNull(),
-	show: text('show').notNull(),
-	artist: text('artist').notNull(),
 	title: text('title').notNull(),
 	filePath: text('filePath').notNull()
 });

@@ -5,10 +5,10 @@ import { audioFiles } from "./schema";
 import { eq } from 'drizzle-orm';
 
 //write title and file path into database
-const createNewEntry = (year: string, date: string, show: string, artist: string, title: string, filePath: string ) => {
+const createNewEntry = (year: string, date: string, title: string, filePath: string ) => {
 	return db
 		.insert(audioFiles)
-		.values({ year, date, show, artist, title, filePath })
+		.values({ year, date, title, filePath })
 		.returning()
 		.get();
 };

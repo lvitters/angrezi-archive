@@ -24,7 +24,7 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 		} else if (entry.isFile()) {
 			// check if the file has an audio extension
 			const ext = path.extname(entry.name).toLowerCase();
-			if (['.mp3', '.wav'].includes(ext)) {
+			if (['.mp3'].includes(ext)) {
 				//and push to files array
 				files.push({ filePath: fullPath.replace('static/', ''), year: currentYear ?? 'Unknown' });
 			}
@@ -46,14 +46,14 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 				// get info from file path
 				const fileName = path.parse(filePath).name;
 				// split into three and only assign to values if the file path is of that structure
-				const data = fileName.split('-');
-				if (data.length === 4) {
-					const [date, artist, title, show] = data;
+				const data = fileName.split('---');
+				if (data.length === 2) {
+					const [date, title] = data;
 					//change numbering scheme to date format with named months
 					const namedDate = formatDate(data[0]);
 					// try inserting into the database
 					try {
-						createNewEntry(year, namedDate, show, artist, title, filePath);
+						createNewEntry(year, namedDate, title, filePath);
 						console.log(`Inserted: ${fileName} (Year: ${year})`);
 					} catch (err) {
 						console.error(`Error inserting ${fileName}:`, err);

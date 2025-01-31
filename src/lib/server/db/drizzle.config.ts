@@ -6,10 +6,10 @@ import type { Config } from "drizzle-kit";
 dotenv.config();
 
 export default {
-  schema: "./db/schema.ts",
+  schema: "./src/lib/server/db/schema.ts",
   dialect: "sqlite",
   dbCredentials: {
     url: process.env.DB_URL as string,
   },
-  out: "./db/migrations",
+  out: "./src/lib/server/db/migrations",
 } satisfies Config;
