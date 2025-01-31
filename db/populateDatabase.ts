@@ -1,4 +1,4 @@
-import { createNewEntry, getAllEntries, deleteEntryById } from './entries.ts' // from db utility file 'files.ts'
+import { createNewEntry } from './entries.ts' // from db utility file 'files.ts'
 import fs from 'fs';
 import path from 'path';
 
@@ -40,24 +40,9 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 		try {
 			// get all audio files
 			const audioFiles = getAudioFiles(folderPath);
-
-			// fetch existing entries from the database
-			const existingEntries = await getAllEntries();
-			const existingFilePaths = new Set(existingEntries.map((entry) => entry.filePath));
-
-			// track processed files
-			const processedFiles = new Set<string>();
 		
 			// get their names from the file path
 			for (const { filePath, year } of audioFiles) {
-				processedFiles.add(filePath);
-				
-				// check if file is already in the database
-				if (existingFilePaths.has(filePath)) {
-					console.log("already in database");
-					continue; // skip if already in the database
-				}
-
 				// get info from file path
 				const fileName = path.parse(filePath).name;
 				// split into three and only assign to values if the file path is of that structure
@@ -77,21 +62,6 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 					console.error('Unexpected file name format');
 				}
 			}
-
-		// delete entries from database that are not in the folder
-		for (const entry of existingEntries) {
-			if (!processedFiles.has(entry.filePath)) {
-				console.log(entry.filePath);
-				try {
-					//delete entry
-					await deleteEntryById(entry.id);
-					console.log(`Deleted: ${entry.filePath}`);
-				} catch (err) {
-					console.error(`Error deleting ${entry.filePath}:`, err);
-				}
-			}
-		}
-
 		} catch (err) {
 			console.error('Error reading directory:', err);
 		}
