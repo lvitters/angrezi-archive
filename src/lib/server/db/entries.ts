@@ -1,3 +1,4 @@
+
 //https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
 import { db } from "./client";
@@ -12,6 +13,14 @@ const createNewEntry = (year: string, date: string, title: string, filePath: str
 		.returning()
 		.get();
 };
+
+//delete entry by id
+const deleteEntryById = (id: string) => {
+    return db
+        .delete(audioFiles)
+        .where(eq(audioFiles.id, id))
+        .run();
+}
 
 //get all entries from certain year
 const getEntriesByYear = (year: string) => {
@@ -40,6 +49,7 @@ const getAllEntries = () => {
 
 export {
 	createNewEntry,
+	deleteEntryById,
 	getEntriesByYear,
 	getAllEntries,
 };
