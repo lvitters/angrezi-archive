@@ -64,7 +64,7 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 				const data = fileName.split(' --- ');
 				if (data.length === 2) {
 					const [date, title] = data;
-					//change numbering scheme to date format with named months
+					// change numbering scheme to date format with named months
 					const namedDate = formatDate(data[0]);
 					// try inserting into the database
 					try {
