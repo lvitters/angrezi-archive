@@ -3,6 +3,7 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
 	import { chooseRandomFont } from './RandomFont.svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	// get audio source from parent
 	let { src = $bindable() } = $props();
@@ -26,7 +27,7 @@
 	// pause playback
 	function pauseAudio() {
 		audioElement.pause();
-		isPlaying = !isPlaying;
+		isPlaying = false;
 	}
 
 	// update progress bar
@@ -82,6 +83,26 @@
 		}
 		return `${minutes}:${String(seconds).padStart(2, '0')}`;
 	};
+
+	// pause all audio when hitting space 
+	const handleKeydown = (event: KeyboardEvent) => {
+		if (event.key === ' ') {
+			event.preventDefault();
+				pauseAudio();
+		}
+  	};
+
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			window.addEventListener('keydown', handleKeydown);
+		}
+	});
+
+	onDestroy(() => {
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('keydown', handleKeydown);
+		}
+	});
 
 </script>
 
