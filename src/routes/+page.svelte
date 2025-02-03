@@ -1,7 +1,9 @@
 <script lang="ts">
 	import YearSlider from './yearSlider.svelte';
 	import { chooseRandomFont } from './RandomFont.svelte';
-	import AudioPlayer from './audioPlayer.svelte';
+	import AudioPlayer, { stopAll } from './audioPlayer.svelte';
+	import { onMount } from 'svelte';
+
 	import '$lib/css/fonts.css';
 	
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
@@ -24,6 +26,9 @@
 	})
 
 </script>
+
+<!-- list for space bar anywhere in the window -->
+<!-- <svelte:window onkeydown={stopAll} /> -->
 
 <YearSlider bind:year={selectedYear}></YearSlider>
 

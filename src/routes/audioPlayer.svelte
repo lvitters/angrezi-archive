@@ -1,40 +1,73 @@
-<!-- https://iconify.design/docs/icon-components/svelte/ -->
+<!-- https://svelte.dev/playground/module-exports?version=5.19.6#H4sIAAAAAAAACq1W23LbNhD9lTWbTqQZkZSlWHZlSR0lcRO3ceOp2slD2QeIXJGoQYABlrYVhh_U7-iPdcCLLJvu1J3xG7TYPbvn7BKrwpEsRWfq_MxSjABvM6XJQA8jThj1nYGz4QKNM_29cGibWU9rcAZt3DLLPHONgqxtzQw-Zg-VJJRknKkzM6HmGS0CGRBPbTZY5hFXl4JtUQ-gAEMqWwoBJWy0SuGl5-85NJgvTwM58--g5GydEykJSoaCh1fzokEpFxUeMCGAWRiY-bVrHXbgupAQZWbq-2luVIbSUzq2Zx76351MRi4l6K5Fjm7EZL5GV2Xu-PCVD667CORsrzZLyehwHjgtYl3sn8aLOSX52uPKZ8YgmQbfkGa5MV6ajQPHhhMngfPA-TVBeC1yhLdVTvjEBH2pXUKVZsqgngfOjyphUsKqRqmvM9QbpdPq_izXKkMmYanDhF-j9fCfwvvV-Pj4qCKeCSaRTEV69CycEyUMdRlfMG0GQJa35jJGDWoDn5jukH6XG2LX8N7CdCn_tlr-AO9Rc2IxWohlipqHDF4zGT2Z_8nwcOiO3XibSpVhxNE8T7sZcexSf1el-fuviCNI5cFhh_OZ5lewstFdxpdaRTxmAi61CjUzxCUjpZ_MdXQ0OXbNNs0SJbeuVO6Ry6UbuimXStu-T46fhfwakRJ1jbIrwKrJXrE_Ai7hTTqAj5kHk2Nw4dyDpRAYawWhkrDWXHUU-pBHNzyGaybhdZvoWT-IycnY1fg555hafaJGnyt3Mpo8iz6p-sL0Ix_GL3VSq8pbqJIO4CcPJqOJleb83IMVfs5RhggufGCh3qbKsI5An5TYxEzGsExZhLmBiypfV6MLpq9yAytibN3q4wwcwltypqRzLAf_tgo6z_SDlfDYfXc1QKqiXOCiJiANAQpMrQ_MQeINrJB6_VN7LZAgzLVGSWe1j-1lQPUag00uQ-JKtiul14fCXgfUInobpc9YmPR6jaUP80XrtHPzMpYbbHIGVNaH8uEK6m62ApS8ULmk3TK7W19t_U0yo8NBfaoa35zbBjY_d32q8sMcXmRaZaaurMGrt9wcXhhihHtCVSSiuxvbyzawKbPX2-e_E4lFUa-CbRXQSLmWUHvv3CIUSLjvWbb49zrxkRLU5q4Z9zsI85rC6f_qFN9AewEH8waiD__VwHu1kYpjgW_qanrYb8D5podeqCKsgANnlbEQAwe-foWD-6X3oRbmMVpeI__38NAu2LbXh2nHvldyd9SqMZrecBmpG1DyCreRupHz4h6HEprHjWnioUAIBTNmajNyGc-Lg7qmshrZWTJaFNXslTM_GdW2bDEzpJWMF0U7iuXMb0zgQzuQEay3UOzGs5z52aJWd1bP45rLaEoJN_OiMpS1pRFFSVtT_aetno7SPvWklTBQGB2Wi5lfxdln1m_oNFLQtnksWpZN31KmYy6nMIQhHGIKw9PWfuve8IiSKZwMh9ntbhYoGVXfWfYYwtAb7zAq55pX49ngHQ6H354-iPWObNxeBVW01zRh9w0oofQUvtlsxjgc7jW9YXf_Bf6j_AdCk0ZzuAsAAA== -->
+<script module>
+	const elements = new Set<HTMLAudioElement>();
+	let currentElement: HTMLAudioElement;
 
+	export function stopAll() {
+		elements.forEach((element) => {
+			element.pause();
+		});
+	}
+</script>
+
+<!-- https://iconify.design/docs/icon-components/svelte/ -->
 <script lang="ts">
 	import Icon from "@iconify/svelte";
 	import { chooseRandomFont } from './RandomFont.svelte';
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 
 	// get audio source from parent
 	let { src = $bindable() } = $props();
 
 	// audio file to perform operations on
-	let audioElement;
+	let audio: HTMLAudioElement;
+	let paused = $state(true);
+	let active = $state(false);
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let currentProgress = 0;
-	let isPlaying = $state(false);
-	let wasPlaying = $state(false);
 	let hoverIndicator = $state(null);
 
-	// start playback
-	function playAudio() {
-		audioElement.play();
-		isPlaying = true;
-		wasPlaying = true;
+
+	onMount(() => {
+		elements.add(audio);
+		return () => elements.delete(audio);
+	});
+
+	function stopOthers() {
+		currentElement = audio;
+		elements.forEach((element) => {
+			if (element !== audio) {
+				element.pause();
+			} 
+		});
 	}
 
-	// pause playback
-	function pauseAudio() {
-		audioElement.pause();
-		isPlaying = false;
+	function toggleCurrent(e) {
+		if(e.code !== "Space" || !currentElement) return
+		console.log(currentElement);
+		if (currentElement.paused) {
+			currentElement.play();
+		} else {
+			currentElement.pause();
+		}
+	}
+
+	function playAudio() {
+		console.log(audio);
+		audio.play();
+		active = true;
+	}
+
+	function stopAudio() {
+		audio.pause();
 	}
 
 	// update progress bar
 	function updateProgress() {
-		currentTime = audioElement.currentTime;
-		duration = audioElement.duration || 0; // Avoid NaN for duration
-		currentProgress = (audioElement.currentTime / duration) * 100;
+		currentTime = audio.currentTime;
+		duration = audio.duration || 0; // Avoid NaN for duration
+		currentProgress = (audio.currentTime / duration) * 100;
 	}
 
 	// play from a specific time in the audio
@@ -42,7 +75,7 @@
 		const progressWidth = event.currentTarget.offsetWidth;
 		const mouseX = event.offsetX;
 		const newTime = (mouseX / progressWidth) * duration;
-		audioElement.currentTime = newTime;
+		audio.currentTime = newTime;
 	}
 
 	// show indicator when hovering over the progress bar
@@ -84,43 +117,26 @@
 		return `${minutes}:${String(seconds).padStart(2, '0')}`;
 	};
 
-	// pause all audio when hitting space 
-	const handleKeydown = (event: KeyboardEvent) => {
-		if (event.key === ' ') {
-			event.preventDefault();
-				pauseAudio();
-		}
-  	};
-
-	onMount(() => {
-		if (typeof window !== 'undefined') {
-			window.addEventListener('keydown', handleKeydown);
-		}
-	});
-
-	onDestroy(() => {
-		if (typeof window !== 'undefined') {
-			window.removeEventListener('keydown', handleKeydown);
-		}
-	});
-
 </script>
+
+<!-- list for space bar anywhere in the window -->
+<svelte:window onkeydown={toggleCurrent} />
 
 <!-- custom audio player -->
 <div class="audio-player">
-	<audio bind:this={audioElement} ontimeupdate={updateProgress}>
+	<audio bind:this={audio} bind:paused onplay={stopOthers} ontimeupdate={updateProgress} >
 		<source src={src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
 	<div class="audio-box">
 	<!-- show button, depending on if something is playing -->
-		{#if !isPlaying}
+		{#if paused}
 			<button class="play-button" onclick={playAudio}><Icon icon="pixelarticons-play" style="font-size: 2rem;"/></button>
 		{:else}
-			<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
+			<button class="pause-button" onclick={stopAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
 		{/if}
 	</div>
-	{#if wasPlaying}
+	{#if active}
 	<div class="audio-box" id="progress-box">
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" 
