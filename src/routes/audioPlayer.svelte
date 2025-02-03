@@ -22,10 +22,8 @@
 	// audio file to perform operations on
 	let audio: HTMLAudioElement;
 	let paused = $state(true);
-	let active = $state(false);
 	let currentTime = $state(0);
 	let duration = $state(0);
-	let currentProgress = 0;
 	let hoverIndicator = $state(null);
 
 
@@ -45,7 +43,6 @@
 
 	function toggleCurrent(e) {
 		if(e.code !== "Space" || !currentElement) return
-		console.log(currentElement);
 		if (currentElement.paused) {
 			currentElement.play();
 		} else {
@@ -54,20 +51,13 @@
 	}
 
 	function playAudio() {
-		console.log(audio);
+		currentElement = audio;
 		audio.play();
-		active = true;
 	}
 
 	function stopAudio() {
+		currentElement = audio;
 		audio.pause();
-	}
-
-	// update progress bar
-	function updateProgress() {
-		currentTime = audio.currentTime;
-		duration = audio.duration || 0; // Avoid NaN for duration
-		currentProgress = (audio.currentTime / duration) * 100;
 	}
 
 	// play from a specific time in the audio
@@ -87,7 +77,7 @@
 		const mouseX = event.clientX - rect.left;
 
 		// determine the current progress position in pixels
-    	const progress = (currentProgress / 100) * rect.width;
+    	const progress = (currentTime / duration) * rect.width;
 
     	// check if hover is to the left or right of the current progress
     	const isLeft = mouseX < progress;
@@ -124,7 +114,7 @@
 
 <!-- custom audio player -->
 <div class="audio-player">
-	<audio bind:this={audio} bind:paused onplay={stopOthers} ontimeupdate={updateProgress} >
+	<audio bind:this={audio} bind:paused bind:duration bind:currentTime onplay={stopOthers} >
 		<source src={src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
@@ -136,7 +126,7 @@
 			<button class="pause-button" onclick={stopAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
 		{/if}
 	</div>
-	{#if active}
+	{#if currentTime > 0}
 	<div class="audio-box" id="progress-box">
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 		<div class="progress-bar" role="button" tabindex="0" aria-label="Seek in audio" 

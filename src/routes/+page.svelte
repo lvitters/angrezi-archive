@@ -28,7 +28,7 @@
 </script>
 
 <!-- list for space bar anywhere in the window -->
-<!-- <svelte:window onkeydown={stopAll} /> -->
+<svelte:window onkeydown={stopAll} />
 
 <YearSlider bind:year={selectedYear}></YearSlider>
 
