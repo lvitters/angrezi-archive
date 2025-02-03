@@ -2,12 +2,6 @@
 <script module>
 	const elements = new Set<HTMLAudioElement>();
 	let currentElement: HTMLAudioElement;
-
-	export function stopAll() {
-		elements.forEach((element) => {
-			element.pause();
-		});
-	}
 </script>
 
 <!-- https://iconify.design/docs/icon-components/svelte/ -->
@@ -42,16 +36,13 @@
 	}
 
 	function toggleCurrent(e) {
-		if(e.code !== "Space" || !currentElement) return
-		if (currentElement.paused) {
-			currentElement.play();
-		} else {
-			currentElement.pause();
-		}
+		e.preventDefault();
+		if(e.code !== "Space" || !currentElement) return;
+		console.log(currentElement.paused);											// TODO: only works with an uneven number of audio elements???
+		currentElement.paused ? currentElement.play() : currentElement.pause();
 	}
 
 	function playAudio() {
-		currentElement = audio;
 		audio.play();
 	}
 
@@ -65,7 +56,7 @@
 		const progressWidth = event.currentTarget.offsetWidth;
 		const mouseX = event.offsetX;
 		const newTime = (mouseX / progressWidth) * duration;
-		audio.currentTime = newTime;
+		currentTime = newTime;
 	}
 
 	// show indicator when hovering over the progress bar

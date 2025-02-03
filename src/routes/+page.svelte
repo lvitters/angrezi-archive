@@ -1,8 +1,7 @@
 <script lang="ts">
 	import YearSlider from './yearSlider.svelte';
 	import { chooseRandomFont } from './RandomFont.svelte';
-	import AudioPlayer, { stopAll } from './audioPlayer.svelte';
-	import { onMount } from 'svelte';
+	import AudioPlayer from './audioPlayer.svelte';
 
 	import '$lib/css/fonts.css';
 	
@@ -22,13 +21,9 @@
 
 		// determine if there are any files with the same year as the selectedYear when the site updates
 		filteredAudioFiles = audioFiles.filter(file => file.year == selectedYear);
-		//$inspect(filteredAudioFiles.length);
 	})
 
 </script>
-
-<!-- list for space bar anywhere in the window -->
-<svelte:window onkeydown={stopAll} />
 
 <YearSlider bind:year={selectedYear}></YearSlider>
 
