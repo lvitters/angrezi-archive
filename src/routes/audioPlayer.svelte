@@ -26,6 +26,7 @@
 		return () => elements.delete(audio);
 	});
 
+	// stop all playback except this
 	function stopOthers() {
 		currentElement = audio;
 		elements.forEach((element) => {
@@ -35,6 +36,7 @@
 		});
 	}
 
+	// toggle playback only for this
 	function toggleCurrent(e) {
 		e.preventDefault();
 		if(e.code !== "Space" || !currentElement) return;
@@ -42,10 +44,12 @@
 		currentElement.paused ? currentElement.play() : currentElement.pause();
 	}
 
+	// start playback
 	function playAudio() {
 		audio.play();
 	}
 
+	// stop playback
 	function stopAudio() {
 		currentElement = audio;
 		audio.pause();
