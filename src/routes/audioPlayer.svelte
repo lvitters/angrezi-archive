@@ -38,9 +38,12 @@
 
 	// toggle playback only for this
 	function toggleCurrent(e) {
+		// prevent default space bar behavior
 		e.preventDefault();
+		// check if key was space bar and currentElement exists
 		if(e.code !== "Space" || !currentElement) return;
-		console.log(currentElement.paused);											// TODO: only works with an uneven number of audio elements???
+		// check if currentElement is actually the current (or last playing) audio
+		if(currentElement !== audio) return
 		currentElement.paused ? currentElement.play() : currentElement.pause();
 	}
 
@@ -50,7 +53,7 @@
 	}
 
 	// stop playback
-	function stopAudio() {
+	function pauseAudio() {
 		currentElement = audio;
 		audio.pause();
 	}
@@ -118,7 +121,7 @@
 		{#if paused}
 			<button class="play-button" onclick={playAudio}><Icon icon="pixelarticons-play" style="font-size: 2rem;"/></button>
 		{:else}
-			<button class="pause-button" onclick={stopAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
+			<button class="pause-button" onclick={pauseAudio}><Icon icon="memory-pause" style="font-size: 2rem;"/></button>
 		{/if}
 	</div>
 	{#if currentTime > 0}
