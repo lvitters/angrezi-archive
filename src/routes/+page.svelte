@@ -83,7 +83,7 @@
 		text-align: left; /* align text to the left */
 		word-wrap: break-word; /* prevent long text from overflowing */
 		align-items: center; /* vertically center the text inside the box */
-		justify-content: center; /* horizontally center the text inside the box */
+		justify-content: left; /* horizontally center the text inside the box */
 	}
 
 </style>
