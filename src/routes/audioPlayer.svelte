@@ -117,11 +117,13 @@
 		<source src={src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
-	<div class={currentTime > 0 ? "flex items-center justify-content p-4 border-x-0 md:border-x border-black" : "flex items-center justify-content p-4 border-x border-black"}>
 	<!-- show button, depending on if something is playing -->
+	<div class={currentTime > 0 ? "flex items-center justify-content p-4 border-x-0 md:border-x border-black" : "flex items-center justify-content p-4 border-x border-black"}>
 		{#if paused}
+			<!-- play button -->
 			<button class="flex cursor-pointer hover:text-red-500" style="font-size: 2rem;" onclick={playAudio}><Icon icon="pixelarticons-play"/></button>
 		{:else}
+			<!-- pause button -->
 			<button class="flex cursor-pointer hover:text-[hsl(60,100%,39.2%)]" style="font-size: 2rem;" onclick={pauseAudio}><Icon icon="memory-pause"/></button>
 		{/if}
 	</div>

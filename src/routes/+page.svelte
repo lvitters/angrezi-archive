@@ -29,13 +29,17 @@
 
 <!-- display files --> 
 {#if filteredAudioFiles.length > 0}
+	<!-- entire "table" --> 
 	<div class="flex flex-col m-4 border-b border-black">
 		{#each audioFiles as file}
 				{#if file.year == selectedYear}
+				<!-- file row -->
 					<div class="flex md:flex-nowrap flex-wrap border-t border-l border-r border-black">
+						<!-- date -->
 						<div class="flex items-center justify-content min-w-min whitespace-nowrap p-4 border-r border-black" id={chooseRandomFont()}>{file.date}</div>
+						<!-- title -->
 						<div class="flex items-center justify-content w-full md:whitespace-nowrap md:w-auto md:min-w-min p-4 border-y md:border-y-0 border-black" id={chooseRandomFont()}>{file.title}</div>
-						<!-- <div class="basis-full md:hidden"></div> -->
+						<!-- player -->
 						<AudioPlayer src={file.filePath}/>
 					</div>
 				{/if}
