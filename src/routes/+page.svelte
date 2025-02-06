@@ -32,9 +32,10 @@
 	<div class="flex flex-col m-4 border-b border-black">
 		{#each audioFiles as file}
 				{#if file.year == selectedYear}
-					<div class="flex border-t border-l border-r border-black">
-						<div class="flex items-center justify-content whitespace-nowrap min-w-min p-4 border-r border-black" id={chooseRandomFont()}>{file.date}</div>
-						<div class="flex items-center justify-content  min-w-min p-4" id={chooseRandomFont()}>{file.title}</div>
+					<div class="flex md:flex-nowrap flex-wrap border-t border-l border-r border-black">
+						<div class="flex items-center justify-content min-w-min whitespace-nowrap p-4 border-r border-black" id={chooseRandomFont()}>{file.date}</div>
+						<div class="flex items-center justify-content w-full md:whitespace-nowrap md:w-auto md:min-w-min p-4 border-y md:border-y-0 border-black" id={chooseRandomFont()}>{file.title}</div>
+						<!-- <div class="basis-full md:hidden"></div> -->
 						<AudioPlayer src={file.filePath}/>
 					</div>
 				{/if}

@@ -117,7 +117,7 @@
 		<source src={src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
-	<div class="flex items-center justify-content p-4 border-r border-l border-black">
+	<div class={currentTime > 0 ? "flex items-center justify-content p-4 border-x-0 md:border-x border-black" : "flex items-center justify-content p-4 border-x border-black"}>
 	<!-- show button, depending on if something is playing -->
 		{#if paused}
 			<button class="flex cursor-pointer hover:text-red-500" style="font-size: 2rem;" onclick={playAudio}><Icon icon="pixelarticons-play"/></button>
@@ -127,7 +127,7 @@
 	</div>
 	{#if currentTime > 0}
 	<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
-	<div class="flex grow h-full relative items-center justify-content cursor-pointer border-r border-l border-black bg-[hsl(60,100%,39.2%)]" role="button" tabindex="0" aria-label="Seek in audio" 
+	<div class="flex grow h-full relative items-center justify-content cursor-pointer border-r border-l md:border-l-0 border-black bg-[hsl(60,100%,39.2%)]" role="button" tabindex="0" aria-label="Seek in audio" 
 	onclick={seek}
 	onmousemove={showHoverIndicator}
 	onmouseleave={hideHoverIndicator}
