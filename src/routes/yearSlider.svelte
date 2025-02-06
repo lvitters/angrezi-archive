@@ -19,8 +19,8 @@
 	}
 </script>
 
-<div id="yearSelectBox">
-	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} id="yearSelect" pips pipstep={1} min={2019} max={2049} float />
+<div class="mt-11">
+	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} pips pipstep={1} min={2019} max={2049} float />
 </div>
 
 <style>
@@ -46,8 +46,4 @@
 		--range-pip-in-range:      hsl(180, 25.4%, 24.7%);
 		--range-pip-in-range-text: hsl(180, 25.4%, 24.7%);
   	}
-
-	#yearSelectBox {
-		margin-top: 2rem;
-	}
 </style>

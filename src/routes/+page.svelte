@@ -29,61 +29,17 @@
 
 <!-- display files --> 
 {#if filteredAudioFiles.length > 0}
-	<div class="files-list">
+	<div class="flex flex-col m-4 border-b border-black">
 		{#each audioFiles as file}
 				{#if file.year == selectedYear}
-					<div class="files-row">
-						<div class="date-box" id={chooseRandomFont()}>{file.date}</div>
-						<div class="files-box" id={chooseRandomFont()}>{file.title}</div>
+					<div class="flex border-t border-l border-r border-black">
+						<div class="flex items-center justify-content whitespace-nowrap min-w-min p-4 border-r border-black" id={chooseRandomFont()}>{file.date}</div>
+						<div class="flex items-center justify-content  min-w-min p-4" id={chooseRandomFont()}>{file.title}</div>
 						<AudioPlayer src={file.filePath}/>
 					</div>
 				{/if}
 		{/each}
 	</div>
 {:else}
-	<p id={chooseRandomFont()}>{selectedYear} does not have any uploads. Yet.</p>
+	<p class="ml-4" id={chooseRandomFont()}>{selectedYear} does not have any uploads. Yet.</p>
 {/if}
-
-<style>
-
-	.files-list {
-		display: flex;
-		flex-direction: column; /* Stack rows vertically */
-		margin-top: 2rem;
-		margin-left: 1rem;
-		margin-right: 1rem;
-	}	
-	
-	.files-row {
-		display: flex;
-		flex-direction: row; /* Align boxes horizontally in a row */
-		align-items: stretch; /* Ensure all cells stretch to the row's height */
-	}
-
-	.date-box {
-		display: flex; /* enable flexbox inside the box */
-		flex-grow: 0; /* boxes grow dynamically based on content */
-		padding: 1rem; /* add padding for spacing inside the box */
-		margin-top: -1px; /* make borders overlap so they remain 1px thick */
-		margin-left: -1px; /* make borders overlap so they remain 1px thick */
-		border: 1px solid;
-		text-align: left; /* align text to the left */
-		word-wrap: break-word; /* prevent long text from overflowing */
-		align-items: center; /* vertically center the text inside the box */
-		justify-content: center; /* horizontally center the text inside the box */
-	}
-
-	.files-box {
-		display: flex; /* enable flexbox inside the box */
-		flex-grow: 1; /* boxes grow dynamically based on content */
-		padding: 1rem; /* add padding for spacing inside the box */
-		margin-top: -1px; /* make borders overlap so they remain 1px thick */
-		margin-left: -1px; /* make borders overlap so they remain 1px thick */
-		border: 1px solid;
-		text-align: left; /* align text to the left */
-		word-wrap: break-word; /* prevent long text from overflowing */
-		align-items: center; /* vertically center the text inside the box */
-		justify-content: left; /* horizontally center the text inside the box */
-	}
-
-</style>
