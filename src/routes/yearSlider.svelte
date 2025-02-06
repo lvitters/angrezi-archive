@@ -19,11 +19,16 @@
 	}
 </script>
 
-<div class="mt-11">
-	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} pips pipstep={1} min={2019} max={2049} float />
+<div class="mt-12">
+	<RangeSlider value={year} on:change={(e) => {handleInput(e.detail.value)}} pips pipstep={1} min={2019} max={2049} float id="always"/>
 </div>
 
 <style>
+	/* always show the float */
+	:global(#always .rangeFloat) {
+		opacity: 1;
+	}
+
 	/* https://simeydotme.github.io/svelte-range-slider-pips/en/styling/ */
   	:root {
 		--range-slider:            hsl(60, 100%, 39.2%);
@@ -36,7 +41,6 @@
 		--range-float-inactive:    hsl(0, 100%, 75.1%);
 		--range-float:             hsl(0, 100%, 75.1%);
 		--range-float-text:        hsl(0, 0%, 100%);
-
 		--range-pip:               hsl(210, 14.3%, 53.3%);
 		--range-pip-text:          hsl(210, 14.3%, 53.3%);
 		--range-pip-active:        hsl(180, 25.4%, 24.7%);

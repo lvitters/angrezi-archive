@@ -85,7 +85,7 @@
 		hoverIndicator.style.backgroundColor = isLeft ? 'black' : 'red';
 
 		// show the hover indicator and position it
-		hoverIndicator.style.display = 'block';
+		hoverIndicator.classList.add('md:block');
 		hoverIndicator.style.left = `${mouseX}px`;
   	}
 
@@ -132,8 +132,10 @@
 	onmousemove={showHoverIndicator}
 	onmouseleave={hideHoverIndicator}
 	onkeydown = {(e) => { if (e.key === 'Enter' || e.key === ' ') { seek(e); }}} >
-		<div class="hover-indicator" bind:this={hoverIndicator}></div>
-		<div class="progress-indicator" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
+		<!-- hover indicator -->
+		<div class="bg-red-500 absolute h-full w-[1.5px] hidden pointer-events-none" bind:this={hoverIndicator}></div>
+		<!--progress-->
+		<div class="bg-red-500 h-full w-0 ease-linear" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
 	</div>
 	{/if}
 	<!-- show progress in numbers -->
@@ -141,21 +143,3 @@
 			<span id={chooseRandomFont()}>{formatTime(currentTime)} / {formatTime(duration)}</span>
 	</div>
 </div>
-
-<style>
-	.progress-indicator {
-		background-color: red;
-		height: 100%;
-		width: 0%; /* initial width of progress */
-		transition: width 0.1s linear;
-	}
-
-	.hover-indicator {
-		background-color: red; /* start with red because there won't be a progress bar yet */
-		position: absolute; /* so that it is placed relative to parent */
-		height: 100%; /* full height of the progress bar */
-		width: 1.5px; /* thin bar */
-		display: none; /* hidden by default */
-		pointer-events: none; /* ensure it doesn't interfere with progress-indicator */
-	}
-</style>
