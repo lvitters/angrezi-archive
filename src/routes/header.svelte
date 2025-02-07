@@ -2,7 +2,8 @@
 	import { chooseRandomFont } from "./randomFont.svelte";
 </script>
 
-<div class="mx-7 flex justify-around border-x border-black p-3 pb-4 max-md:mt-7 max-md:border-t max-sm:mx-4 md:flex">
+<div
+	class="mx-7 flex justify-around border-x border-black p-3 pb-4 max-md:mt-7 max-md:border-t max-sm:mx-4 max-sm:pb-2 md:flex">
 	<!-- back to Radio Angrezi link-->
 	<a
 		id={chooseRandomFont()}
@@ -62,5 +63,7 @@
 		ANGREZI ARCHIVE
 	</div>
 	<!-- angrezi archive text for mobile-->
-	<div id={chooseRandomFont()} class="flex cursor-pointer justify-center text-xl md:hidden">ANGREZI ARCHIVE</div>
+	<div id={chooseRandomFont()} class="flex cursor-pointer items-center justify-center text-xl md:hidden">
+		ANGREZI ARCHIVE
+	</div>
 </div>
