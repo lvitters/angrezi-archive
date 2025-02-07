@@ -25,16 +25,20 @@
 	});
 </script>
 
+<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-1 text-lg max-sm:hidden" id={chooseRandomFont()}>
+	<div class="animate-scroll-left mx-6">
+		<span>Welcome to the Radio Angrezi Archive. Want to be part of it? Do a show!</span>
+	</div>
+</div>
+
 <Header></Header>
 
-<div class="mx-4 border border-black pt-4">
-	<YearSlider bind:year={selectedYear}></YearSlider>
-</div>
+<YearSlider bind:year={selectedYear}></YearSlider>
 
 <!-- display files -->
 {#if filteredAudioFiles.length > 0}
 	<!-- entire "table" -->
-	<div class="mx-4 flex flex-col border-b border-black">
+	<div class="mx-7 mb-10 flex flex-col border-b border-black max-sm:mx-4">
 		{#each audioFiles as file}
 			{#if file.year == selectedYear}
 				<!-- file row -->
@@ -58,5 +62,7 @@
 		{/each}
 	</div>
 {:else}
-	<p class="ml-4 pt-4" id={chooseRandomFont()}>{selectedYear} does not have any uploads. Yet.</p>
+	<p class="mx-7 justify-center border-r border-b border-l border-black p-3 max-sm:mx-4" id={chooseRandomFont()}>
+		{selectedYear} does not have any uploads. Yet.
+	</p>
 {/if}
