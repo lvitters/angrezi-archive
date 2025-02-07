@@ -1,19 +1,11 @@
-import {
-	createNewEntry,
-	getAllEntries,
-	deleteEntryById,
-	sortEntriesByDate,
-} from './entries.ts'; // from db utility file 'files.ts'
+import { createNewEntry, getAllEntries, deleteEntryById, sortEntriesByDate } from './entries.ts'; // from db utility file 'files.ts'
 import fs from 'fs';
 import path from 'path';
 
 const folderPath = 'static/audio';
 
 // get audiofiles from current or subdirectories, named after years
-function getAudioFiles(
-	dir: string,
-	currentYear?: string
-): { filePath: string; year: string }[] {
+function getAudioFiles(dir: string, currentYear?: string): { filePath: string; year: string }[] {
 	// get all the entries in the current directory
 	const entries = fs.readdirSync(dir, { withFileTypes: true });
 	let files: { filePath: string; year: string }[] = [];
@@ -25,9 +17,7 @@ function getAudioFiles(
 		// if it is a subdirectory
 		if (entry.isDirectory()) {
 			// check if directory name is of year format (via regex) and write to year
-			const year = /^[0-9]{4}$/.test(entry.name)
-				? entry.name
-				: currentYear;
+			const year = /^[0-9]{4}$/.test(entry.name) ? entry.name : currentYear;
 			// do it again for the subdirectory (recursion!)
 			files = files.concat(getAudioFiles(fullPath, year));
 			// if it is a file
@@ -56,9 +46,7 @@ async function populateDatabase() {
 
 		// fetch existing entries from the database
 		const existingEntries = await getAllEntries();
-		const existingFilePaths = new Set(
-			existingEntries.map((entry) => entry.filePath)
-		);
+		const existingFilePaths = new Set(existingEntries.map((entry) => entry.filePath));
 
 		// track processed files
 		const processedFiles = new Set<string>();
@@ -85,13 +73,7 @@ async function populateDatabase() {
 				const sortDate = getSortDate(year, data[0]);
 				// try inserting into the database
 				try {
-					createNewEntry(
-						year,
-						sortDate,
-						displayDate,
-						title,
-						filePath
-					);
+					createNewEntry(year, sortDate, displayDate, title, filePath);
 					console.log(`Inserted: ${fileName} (Year: ${year})`);
 				} catch (err) {
 					console.error(`Error inserting ${fileName}:`, err);

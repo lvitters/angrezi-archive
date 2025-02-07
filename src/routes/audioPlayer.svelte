@@ -7,8 +7,8 @@
 <!-- https://iconify.design/docs/icon-components/svelte/ -->
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import { chooseRandomFont } from './RandomFont.svelte';
-	import { onMount } from 'svelte';
+	import { chooseRandomFont } from "./RandomFont.svelte";
+	import { onMount } from "svelte";
 
 	// get audio source from parent
 	let { src = $bindable() } = $props();
@@ -19,7 +19,6 @@
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let hoverIndicator = $state(null);
-
 
 	onMount(() => {
 		elements.add(audio);
@@ -32,7 +31,7 @@
 		elements.forEach((element) => {
 			if (element !== audio) {
 				element.pause();
-			} 
+			}
 		});
 	}
 
@@ -41,16 +40,15 @@
 		// prevent default space bar behavior
 		e.preventDefault();
 		// check if key was space bar and currentElement exists
-		if(e.code !== "Space" || !currentElement) return;
+		if (e.code !== "Space" || !currentElement) return;
 		// check if currentElement is actually the current (or last playing) audio
-		if(currentElement !== audio) return
+		if (currentElement !== audio) return;
 		currentElement.paused ? currentElement.play() : currentElement.pause();
 	}
 
 	// start playback
 	function playAudio() {
 		audio.play();
-
 	}
 
 	// stop playback
@@ -76,72 +74,83 @@
 		const mouseX = event.clientX - rect.left;
 
 		// determine the current progress position in pixels
-    	const progress = (currentTime / duration) * rect.width;
+		const progress = (currentTime / duration) * rect.width;
 
-    	// check if hover is to the left or right of the current progress
-    	const isLeft = mouseX < progress;
+		// check if hover is to the left or right of the current progress
+		const isLeft = mouseX < progress;
 
 		// assign color based on position relative to play head
-		hoverIndicator.style.backgroundColor = isLeft ? 'black' : 'red';
+		hoverIndicator.style.backgroundColor = isLeft ? "black" : "red";
 
 		// show the hover indicator and position it
-		hoverIndicator.classList.add('md:block');
+		hoverIndicator.classList.add("md:block");
 		hoverIndicator.style.left = `${mouseX}px`;
-  	}
+	}
 
 	// hide the indicator when moving out of the progress bar
 	function hideHoverIndicator() {
-		hoverIndicator.style.display = 'none';
+		hoverIndicator.style.display = "none";
 	}
 
 	// format time into MM:SS or HH:MM:SS directly from ChatGPT
 	const formatTime = (time) => {
-		if (isNaN(time)) return '0:00';
+		if (isNaN(time)) return "0:00";
 		const hours = Math.floor(time / 3600);
 		const minutes = Math.floor((time % 3600) / 60);
 		const seconds = Math.floor(time % 60);
 		if (hours > 0) {
-		return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+			return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 		}
-		return `${minutes}:${String(seconds).padStart(2, '0')}`;
+		return `${minutes}:${String(seconds).padStart(2, "0")}`;
 	};
-
 </script>
 
 <!-- list for space bar anywhere in the window -->
 <svelte:window onkeydown={toggleCurrent} />
 
 <!-- custom audio player -->
-<div class={currentTime > 0 ? "flex ml-auto w-full" : "flex ml-auto"}>
-	<audio bind:this={audio} bind:paused bind:duration bind:currentTime onplay={stopOthers} >
-		<source src={src} type="audio/mp3" />
+<div class={currentTime > 0 ? "ml-auto flex w-full" : "ml-auto flex"}>
+	<audio bind:this={audio} bind:paused bind:duration bind:currentTime onplay={stopOthers}>
+		<source {src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
 	<!-- show button, depending on if something is playing -->
-	<div class={currentTime > 0 ? "flex items-center justify-content p-4 border-x-0 md:border-x border-black" : "flex items-center justify-content p-4 border-x border-black"}>
+	<div class={currentTime > 0 ? "justify-content flex items-center border-x-0 border-black p-4 md:border-x" : "justify-content flex items-center border-x border-black p-4"}>
 		{#if paused}
 			<!-- play button -->
-			<button class="flex cursor-pointer hover:text-red-500" style="font-size: 2rem;" onclick={playAudio}><Icon icon="pixelarticons-play"/></button>
+			<button class="flex cursor-pointer hover:text-red-500" style="font-size: 2rem;" onclick={playAudio}>
+				<Icon icon="pixelarticons-play" />
+			</button>
 		{:else}
 			<!-- pause button -->
-			<button class="flex cursor-pointer hover:text-[hsl(60,100%,39.2%)]" style="font-size: 2rem;" onclick={pauseAudio}><Icon icon="memory-pause"/></button>
+			<button class="flex cursor-pointer hover:text-[hsl(60,100%,39.2%)]" style="font-size: 2rem;" onclick={pauseAudio}>
+				<Icon icon="memory-pause" />
+			</button>
 		{/if}
 	</div>
 	{#if currentTime > 0}
-	<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
-	<div class="flex grow h-full relative items-center justify-content cursor-pointer border-r border-l md:border-l-0 border-black bg-[hsl(60,100%,39.2%)]" role="button" tabindex="0" aria-label="Seek in audio" 
-	onclick={seek}
-	onmousemove={showHoverIndicator}
-	onmouseleave={hideHoverIndicator}
-	onkeydown = {(e) => { if (e.key === 'Enter' || e.key === ' ') { seek(e); }}} >
-		<!-- hover indicator -->
-		<div class="bg-red-500 absolute h-full w-[1.5px] hidden pointer-events-none" bind:this={hoverIndicator}></div>
-		<!--progress-->
-		<div class="bg-red-500 h-full w-0 ease-linear" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
-	</div>
+		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
+		<div
+			class="justify-content relative flex h-full grow cursor-pointer items-center border-r border-l border-black bg-[hsl(60,100%,39.2%)] md:border-l-0"
+			role="button"
+			tabindex="0"
+			aria-label="Seek in audio"
+			onclick={seek}
+			onmousemove={showHoverIndicator}
+			onmouseleave={hideHoverIndicator}
+			onkeydown={(e) => {
+				if (e.key === "Enter" || e.key === " ") {
+					seek(e);
+				}
+			}}>
+			<!-- hover indicator -->
+			<div class="pointer-events-none absolute hidden h-full w-[1.5px] bg-red-500" bind:this={hoverIndicator}></div>
+			<!--progress-->
+			<div class="h-full w-0 bg-red-500 ease-linear" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
+		</div>
 	{/if}
 	<!-- show progress in numbers -->
-	<div class="flex items-center justify-content p-4">
-			<span id={chooseRandomFont()}>{formatTime(currentTime)} / {formatTime(duration)}</span>
+	<div class="justify-content flex items-center p-4">
+		<span id={chooseRandomFont()}>{formatTime(currentTime)} / {formatTime(duration)}</span>
 	</div>
 </div>

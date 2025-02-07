@@ -1,12 +1,12 @@
 <script lang="ts">
-	import YearSlider from './yearSlider.svelte';
-	import { chooseRandomFont } from './RandomFont.svelte';
-	import AudioPlayer from './audioPlayer.svelte';
+	import YearSlider from "./yearSlider.svelte";
+	import { chooseRandomFont } from "./RandomFont.svelte";
+	import AudioPlayer from "./audioPlayer.svelte";
 
-	import '$lib/css/fonts.css';
-	
+	import "$lib/css/fonts.css";
+
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
-	let { data } =  $props();
+	let { data } = $props();
 	const { audioFiles } = data;
 
 	// selector for the year
@@ -20,29 +20,32 @@
 		chooseRandomFont();
 
 		// determine if there are any files with the same year as the selectedYear when the site updates
-		filteredAudioFiles = audioFiles.filter(file => file.year == selectedYear);
-	})
-
+		filteredAudioFiles = audioFiles.filter((file) => file.year == selectedYear);
+	});
 </script>
 
 <YearSlider bind:year={selectedYear}></YearSlider>
 
-<!-- display files --> 
+<!-- display files -->
 {#if filteredAudioFiles.length > 0}
-	<!-- entire "table" --> 
-	<div class="flex flex-col m-4 border-b border-black">
+	<!-- entire "table" -->
+	<div class="m-4 flex flex-col border-b border-black">
 		{#each audioFiles as file}
-				{#if file.year == selectedYear}
+			{#if file.year == selectedYear}
 				<!-- file row -->
-					<div class="flex md:flex-nowrap flex-wrap border-t border-l border-r border-black">
-						<!-- date -->
-						<div class="flex items-center justify-content min-w-min whitespace-nowrap p-4 border-r border-black" id={chooseRandomFont()}>{file.displayDate}</div>
-						<!-- title -->
-						<div class="flex items-center justify-content w-full md:whitespace-nowrap md:w-auto md:min-w-min p-4 border-y md:border-y-0 border-black" id={chooseRandomFont()}>{file.title}</div>
-						<!-- player -->
-						<AudioPlayer src={file.filePath}/>
+				<div class="flex flex-wrap border-t border-r border-l border-black md:flex-nowrap">
+					<!-- date -->
+					<div class="justify-content flex min-w-min items-center border-r border-black p-4 whitespace-nowrap" id={chooseRandomFont()}>
+						{file.displayDate}
 					</div>
-				{/if}
+					<!-- title -->
+					<div class="justify-content flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0 md:whitespace-nowrap" id={chooseRandomFont()}>
+						{file.title}
+					</div>
+					<!-- player -->
+					<AudioPlayer src={file.filePath} />
+				</div>
+			{/if}
 		{/each}
 	</div>
 {:else}
