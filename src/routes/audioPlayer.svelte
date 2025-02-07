@@ -7,7 +7,7 @@
 <!-- https://iconify.design/docs/icon-components/svelte/ -->
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import { chooseRandomFont } from "./RandomFont.svelte";
+	import { chooseRandomFont } from "./randomFont.svelte";
 	import { onMount } from "svelte";
 
 	// get audio source from parent
