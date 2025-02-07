@@ -10,9 +10,14 @@ const audioFiles = sqliteTable('audioFiles', {
 		.notNull()
 		.$defaultFn(() => randomUUID()),
 	year: text('year').notNull(),
-	date: text('date').notNull(),
+	sortDate: text('sortDate')
+		.notNull()
+		.$defaultFn(() =>
+			new Date().toISOString().slice(0, 19).replace('T', ' ')
+		),
+	displayDate: text('displayDate').notNull(),
 	title: text('title').notNull(),
-	filePath: text('filePath').notNull()
+	filePath: text('filePath').notNull(),
 });
 
 export { audioFiles };
