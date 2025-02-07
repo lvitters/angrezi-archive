@@ -89,7 +89,7 @@
 
 	// hide the indicator when moving out of the progress bar
 	function hideHoverIndicator() {
-		hoverIndicator.style.display = "none";
+		hoverIndicator.classList.remove("md:block");
 	}
 
 	// format time into MM:SS or HH:MM:SS directly from ChatGPT
@@ -115,7 +115,10 @@
 		Your browser does not support the audio element.
 	</audio>
 	<!-- show button, depending on if something is playing -->
-	<div class={currentTime > 0 ? "justify-content flex items-center border-x-0 border-black p-4 md:border-x" : "justify-content flex items-center border-x border-black p-4"}>
+	<div
+		class={currentTime > 0
+			? "justify-content flex items-center border-x-0 border-black p-4 md:border-x"
+			: "justify-content flex items-center border-x border-black p-4"}>
 		{#if paused}
 			<!-- play button -->
 			<button class="flex cursor-pointer hover:text-red-500" style="font-size: 2rem;" onclick={playAudio}>
@@ -123,7 +126,10 @@
 			</button>
 		{:else}
 			<!-- pause button -->
-			<button class="flex cursor-pointer hover:text-[hsl(60,100%,39.2%)]" style="font-size: 2rem;" onclick={pauseAudio}>
+			<button
+				class="flex cursor-pointer hover:text-[hsl(60,100%,39.2%)]"
+				style="font-size: 2rem;"
+				onclick={pauseAudio}>
 				<Icon icon="memory-pause" />
 			</button>
 		{/if}
@@ -144,9 +150,13 @@
 				}
 			}}>
 			<!-- hover indicator -->
-			<div class="pointer-events-none absolute hidden h-full w-[1.5px] bg-red-500" bind:this={hoverIndicator}></div>
+			<div class="pointer-events-none absolute hidden h-full w-[1.5px] bg-red-500" bind:this={hoverIndicator}>
+			</div>
 			<!--progress-->
-			<div class="h-full w-0 bg-red-500 ease-linear" style="width: {duration ? (currentTime / duration) * 100 : 0}%"></div>
+			<div
+				class="h-full w-0 bg-red-500 ease-linear"
+				style="width: {duration ? (currentTime / duration) * 100 : 0}%">
+			</div>
 		</div>
 	{/if}
 	<!-- show progress in numbers -->
