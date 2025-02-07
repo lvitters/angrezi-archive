@@ -25,7 +25,7 @@
 	});
 </script>
 
-<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-1 text-lg max-sm:hidden" id={chooseRandomFont()}>
+<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
 	<div class="animate-scroll-left mx-6">
 		<span>Welcome to the Radio Angrezi Archive. Want to be part of it? Do a show!</span>
 	</div>

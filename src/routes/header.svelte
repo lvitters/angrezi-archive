@@ -2,11 +2,11 @@
 	import { chooseRandomFont } from "./randomFont.svelte";
 </script>
 
-<div class="mx-7 flex-wrap border-x border-black p-4 max-sm:mx-4 max-sm:mt-7 max-sm:border-t md:flex">
+<div class="mx-7 flex justify-around border-x border-black p-3 pb-4 max-md:mt-7 max-md:border-t max-sm:mx-4 md:flex">
 	<!-- back to Radio Angrezi link-->
 	<a
 		id={chooseRandomFont()}
-		class="mx-5 box-border flex h-[60px] w-[300px] cursor-pointer justify-center p-1 outline hover:text-[#0000ff] max-sm:hidden"
+		class="box-border flex h-[60px] w-[300px] cursor-pointer justify-center p-1 outline hover:text-[#0000ff] max-md:hidden"
 		style="box-shadow: 5px 5px;"
 		href="http://radioangrezi.de">
 		back to
@@ -57,7 +57,7 @@
 	<!-- angrezi archive "logo" -->
 	<div
 		id={chooseRandomFont()}
-		class="mx-5 ml-auto box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-2xl text-[black] outline hover:text-[#0000ff] max-sm:hidden"
+		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-2xl text-[black] outline hover:text-[#0000ff] max-md:hidden"
 		style="box-shadow: 5px 5px;">
 		ANGREZI ARCHIVE
 	</div>
