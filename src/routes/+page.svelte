@@ -51,7 +51,7 @@
 					</div>
 					<!-- title -->
 					<div
-						class="justify-content flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0 md:whitespace-nowrap"
+						class="justify-content flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
 						id={chooseRandomFont()}>
 						{file.title}
 					</div>
