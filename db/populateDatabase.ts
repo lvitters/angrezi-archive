@@ -1,8 +1,8 @@
-import { createNewEntry, getAllEntries, deleteEntryById, sortEntriesByDate } from './entries.ts'; // from db utility file 'files.ts'
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
+import { createNewEntry, deleteEntryById, getAllEntries } from "./entries.ts"; // from db utility file 'files.ts'
 
-const folderPath = 'static/audio';
+const folderPath = "./db/audio";
 
 // get audiofiles from current or subdirectories, named after years
 function getAudioFiles(dir: string, currentYear?: string): { filePath: string; year: string }[] {
@@ -24,11 +24,11 @@ function getAudioFiles(dir: string, currentYear?: string): { filePath: string; y
 		} else if (entry.isFile()) {
 			// check if the file has an audio extension
 			const ext = path.extname(entry.name).toLowerCase();
-			if (['.mp3'].includes(ext)) {
+			if ([".mp3"].includes(ext)) {
 				//and push to files array
 				files.push({
-					filePath: fullPath.replace('static/', ''),
-					year: currentYear ?? 'Unknown',
+					filePath: fullPath.replace("./db/audio", "../../db/audio"),
+					year: currentYear ?? "Unknown",
 				});
 			}
 		}
@@ -57,14 +57,14 @@ async function populateDatabase() {
 
 			// check if file is already in the database
 			if (existingFilePaths.has(filePath)) {
-				console.log('already in database');
+				console.log("already in database");
 				continue; // skip if already in the database
 			}
 
 			// get info from file path
 			const fileName = path.parse(filePath).name;
 			// split into two and only assign to values if the file path is of that structure
-			const data = fileName.split(' --- ');
+			const data = fileName.split(" --- ");
 			if (data.length === 2) {
 				const [date, title] = data;
 				// change numbering scheme to date format with named months for displaying
@@ -79,7 +79,7 @@ async function populateDatabase() {
 					console.error(`Error inserting ${fileName}:`, err);
 				}
 			} else {
-				console.error('Unexpected file name format');
+				console.error("Unexpected file name format");
 			}
 		}
 
@@ -96,30 +96,17 @@ async function populateDatabase() {
 			}
 		}
 	} catch (err) {
-		console.error('Error reading directory:', err);
+		console.error("Error reading directory:", err);
 	}
 }
 
 // format date format from files into strings with month names
 function getDisplayDate(date: string): string {
-	const paddedDate = date.padStart(4, '0'); // ensure string is four characters long
+	const paddedDate = date.padStart(4, "0"); // ensure string is four characters long
 	const monthNum = parseInt(paddedDate.substring(0, 2), 10); // first two digits are the month
 	const dayNum = paddedDate.substring(2, 4); // last two digits are the day
 
-	const months: string[] = [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec',
-	];
+	const months: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 	const monthName = months[monthNum - 1]; // Get month name (index starts at 0)
 
@@ -128,14 +115,14 @@ function getDisplayDate(date: string): string {
 
 // return ISO 8601 date for sorting database
 function getSortDate(year: string, date: string): string {
-	const paddedDate = date.padStart(4, '0'); // ensure string is four characters long
+	const paddedDate = date.padStart(4, "0"); // ensure string is four characters long
 	const monthNum = parseInt(paddedDate.substring(0, 2), 10); // first two digits are the month
 	const dayNum = paddedDate.substring(2, 4); // last two digits are the day
 
-	return `${year}-${String(monthNum).padStart(2, '0')}-${dayNum}`;
+	return `${year}-${String(monthNum).padStart(2, "0")}-${dayNum}`;
 }
 
 // log when successful
 populateDatabase().then(() => {
-	console.log('Database population complete');
+	console.log("Database population complete");
 });
