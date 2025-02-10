@@ -56,7 +56,7 @@
 						{file.title}
 					</div>
 					<!-- player -->
-					<AudioPlayer src={file.filePath} />
+					<AudioPlayer src={decodeURIComponent(file.filePath).replace("#", "%23")} />
 				</div>
 			{/if}
 		{/each}

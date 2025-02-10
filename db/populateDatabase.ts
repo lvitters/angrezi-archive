@@ -126,7 +126,7 @@ function getSortDate(year: string, date: string): string {
 
 // encode the URL for safe file name handling
 function customEncodedURI(str) {
-	return str.replace("#", "%23");
+	return encodeURIComponent(str).replace("#", "%23");
 }
 
 // log when successful
