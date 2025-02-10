@@ -52,7 +52,9 @@ async function populateDatabase() {
 		const processedFiles = new Set<string>();
 
 		// get their names from the file path
-		for (const { filePath, year } of audioFiles) {
+		for (let { filePath, year } of audioFiles) {
+			filePath = filePath;
+
 			processedFiles.add(filePath);
 
 			// check if file is already in the database
@@ -71,7 +73,7 @@ async function populateDatabase() {
 				const displayDate = getDisplayDate(data[0]);
 				// get ISO 8601 date for sorting database
 				const sortDate = getSortDate(year, data[0]);
-				// try inserting into the database
+
 				try {
 					createNewEntry(year, sortDate, displayDate, title, filePath);
 					console.log(`Inserted: ${fileName} (Year: ${year})`);

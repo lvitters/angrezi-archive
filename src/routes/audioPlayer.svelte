@@ -62,7 +62,11 @@
 		const progressWidth = event.currentTarget.offsetWidth;
 		const mouseX = event.offsetX;
 		const newTime = (mouseX / progressWidth) * duration;
+
+		// Update the state for currentTime, so the progress bar updates
 		currentTime = newTime;
+		// Directly update the audio's currentTime
+		//audio.currentTime = currentTime;
 	}
 
 	// show indicator when hovering over the progress bar
@@ -110,7 +114,13 @@
 
 <!-- custom audio player -->
 <div class={currentTime > 0 ? "ml-auto flex w-full" : "ml-auto flex"}>
-	<audio bind:this={audio} bind:paused bind:duration bind:currentTime onplay={stopOthers}>
+	<audio
+		bind:this={audio}
+		bind:paused
+		bind:duration
+		bind:currentTime
+		onplay={stopOthers}
+		onloadedmetadata={() => (duration = audio.duration)}>
 		<source {src} type="audio/mp3" />
 		Your browser does not support the audio element.
 	</audio>
