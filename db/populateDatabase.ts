@@ -53,12 +53,12 @@ async function populateDatabase() {
 
 		// get their names from the file path
 		for (let { filePath, year } of audioFiles) {
-			filePath = filePath;
+			const encodedPath = customEncodedURI(filePath);
 
-			processedFiles.add(filePath);
+			processedFiles.add(encodedPath);
 
 			// check if file is already in the database
-			if (existingFilePaths.has(filePath)) {
+			if (existingFilePaths.has(encodedPath)) {
 				console.log("already in database");
 				continue; // skip if already in the database
 			}
@@ -75,13 +75,13 @@ async function populateDatabase() {
 				const sortDate = getSortDate(year, data[0]);
 
 				try {
-					createNewEntry(year, sortDate, displayDate, title, filePath);
+					createNewEntry(year, sortDate, displayDate, title, encodedPath);
 					console.log(`Inserted: ${fileName} (Year: ${year})`);
 				} catch (err) {
 					console.error(`Error inserting ${fileName}:`, err);
 				}
 			} else {
-				console.error("Unexpected file name format");
+				console.error("Unexpected file name format: " + filePath);
 			}
 		}
 
@@ -122,6 +122,11 @@ function getSortDate(year: string, date: string): string {
 	const dayNum = paddedDate.substring(2, 4); // last two digits are the day
 
 	return `${year}-${String(monthNum).padStart(2, "0")}-${dayNum}`;
+}
+
+// encode the URL for safe file name handling
+function customEncodedURI(str) {
+	return str.replace("#", "%23");
 }
 
 // log when successful
