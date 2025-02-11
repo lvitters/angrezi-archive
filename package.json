@@ -13,7 +13,9 @@
 		"generate-migrations:db": "drizzle-kit generate --config=db/drizzle.config.ts",
 		"push:db": "drizzle-kit push --config=db/drizzle.config.ts",
 		"migrate:db": "tsx ./db/migrate.ts",
-		"populate-database": "tsx ./db/populateDatabase.ts"
+		"populate-database": "tsx ./db/populateDatabase.ts",
+		"start": "pm2 start ecosystem.config.cjs",
+		"stop": "pm2 stop ecosystem.config.cjs"
 	},
 	"devDependencies": {
 		"@iconify/svelte": "^4.1.0",
@@ -45,6 +47,7 @@
 		"better-sqlite3": "^11.7.0",
 		"dotenv": "^16.4.7",
 		"drizzle-orm": "^0.37.0",
+		"pm2": "^5.4.3",
 		"tailwindcss": "^4.0.3",
 		"ts-utils": "^6.1.0",
 		"tsx": "^4.19.2",

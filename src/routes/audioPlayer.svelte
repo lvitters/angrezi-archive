@@ -7,7 +7,6 @@
 <!-- https://iconify.design/docs/icon-components/svelte/ -->
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import { chooseRandomFont } from "./randomFont.svelte";
 	import { onMount } from "svelte";
 
 	// get audio source from parent
@@ -62,11 +61,7 @@
 		const progressWidth = event.currentTarget.offsetWidth;
 		const mouseX = event.offsetX;
 		const newTime = (mouseX / progressWidth) * duration;
-
-		// Update the state for currentTime, so the progress bar updates
 		currentTime = newTime;
-		// Directly update the audio's currentTime
-		//audio.currentTime = currentTime;
 	}
 
 	// show indicator when hovering over the progress bar
