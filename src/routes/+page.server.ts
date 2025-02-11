@@ -13,3 +13,6 @@ export const load = async ({}) => {
 		throw error;
 	}
 };
+
+// turn prerendering off because page will be dynamic
+export const prerender = false;

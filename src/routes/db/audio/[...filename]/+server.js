@@ -2,11 +2,8 @@ import fs from "fs";
 import path from "path";
 
 export async function GET({ params, request }) {
-	// handle # in URL
-	const decodedPath = decodeURIComponent(params.filename);
-
 	// prevent directory traversal
-	const safeFilename = decodedPath.replace(/\.\./g, "");
+	const safeFilename = params.filename.replace(/\.\./g, "");
 	const fullFilePath = path.resolve("db/audio", ...safeFilename.split("/"));
 
 	// get file stats for range request handling

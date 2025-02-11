@@ -1,10 +1,9 @@
 <script>
-	import YearSlider from "../yearSlider.svelte";
-	import AudioPlayer from "../audioPlayer.svelte";
+	import { enhance } from "$app/forms";
 
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
 	let { data } = $props();
-	const { audioFiles } = data;
+	let { audioFiles } = $state(data);
 </script>
 
 <!-- display files -->
@@ -29,17 +28,18 @@
 				<tr>
 					<td class="border border-black p-2 whitespace-nowrap">{audioFile.sortDate}</td>
 					<td class="border border-black p-2 whitespace-nowrap">{audioFile.year}</td>
-					<td class="border border-black p-2">{audioFile.title}</td>
-					<th
-						class="cursor-pointer border border-black p-2 whitespace-nowrap text-blue-500 hover:bg-blue-500 hover:text-white"
-						scope="col">
-						edit
-					</th>
-					<th
-						class="cursor-pointer border border-black p-2 whitespace-nowrap text-red-500 hover:bg-red-500 hover:text-white"
-						scope="col">
+					<td class="w-full border border-black p-2">
+						<form action="?/editEntry" method="post">
+							<!-- didden field to pass the ID -->
+							<input type="hidden" name="id" value={audioFile.id} />
+							<!-- field for updated title -->
+							<input class="w-full" type="text" name="title" value={audioFile.title} />
+						</form>
+					</td>
+					<td
+						class="cursor-pointer border border-black p-2 text-center font-bold text-red-500 hover:bg-red-500 hover:text-white">
 						delete
-					</th>
+					</td>
 				</tr>
 			{/each}
 		</tbody>

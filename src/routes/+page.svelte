@@ -49,7 +49,7 @@
 			{#if file.year == selectedYear}
 				<!-- file row -->
 				<div
-					class="flex flex-wrap border-y-2 border-t border-r border-l border-double border-black first:border-t-2 md:flex-nowrap">
+					class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-2 max-md:first:border-t-2 md:flex-nowrap">
 					<!-- date -->
 					<div
 						class="justify-content flex min-w-min items-center border-r border-black p-4 whitespace-nowrap"
@@ -63,9 +63,7 @@
 						{file.title}
 					</div>
 					<!-- player -->
-					<AudioPlayer
-						randomFont={randomFonts[index]}
-						src={decodeURIComponent(file.filePath).replace("#", "%23")} />
+					<AudioPlayer randomFont={randomFonts[index]} src={file.filePath} />
 				</div>
 			{/if}
 		{/each}
