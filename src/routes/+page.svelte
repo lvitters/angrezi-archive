@@ -16,9 +16,15 @@
 	//	filter for if there are any files with the same year as the selectedYear when side loads // TODO: why does this also need state? shouldn't it be triggered by selectedYear changing?
 	let filteredAudioFiles = $state([]);
 
+	// get one random fonts per audio file, so that each row has the same font
+	let randomFonts: string[] = [];
+	for (let i = 0; i < audioFiles.length; i++) {
+		randomFonts[i] = chooseRandomFont();
+	}
+
 	// when a $state() changes (need to understand this better)
 	$effect(() => {
-		chooseRandomFont();
+		//chooseRandomFont();
 
 		// determine if there are any files with the same year as the selectedYear when the site updates
 		filteredAudioFiles = audioFiles.filter((file) => file.year == selectedYear);
@@ -39,24 +45,27 @@
 {#if filteredAudioFiles.length > 0}
 	<!-- entire "table" -->
 	<div class="mx-7 mb-10 flex flex-col border-b border-black max-sm:mx-4">
-		{#each audioFiles as file}
+		{#each audioFiles as file, index}
 			{#if file.year == selectedYear}
 				<!-- file row -->
-				<div class="flex flex-wrap border-t border-r border-l border-black first:border-t-0 md:flex-nowrap">
+				<div
+					class="flex flex-wrap border-y-2 border-t border-r border-l border-double border-black first:border-t-2 md:flex-nowrap">
 					<!-- date -->
 					<div
 						class="justify-content flex min-w-min items-center border-r border-black p-4 whitespace-nowrap"
-						id={chooseRandomFont()}>
+						id={randomFonts[index]}>
 						{file.displayDate}
 					</div>
 					<!-- title -->
 					<div
 						class="justify-content flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-						id={chooseRandomFont()}>
+						id={randomFonts[index]}>
 						{file.title}
 					</div>
 					<!-- player -->
-					<AudioPlayer src={decodeURIComponent(file.filePath).replace("#", "%23")} />
+					<AudioPlayer
+						randomFont={randomFonts[index]}
+						src={decodeURIComponent(file.filePath).replace("#", "%23")} />
 				</div>
 			{/if}
 		{/each}

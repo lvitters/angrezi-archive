@@ -11,7 +11,7 @@
 	import { onMount } from "svelte";
 
 	// get audio source from parent
-	let { src = $bindable() } = $props();
+	let { src = $bindable(), randomFont } = $props();
 
 	// audio file to perform operations on
 	let audio: HTMLAudioElement;
@@ -171,6 +171,6 @@
 	{/if}
 	<!-- show progress in numbers -->
 	<div class="justify-content flex items-center p-4">
-		<span id={chooseRandomFont()}>{formatTime(currentTime)} / {formatTime(duration)}</span>
+		<span id={randomFont}>{formatTime(currentTime)} / {formatTime(duration)}</span>
 	</div>
 </div>
