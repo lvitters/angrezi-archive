@@ -13,7 +13,9 @@
 			<tr class="border border-black">
 				<th class="border border-black" scope="col">date</th>
 				<th class="border border-black p-4 whitespace-nowrap" scope="col">year folder</th>
-				<th class="border border-black p-4 whitespace-nowrap" scope="col">title</th>
+				<th class="border border-black p-4 whitespace-nowrap" scope="col">
+					title (click to edit, enter to submit)
+				</th>
 				<th
 					class="cursor-pointer p-4 whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white"
 					colspan="2"

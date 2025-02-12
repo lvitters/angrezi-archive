@@ -2,9 +2,8 @@
 	import YearSlider from "./yearSlider.svelte";
 	import { chooseRandomFont } from "./randomFont.svelte";
 	import AudioPlayer from "./audioPlayer.svelte";
-
-	import "$lib/css/fonts.css";
 	import Header from "./header.svelte";
+	import "$lib/css/fonts.css";
 
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
 	let { data } = $props();
@@ -33,7 +32,7 @@
 
 <div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
 	<div class="animate-scroll-left mx-6">
-		<span>Welcome to the Radio Angrezi Archive. Want to be part of it? Do a show!</span>
+		<span>Welcome to the Radio Angrezi Archive. Want to see your stuff here? Do a show!</span>
 	</div>
 </div>
 

@@ -22,7 +22,7 @@
 <div class="mx-7 border border-black pt-4 max-sm:mx-4">
 	<RangeSlider
 		value={year}
-		on:change={(e) => {
+		on:stop={(e) => {
 			handleInput(e.detail.value);
 		}}
 		pips
