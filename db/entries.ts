@@ -1,6 +1,6 @@
 // https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from "./client";
 import { audioFiles } from "./schema";
 
@@ -11,7 +11,12 @@ const createNewEntry = (year: string, sortDate: string, displayDate: string, tit
 
 // delete entry by id
 const deleteEntryById = (id: string) => {
-	return db.delete(audioFiles).where(eq(audioFiles.id, id)).run();
+	try {
+		const result = db.delete(audioFiles).where(eq(audioFiles.id, id)).run();
+		return result;
+	} catch (err) {
+		console.error("error updating file", err);
+	}
 };
 
 // edit an entry by id
@@ -41,9 +46,23 @@ const getAllEntries = () => {
 	return results;
 };
 
-// sort entries by date
-const sortEntriesByDate = async () => {
-	return await db.select().from(audioFiles).orderBy(audioFiles.sortDate);
+// get all entries
+const getAllEntriesDescending = () => {
+	const results = db.select().from(audioFiles).orderBy(desc(audioFiles.sortDate));
+	return results;
 };
 
-export { createNewEntry, deleteEntryById, editEntryById, getAllEntries, getEntriesByYear, sortEntriesByDate };
+// sort entries by date
+const sortEntriesByDate = async () => {
+	return await db.select().from(audioFiles).orderBy(desc(audioFiles.sortDate));
+};
+
+export {
+	createNewEntry,
+	deleteEntryById,
+	editEntryById,
+	getAllEntries,
+	getAllEntriesDescending,
+	getEntriesByYear,
+	sortEntriesByDate,
+};

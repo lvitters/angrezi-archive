@@ -2,13 +2,13 @@ import { fail } from "@sveltejs/kit";
 import bcrypt from "bcrypt";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import path from "path";
-import { editEntryById, getAllEntries } from "../../../db/entries.js";
+import { createNewEntry, deleteEntryById, editEntryById, getAllEntriesDescending } from "../../../db/entries.js";
 
 // load entries from db, this is called a load function
 export const load = async ({ cookies }) => {
 	try {
 		// fetch files for the specified year
-		const audioFiles = await getAllEntries();
+		const audioFiles = await getAllEntriesDescending();
 
 		// Check if the 'isAuthenticated' cookie is set
 		const isAuthenticated = cookies.get("isAuthenticated");
@@ -35,6 +35,28 @@ export const actions = {
 
 		try {
 			await editEntryById(id, newTitle);
+
+			return {
+				success: true,
+			};
+		} catch (error) {
+			console.error(error);
+			return fail(500, {
+				error: "Something went wrong while updating the file. Please try again with fewer/no special characters",
+			});
+		}
+	}, // edit an entry
+	async deleteEntry({ request }) {
+		const formData = Object.fromEntries(await request.formData()) as {
+			id: string;
+			title: string;
+		};
+
+		// get data from entry
+		const id = formData.id;
+
+		try {
+			await deleteEntryById(id);
 
 			return {
 				success: true,
@@ -90,17 +112,36 @@ export const actions = {
 
 		const { fileToUpload } = formData as { fileToUpload: File };
 
-		// Define absolute path
+		// define absolute path
 		const uploadDir = path.join(process.cwd(), "db/audio");
 
-		// Ensure the directory exists
+		// ensure the directory exists
 		if (!existsSync(uploadDir)) {
 			mkdirSync(uploadDir, { recursive: true });
 		}
 
-		// Write the file to the correct location
+		// write the file to the correct location
 		const filePath = path.join(uploadDir, fileToUpload.name);
 		writeFileSync(filePath, Buffer.from(await fileToUpload.arrayBuffer()));
+
+		// get file info (from populateDatabase.ts)
+		const fileName = path.parse(filePath).name;
+		const data = fileName.split(" --- ");
+		const year = "20" + fileName.substring(0, 2); // Convert YY to 20YY
+		if (data.length === 2) {
+			const [rawDate, title] = data;
+			const displayDate = getDisplayDate(rawDate);
+			const sortDate = getSortDate(rawDate);
+
+			try {
+				// add the file to the database
+				await createNewEntry(year, sortDate, displayDate, title, filePath);
+
+				return { success: true };
+			} catch (err) {
+				console.error(`Error inserting ${fileName}:`, err);
+			}
+		}
 
 		return {
 			success: true,
@@ -109,6 +150,26 @@ export const actions = {
 		};
 	},
 };
+
+// format date for display
+function getDisplayDate(date: string): string {
+	const monthNum = parseInt(date.substring(2, 4), 10);
+	const dayNum = date.substring(4, 6);
+
+	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	const monthName = months[monthNum - 1];
+
+	return `${monthName} ${dayNum}`;
+}
+
+// return ISO 8601 date
+function getSortDate(date: string): string {
+	const year = "20" + date.substring(0, 2);
+	const monthNum = date.substring(2, 4);
+	const dayNum = date.substring(4, 6);
+
+	return `${year}-${monthNum}-${dayNum}`;
+}
 
 // turn prerendering off because page will be dynamic
 export const prerender = false;

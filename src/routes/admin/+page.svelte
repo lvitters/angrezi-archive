@@ -10,6 +10,26 @@
 
 	// for uploading a new file
 	let inputtingNewFile = $state(false);
+
+	// placeholder text for file input
+	let fileName = $state("select new file to upload");
+
+	// change placeholder after input change
+	function changeFilePlaceholder(event) {
+		const file = event.target.files[0];
+		if (file) {
+			fileName = file.name; // update label text with selected file name
+		} else {
+			fileName = "select new file to upload"; // reset if no file is selected
+		}
+	}
+
+	// ask to confirm before deletion
+	function confirmDelete(event) {
+		if (!confirm("Are you sure you want to delete this entry?")) {
+			event.preventDefault(); // Stop form submission
+		}
+	}
 </script>
 
 <!-- auth -->
@@ -40,7 +60,7 @@
 					<tr>
 						<td class="border border-black p-2 whitespace-nowrap"></td>
 						<td class="border border-black p-2 whitespace-nowrap">
-							<form action="?/uploadFile" method="POST" enctype="multipart/form-data">
+							<form id="submitForm" action="?/uploadFile" method="POST" enctype="multipart/form-data">
 								<!-- hidden input to upload file -->
 								<input
 									id="files"
@@ -48,15 +68,22 @@
 									name="fileToUpload"
 									class="hidden"
 									accept=".mp3"
-									required />
+									required
+									onchange={changeFilePlaceholder} />
 								<!-- label for hidden input to change placeholder -->
 								<label class="cursor-pointer font-bold text-green-500" for="files">
-									select new file to upload
+									{#if fileName != "select new file to upload"}db/audio/{/if}{fileName}
 								</label>
-								<button class="ml-auto cursor-pointer font-bold" type="submit">submit</button>
 							</form>
 						</td>
-						<td class="border border-black p-2 whitespace-nowrap"></td>
+						<td class="border border-black p-2 whitespace-nowrap">
+							<button
+								form="submitForm"
+								class="ml-auto cursor-pointer font-bold text-green-500 hover:bg-green-500 hover:text-white"
+								type="submit">
+								submit
+							</button>
+						</td>
 					</tr>
 				{/if}
 				{#each audioFiles as audioFile (audioFile.id)}
@@ -81,9 +108,18 @@
 								</form>
 							</td>
 						{/if}
-						<td
-							class="cursor-pointer border border-black p-2 text-center font-bold text-red-500 hover:bg-red-500 hover:text-white">
-							delete
+						<td class="cursor-pointer border border-black p-2 text-center font-bold">
+							<form action="?/deleteEntry" id="deleteForm" method="post">
+								<!-- hidden field to pass the ID -->
+								<input type="hidden" name="id" value={audioFile.id} />
+							</form>
+							<button
+								form="deleteForm"
+								class="ml-auto cursor-pointer font-bold text-red-500 hover:bg-red-500 hover:text-white"
+								type="submit"
+								onclick={confirmDelete}>
+								delete
+							</button>
 						</td>
 					</tr>
 				{/each}
