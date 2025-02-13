@@ -19,8 +19,7 @@
 		<table class="m-2">
 			<thead>
 				<tr class="border border-black">
-					<th class="border border-black" scope="col">date</th>
-					<th class="border border-black p-4 whitespace-nowrap" scope="col">year folder</th>
+					<th class="border border-black p-4 whitespace-nowrap" scope="col">date</th>
 					<th class="border border-black p-4 whitespace-nowrap" scope="col">
 						title (click to edit - enter to submit)
 					</th>
@@ -39,7 +38,6 @@
 			<tbody>
 				{#if inputtingNewFile}
 					<tr>
-						<td class="border border-black p-2 whitespace-nowrap"></td>
 						<td class="border border-black p-2 whitespace-nowrap"></td>
 						<td class="border border-black p-2 whitespace-nowrap">
 							<form action="?/uploadFile" method="POST" enctype="multipart/form-data">
@@ -64,15 +62,25 @@
 				{#each audioFiles as audioFile (audioFile.id)}
 					<tr>
 						<td class="border border-black p-2 whitespace-nowrap">{audioFile.sortDate}</td>
-						<td class="border border-black p-2 whitespace-nowrap">{audioFile.year}</td>
-						<td class="w-full border border-black p-2">
-							<form action="?/editEntry" method="post">
-								<!-- hidden field to pass the ID -->
-								<input type="hidden" name="id" value={audioFile.id} />
-								<!-- field for updated title -->
-								<input class="w-full" type="text" name="title" value={audioFile.title} />
-							</form>
-						</td>
+						{#if !inputtingNewFile}
+							<td class="w-full border border-black p-2">
+								<form action="?/editEntry" method="post">
+									<!-- hidden field to pass the ID -->
+									<input type="hidden" name="id" value={audioFile.id} />
+									<!-- field for updated title -->
+									<input class="w-full" type="text" name="title" value={audioFile.title} />
+								</form>
+							</td>
+						{:else}
+							<td class="w-full border border-black p-2">
+								<form action="?/editEntry" method="post">
+									<!-- hidden field to pass the ID -->
+									<input type="hidden" name="id" value={audioFile.id} />
+									<!-- field for updated title -->
+									<input class="w-full" type="text" name="title" value={audioFile.filePath} />
+								</form>
+							</td>
+						{/if}
 						<td
 							class="cursor-pointer border border-black p-2 text-center font-bold text-red-500 hover:bg-red-500 hover:text-white">
 							delete
