@@ -1,31 +1,15 @@
 <script>
-	import bcrypt from "bcryptjs";
-
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
 	let { data } = $props();
 	let { audioFiles } = $state(data);
+	let isAuthenticated = $state(data.isAuthenticated);
 
 	// this is not how this is supposed to be done, but I don't think the Radio will be the victim of a cyberattack, so it should be fine
-	const ADMIN_HASH = "$2y$12$fDHH9xV1oVuRadx7xafIAuATra0x9E6HjzS/pevvj9uzt0RRkz25K";
-	let passwordInput = $state("");
-	let isAuthenticated = $state(false);
 	let placeHolder = $state("enter admin password");
+	let passwordInput = $state("");
 
-	// check input against pre-computed hash using bcrypt
-	async function checkPassword() {
-		try {
-			const result = await bcrypt.compare(passwordInput, ADMIN_HASH);
-
-			if (result) {
-				isAuthenticated = true;
-			} else {
-				placeHolder = "wrong password! try again";
-				passwordInput = "";
-			}
-		} catch (error) {
-			console.error("Error comparing password:", error);
-		}
-	}
+	// for uploading a new file
+	let inputtingNewFile = $state(false);
 </script>
 
 <!-- auth -->
@@ -38,18 +22,45 @@
 					<th class="border border-black" scope="col">date</th>
 					<th class="border border-black p-4 whitespace-nowrap" scope="col">year folder</th>
 					<th class="border border-black p-4 whitespace-nowrap" scope="col">
-						title (click to edit, enter to submit)
+						title (click to edit - enter to submit)
 					</th>
-					<th
-						class="cursor-pointer p-4 whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white"
-						colspan="2"
-						scope="col">
-						add new
-					</th>
+					<!-- activate file input -->
+					{#if !inputtingNewFile}
+						<th
+							class="cursor-pointer p-2 text-center font-bold whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white"
+							scope="col"
+							onclick={(inputtingNewFile = true)}>
+							submit new file
+						</th>
+					{/if}
 				</tr>
 			</thead>
 
 			<tbody>
+				{#if inputtingNewFile}
+					<tr>
+						<td class="border border-black p-2 whitespace-nowrap"></td>
+						<td class="border border-black p-2 whitespace-nowrap"></td>
+						<td class="border border-black p-2 whitespace-nowrap">
+							<form action="?/uploadFile" method="POST" enctype="multipart/form-data">
+								<!-- hidden input to upload file -->
+								<input
+									id="files"
+									type="file"
+									name="fileToUpload"
+									class="hidden"
+									accept=".mp3"
+									required />
+								<!-- label for hidden input to change placeholder -->
+								<label class="cursor-pointer font-bold text-green-500" for="files">
+									select new file to upload
+								</label>
+								<button class="ml-auto cursor-pointer font-bold" type="submit">submit</button>
+							</form>
+						</td>
+						<td class="border border-black p-2 whitespace-nowrap"></td>
+					</tr>
+				{/if}
 				{#each audioFiles as audioFile (audioFile.id)}
 					<tr>
 						<td class="border border-black p-2 whitespace-nowrap">{audioFile.sortDate}</td>
@@ -74,11 +85,12 @@
 {:else}
 	<!-- show login form if not authenticated -->
 	<div class="flex h-screen items-center justify-center">
-		<form class="flex -translate-y-15 placeholder-black" onsubmit={checkPassword}>
+		<form class="flex -translate-y-15 placeholder-black" method="post" action="?/setAuthCookie">
 			<input
 				class="mr-2 w-80 border border-black p-4"
+				name="passwordInput"
 				type="password"
-				bind:value={passwordInput}
+				value={passwordInput}
 				placeholder={placeHolder} />
 			<button class="border border-black p-4" type="submit">login</button>
 		</form>
