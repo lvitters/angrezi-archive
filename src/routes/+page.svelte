@@ -32,7 +32,13 @@
 
 <div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
 	<div class="animate-scroll-left mx-6">
-		<span>Welcome to the Radio Angrezi Archive. Want to see your stuff here? Do a show!</span>
+		<span>
+			Welcome to the Radio Angrezi Archive. Want to see your stuff here? <a
+				class="cursor-pointer"
+				href="mailto:radioangrezi@hfk-bremen.de">
+				Do a show!
+			</a>
+		</span>
 	</div>
 </div>
 
