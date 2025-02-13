@@ -85,6 +85,7 @@ export const actions = {
 				// create the cookie
 				cookies.set("isAuthenticated", "true", {
 					httpOnly: true,
+					secure: false, // TODO: change this to secure once server is running https
 					maxAge: 60 * 60, // 1 hour
 					path: "/",
 				});
