@@ -10,6 +10,16 @@ const createNewEntry = (year: string, sortDate: string, displayDate: string, tit
 	return db.insert(audioFiles).values({ year, sortDate, displayDate, title, filePath }).returning().get();
 };
 
+// edit an entry by id
+const editEntryById = async (id: string, newTitle: string) => {
+	try {
+		const result = await db.update(audioFiles).set({ title: newTitle }).where(eq(audioFiles.id, id));
+		return result;
+	} catch (err) {
+		console.error("error updating file", err);
+	}
+};
+
 // delete entry by ID and remove the file from disk
 const deleteEntryById = async (id: string) => {
 	try {
@@ -38,16 +48,6 @@ const deleteEntryById = async (id: string) => {
 	}
 };
 
-// edit an entry by id
-const editEntryById = async (id: string, newTitle: string) => {
-	try {
-		const result = await db.update(audioFiles).set({ title: newTitle }).where(eq(audioFiles.id, id));
-		return result;
-	} catch (err) {
-		console.error("error updating file", err);
-	}
-};
-
 // get all entries from certain year
 const getEntriesByYear = (year: string) => {
 	console.log("Year parameter:", year); // debug the input
@@ -71,17 +71,4 @@ const getAllEntriesDescending = () => {
 	return results;
 };
 
-// sort entries by date
-const sortEntriesByDate = async () => {
-	return await db.select().from(audioFiles).orderBy(desc(audioFiles.sortDate));
-};
-
-export {
-	createNewEntry,
-	deleteEntryById,
-	editEntryById,
-	getAllEntries,
-	getAllEntriesDescending,
-	getEntriesByYear,
-	sortEntriesByDate,
-};
+export { createNewEntry, deleteEntryById, editEntryById, getAllEntries, getAllEntriesDescending, getEntriesByYear };

@@ -138,8 +138,8 @@ export const actions = {
 			const displayDate = getDisplayDate(rawDate);
 			const sortDate = getSortDate(rawDate);
 
+			// write to db
 			try {
-				// add the file to the database
 				await createNewEntry(year, sortDate, displayDate, title, filePath);
 
 				return { success: true };

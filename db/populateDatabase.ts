@@ -4,7 +4,7 @@ import { createNewEntry, deleteEntryById, getAllEntries } from "./entries.ts"; /
 
 const folderPath = "./db/audio";
 
-// get audio files in the new naming format
+// get audio files from the folder
 function getAudioFiles(dir: string): { filePath: string; year: string }[] {
 	const entries = fs.readdirSync(dir, { withFileTypes: true });
 	let files: { filePath: string; year: string }[] = [];
@@ -12,13 +12,15 @@ function getAudioFiles(dir: string): { filePath: string; year: string }[] {
 	for (const entry of entries) {
 		let fullPath = path.join(dir, entry.name);
 
+		// if the entry is a file
 		if (entry.isFile()) {
 			const ext = path.extname(entry.name).toLowerCase();
 			if ([".mp3"].includes(ext)) {
-				// Extract the year from the filename (YYMMDD)
+				// extract the date from the filename (YYMMDD)
 				const match = entry.name.match(/^(\d{6})/);
 				if (match) {
-					const year = "20" + match[1].substring(0, 2); // Convert YY to 20YY
+					// convert YY to 20YY
+					const year = "20" + match[1].substring(0, 2);
 					files.push({
 						filePath: fullPath.replace("./db/audio", "../../db/audio"),
 						year,
@@ -41,14 +43,17 @@ async function populateDatabase() {
 		const existingFilePaths = new Set(existingEntries.map((entry) => entry.filePath));
 		const processedFiles = new Set<string>();
 
+		// for each of the files
 		for (let { filePath, year } of audioFiles) {
 			processedFiles.add(filePath);
 
+			// if it is already present
 			if (existingFilePaths.has(filePath)) {
 				console.log("already in database");
 				continue;
 			}
 
+			// get file info for db
 			const fileName = path.parse(filePath).name;
 			const data = fileName.split(" --- ");
 			if (data.length === 2) {
@@ -56,6 +61,7 @@ async function populateDatabase() {
 				const displayDate = getDisplayDate(rawDate);
 				const sortDate = getSortDate(rawDate);
 
+				// write to db
 				try {
 					createNewEntry(year, sortDate, displayDate, title, filePath);
 					console.log(`Inserted: ${fileName} (Year: ${year})`);
@@ -67,6 +73,7 @@ async function populateDatabase() {
 			}
 		}
 
+		// if entry with same exact info is already in database then skip it
 		for (const entry of existingEntries) {
 			if (!processedFiles.has(entry.filePath)) {
 				try {

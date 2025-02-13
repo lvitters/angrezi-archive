@@ -30,6 +30,7 @@
 	});
 </script>
 
+<!-- ticker -->
 <div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
 	<div class="animate-scroll-left mx-6">
 		<span>
