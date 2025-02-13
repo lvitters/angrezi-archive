@@ -14,6 +14,11 @@
 	// placeholder text for file input
 	let fileName = $state("select new file to upload");
 
+	// open input file dialog
+	function setInputTrue() {
+		inputtingNewFile = true;
+	}
+
 	// change placeholder after input change
 	function changeFilePlaceholder(event) {
 		const file = event.target.files[0];
@@ -48,7 +53,7 @@
 						<th
 							class="cursor-pointer p-2 text-center font-bold whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white"
 							scope="col"
-							onclick={(inputtingNewFile = true)}>
+							onclick={setInputTrue}>
 							submit new file
 						</th>
 					{/if}
@@ -76,13 +81,9 @@
 								</label>
 							</form>
 						</td>
-						<td class="border border-black p-2 whitespace-nowrap">
-							<button
-								form="submitForm"
-								class="ml-auto cursor-pointer font-bold text-green-500 hover:bg-green-500 hover:text-white"
-								type="submit">
-								submit
-							</button>
+						<td
+							class="border border-black p-2 font-bold whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white">
+							<button form="submitForm" class="ml-auto cursor-pointer" type="submit">submit</button>
 						</td>
 					</tr>
 				{/if}
@@ -108,14 +109,15 @@
 								</form>
 							</td>
 						{/if}
-						<td class="cursor-pointer border border-black p-2 text-center font-bold">
+						<td
+							class="cursor-pointer border border-black p-2 text-center font-bold text-red-500 hover:bg-red-500 hover:text-white">
 							<form action="?/deleteEntry" id="deleteForm" method="post">
 								<!-- hidden field to pass the ID -->
 								<input type="hidden" name="id" value={audioFile.id} />
 							</form>
 							<button
 								form="deleteForm"
-								class="ml-auto cursor-pointer font-bold text-red-500 hover:bg-red-500 hover:text-white"
+								class="ml-auto cursor-pointer font-bold"
 								type="submit"
 								onclick={confirmDelete}>
 								delete

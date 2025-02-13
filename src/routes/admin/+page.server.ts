@@ -64,7 +64,7 @@ export const actions = {
 		} catch (error) {
 			console.error(error);
 			return fail(500, {
-				error: "Something went wrong while updating the file. Please try again with fewer/no special characters",
+				error: "Something went wrong while deleting the file. Please try again",
 			});
 		}
 	},
@@ -110,6 +110,7 @@ export const actions = {
 			});
 		}
 
+		// get file
 		const { fileToUpload } = formData as { fileToUpload: File };
 
 		// define absolute path
@@ -124,7 +125,7 @@ export const actions = {
 		const filePath = path.join(uploadDir, fileToUpload.name);
 		writeFileSync(filePath, Buffer.from(await fileToUpload.arrayBuffer()));
 
-		// get file info (from populateDatabase.ts)
+		// get file info (copied from populateDatabase.ts)
 		const fileName = path.parse(filePath).name;
 		const data = fileName.split(" --- ");
 		const year = "20" + fileName.substring(0, 2); // Convert YY to 20YY
