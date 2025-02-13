@@ -10,7 +10,7 @@ export const load = async ({ cookies }) => {
 		// fetch files for the specified year
 		const audioFiles = await getAllEntriesDescending();
 
-		// Check if the 'isAuthenticated' cookie is set
+		// check if the 'isAuthenticated' cookie is set
 		const isAuthenticated = cookies.get("isAuthenticated");
 
 		return { audioFiles, isAuthenticated: isAuthenticated === "true" }; // return data to the page
@@ -45,7 +45,9 @@ export const actions = {
 				error: "Something went wrong while updating the file. Please try again with fewer/no special characters",
 			});
 		}
-	}, // edit an entry
+	},
+
+	// edit an entry
 	async deleteEntry({ request }) {
 		const formData = Object.fromEntries(await request.formData()) as {
 			id: string;
@@ -68,6 +70,7 @@ export const actions = {
 			});
 		}
 	},
+
 	// create an authentication cookie to have persistent login
 	async setAuthCookie({ request, cookies }) {
 		// Get form data and ensure passwordInput is a string
@@ -99,6 +102,7 @@ export const actions = {
 			};
 		}
 	},
+
 	// upload file to server
 	async uploadFile({ request }) {
 		const formData = Object.fromEntries(await request.formData());

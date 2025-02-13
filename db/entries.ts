@@ -1,6 +1,7 @@
 // https://fullstacksveltekit.com/blog/sveltekit-sqlite-drizzle
 
 import { desc, eq } from "drizzle-orm";
+import fs from "fs/promises";
 import { db } from "./client";
 import { audioFiles } from "./schema";
 
@@ -9,13 +10,31 @@ const createNewEntry = (year: string, sortDate: string, displayDate: string, tit
 	return db.insert(audioFiles).values({ year, sortDate, displayDate, title, filePath }).returning().get();
 };
 
-// delete entry by id
-const deleteEntryById = (id: string) => {
+// delete entry by ID and remove the file from disk
+const deleteEntryById = async (id: string) => {
 	try {
-		const result = db.delete(audioFiles).where(eq(audioFiles.id, id)).run();
-		return result;
+		// retrieve the file path from the database
+		const entry = await db.select().from(audioFiles).where(eq(audioFiles.id, id)).get();
+
+		if (!entry) {
+			console.error(`Entry with ID ${id} not found`);
+			return { success: false, error: "Entry not found" };
+		}
+
+		// get filePath
+		const filePath = entry.filePath;
+
+		// delete the database entry
+		await db.delete(audioFiles).where(eq(audioFiles.id, id)).run();
+
+		// delete the file from disk
+		await fs.unlink(filePath);
+		console.log(`Deleted file: ${filePath}`);
+
+		return { success: true };
 	} catch (err) {
-		console.error("error updating file", err);
+		console.error("Error deleting entry:", err);
+		return { success: false };
 	}
 };
 
