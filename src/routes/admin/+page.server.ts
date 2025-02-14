@@ -130,8 +130,8 @@ export const actions = {
 		// get file
 		const { fileToUpload } = formData as { fileToUpload: File };
 
-		// define absolute path
-		const uploadDir = path.join(process.cwd(), "db/audio");
+		// define path
+		const uploadDir = "db/audio";
 
 		// ensure the directory exists
 		if (!existsSync(uploadDir)) {
