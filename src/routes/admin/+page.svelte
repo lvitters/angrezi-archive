@@ -2,7 +2,7 @@
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
 	let { data } = $props();
 	let { audioFiles } = $state(data);
-	let isAuthenticated = $state(data.isAuthenticated);
+	let isAdmin = $state(data.isAdmin);
 
 	// this is not how this is supposed to be done, but I don't think the Radio will be the victim of a cyberattack, so it should be fine
 	let placeHolder = $state("enter admin password");
@@ -38,7 +38,7 @@
 </script>
 
 <!-- auth -->
-{#if isAuthenticated}
+{#if isAdmin}
 	<!-- display files -->
 	{#if audioFiles.length > 0}
 		<table class="m-2">

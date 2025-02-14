@@ -1,8 +1,15 @@
 import { fail } from "@sveltejs/kit";
 import bcrypt from "bcrypt";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
+import jwt from "jsonwebtoken";
 import path from "path";
 import { createNewEntry, deleteEntryById, editEntryById, getAllEntriesDescending } from "../../../db/entries.js";
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+	throw new Error("JWT_SECRET is not set in environment variables");
+}
 
 // load entries from db, this is called a load function
 export const load = async ({ cookies }) => {
@@ -10,12 +17,17 @@ export const load = async ({ cookies }) => {
 		// fetch files for the specified year
 		const audioFiles = await getAllEntriesDescending();
 
-		// check if the 'isAuthenticated' cookie is set
-		const isAuthenticated = cookies.get("isAuthenticated");
+		const token = cookies.get("token"); // Get JWT from cookie
 
-		return { audioFiles, isAuthenticated: isAuthenticated === "true" }; // return data to the page
+		if (!token) {
+			return { isAdmin: false };
+		}
+
+		const decoded = jwt.verify(token, JWT_SECRET);
+
+		return { audioFiles, isAdmin: true, user: decoded }; // return data to the page
 	} catch (error) {
-		console.error("Database error:", error);
+		console.error("Sign in / database error", error);
 		throw error;
 	}
 };
@@ -82,12 +94,12 @@ export const actions = {
 			const result = await bcrypt.compare(passwordInput, ADMIN_HASH);
 
 			if (result) {
-				// create the cookie
-				cookies.set("isAuthenticated", "true", {
+				const token = jwt.sign({ isAdmin: true }, JWT_SECRET, { expiresIn: "1d" });
+				cookies.set("token", token, {
 					httpOnly: true,
-					secure: false, // TODO: change this to secure once server is running https
-					maxAge: 60 * 60, // 1 hour
+					secure: false, // set to true in production (HTTPS only)
 					path: "/",
+					maxAge: 60 * 60, // 1h
 				});
 			} else {
 				return {
