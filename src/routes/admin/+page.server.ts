@@ -140,7 +140,15 @@ export const actions = {
 
 		// write the file to the correct location
 		const filePath = path.join(uploadDir, fileToUpload.name);
-		writeFileSync(filePath, Buffer.from(await fileToUpload.arrayBuffer()));
+		try {
+			writeFileSync(filePath, Buffer.from(await fileToUpload.arrayBuffer()));
+		} catch (err) {
+			console.error("Error writing file:", err);
+			return fail(500, {
+				error: true,
+				message: "Failed to upload file due to server error",
+			});
+		}
 
 		// get file info (copied from populateDatabase.ts)
 		const fileName = path.parse(filePath).name;
