@@ -82,7 +82,7 @@
 							</form>
 						</td>
 						<td
-							class="border border-black p-2 font-bold whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white">
+							class="cursor-pointer border border-black p-2 font-bold whitespace-nowrap text-green-500 hover:bg-green-500 hover:text-white">
 							<button form="submitForm" class="ml-auto cursor-pointer" type="submit">submit</button>
 						</td>
 					</tr>
