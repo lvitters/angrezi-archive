@@ -1,6 +1,19 @@
 <script>
-	import { chooseRandomFont } from "./randomFont.svelte";
+	import { chooseRandomFont } from "./RandomFont.svelte";
 </script>
+
+<!-- ticker -->
+<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
+	<div class="animate-scroll-left mx-6">
+		<span>
+			Welcome to the Radio Angrezi Archive. Want to see your stuff here? <a
+				class="cursor-pointer underline"
+				href="mailto:radioangrezi@hfk-bremen.de">
+				Do a show!
+			</a>
+		</span>
+	</div>
+</div>
 
 <div
 	class="mx-7 flex justify-around border-x border-black p-3 pb-4 max-md:mx-4 max-md:mt-7 max-md:border-t max-md:py-0 md:flex">
@@ -63,11 +76,11 @@
 	</div>
 	<!-- back button for mobile-->
 	<a
-		id={chooseRandomFont()}
+		id={"VG5000"}
 		href="http://radioangrezi.de"
 		class="absolute left-7 cursor-pointer items-center justify-center border-r border-black py-2 pr-3 text-2xl hover:text-[#0000ff] active:text-[#ff69b4] md:hidden">
 		&larr;
 	</a>
 	<!-- angrezi archive text for mobile-->
-	<div id={chooseRandomFont()} class="flex items-center justify-center py-2 text-2xl md:hidden">ANGREZI ARCHIVE</div>
+	<div id={"VG5000"} class="flex items-center justify-center py-2 text-2xl md:hidden">ANGREZI ARCHIVE</div>
 </div>

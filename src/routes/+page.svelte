@@ -1,6 +1,6 @@
 <script lang="ts">
 	import YearSlider from "./yearSlider.svelte";
-	import { chooseRandomFont } from "./randomFont.svelte";
+	import { chooseRandomFont } from "./RandomFont.svelte";
 	import AudioPlayer from "./audioPlayer.svelte";
 	import Header from "./header.svelte";
 	import "$lib/css/fonts.css";
@@ -30,19 +30,6 @@
 	});
 </script>
 
-<!-- ticker -->
-<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
-	<div class="animate-scroll-left mx-6">
-		<span>
-			Welcome to the Radio Angrezi Archive. Want to see your stuff here? <a
-				class="cursor-pointer"
-				href="mailto:radioangrezi@hfk-bremen.de">
-				Do a show!
-			</a>
-		</span>
-	</div>
-</div>
-
 <Header></Header>
 
 <YearSlider bind:year={selectedYear}></YearSlider>
@@ -58,7 +45,7 @@
 					class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 					<!-- date -->
 					<div
-						class="flex w-30 min-w-30 items-center justify-center border-r border-black p-4 whitespace-nowrap"
+						class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
 						id={randomFonts[index]}>
 						{file.displayDate}
 					</div>
