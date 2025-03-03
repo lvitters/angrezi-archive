@@ -55,16 +55,16 @@
 			{#if file.year == selectedYear}
 				<!-- file row -->
 				<div
-					class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-2 max-md:first:border-t-2 md:flex-nowrap">
+					class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 					<!-- date -->
 					<div
-						class="justify-content flex min-w-min items-center border-r border-black p-4 whitespace-nowrap"
+						class="flex w-30 min-w-30 items-center justify-center border-r border-black p-4 whitespace-nowrap"
 						id={randomFonts[index]}>
 						{file.displayDate}
 					</div>
 					<!-- title -->
 					<div
-						class="justify-content flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+						class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
 						id={randomFonts[index]}>
 						{file.title}
 					</div>

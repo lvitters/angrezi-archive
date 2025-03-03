@@ -122,8 +122,8 @@
 	<!-- show button, depending on if something is playing -->
 	<div
 		class={currentTime > 0
-			? "justify-content flex items-center border-x-0 border-black p-4 md:border-x"
-			: "justify-content flex items-center border-x border-black p-4"}>
+			? "flex items-center border-x-0 border-black p-4 md:border-x"
+			: "flex items-center border-x border-black p-4"}>
 		{#if paused}
 			<!-- play button -->
 			<button class="flex cursor-pointer hover:text-red-500" style="font-size: 2rem;" onclick={playAudio}>
@@ -142,7 +142,7 @@
 	{#if currentTime > 0}
 		<!-- progress bar with key event for accessability (not sure how accessability works yet) -->
 		<div
-			class="justify-content relative flex h-full grow cursor-pointer items-center border-r border-l border-black bg-[hsl(60,100%,39.2%)] md:border-l-0"
+			class="relative flex h-full grow cursor-pointer items-center border-r border-l border-black bg-[hsl(60,100%,39.2%)] md:border-l-0"
 			role="button"
 			tabindex="0"
 			aria-label="Seek in audio"
@@ -165,7 +165,7 @@
 		</div>
 	{/if}
 	<!-- show progress in numbers -->
-	<div class="justify-content flex items-center p-4">
+	<div class="flex w-50 items-center justify-center p-4">
 		<span id={randomFont}>{formatTime(currentTime)} / {formatTime(duration)}</span>
 	</div>
 </div>
