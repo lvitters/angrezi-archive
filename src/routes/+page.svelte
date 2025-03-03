@@ -50,7 +50,7 @@
 <!-- display files -->
 {#if filteredAudioFiles.length > 0}
 	<!-- entire "table" -->
-	<div class="mx-7 mb-10 flex flex-col border-b border-black max-sm:mx-4">
+	<div class="mx-7 mb-10 flex flex-col border-b border-black max-md:mx-4">
 		{#each audioFiles as file, index}
 			{#if file.year == selectedYear}
 				<!-- file row -->
@@ -75,7 +75,7 @@
 		{/each}
 	</div>
 {:else}
-	<p class="mx-7 justify-center border-r border-b border-l border-black p-3 max-sm:mx-4" id={chooseRandomFont()}>
+	<p class="mx-7 justify-center border-r border-b border-l border-black p-3 max-md:mx-4" id={chooseRandomFont()}>
 		{selectedYear} does not have any uploads. Yet.
 	</p>
 {/if}

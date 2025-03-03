@@ -19,16 +19,16 @@
 	}
 </script>
 
-<div class="mx-7 border border-black pt-4 max-sm:mx-4">
+<div class="mx-7 border border-black pt-4 max-md:mx-4">
 	<RangeSlider
-		value={year}
+		value={now.getFullYear()}
 		on:stop={(e) => {
 			handleInput(e.detail.value);
 		}}
 		pips
 		pipstep={1}
 		min={2019}
-		max={2049}
+		max={now.getFullYear()}
 		float
 		id="always" />
 </div>

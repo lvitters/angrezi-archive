@@ -3,14 +3,13 @@
 </script>
 
 <div
-	class="mx-7 flex justify-around border-x border-black p-3 pb-4 max-md:mt-7 max-md:border-t max-md:pb-2 max-sm:mx-4 md:flex">
+	class="mx-7 flex justify-around border-x border-black p-3 pb-4 max-md:mx-4 max-md:mt-7 max-md:border-t max-md:py-0 md:flex">
 	<!-- back to Radio Angrezi link-->
 	<a
 		id={chooseRandomFont()}
-		class="box-border flex h-[60px] w-[300px] cursor-pointer justify-center p-1 outline hover:text-[#0000ff] max-md:hidden"
+		class="box-border flex h-[60px] w-[300px] cursor-pointer justify-center p-1 outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
 		style="box-shadow: 5px 5px;"
 		href="http://radioangrezi.de">
-		back to
 		<svg class="w-100 p-1 hover:fill-[#0000ff]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 664.5 155.3">
 			<style type="text/css">
 				.st0 {
@@ -58,12 +57,17 @@
 	<!-- angrezi archive "logo" -->
 	<div
 		id={chooseRandomFont()}
-		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-2xl text-[black] outline hover:text-[#0000ff] max-md:hidden"
+		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-2xl text-[black] outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
 		style="box-shadow: 5px 5px;">
 		ANGREZI ARCHIVE
 	</div>
+	<!-- back button for mobile-->
+	<a
+		id={chooseRandomFont()}
+		href="http://radioangrezi.de"
+		class="absolute left-7 cursor-pointer items-center justify-center border-r border-black py-2 pr-3 text-2xl hover:text-[#0000ff] active:text-[#ff69b4] md:hidden">
+		&larr;
+	</a>
 	<!-- angrezi archive text for mobile-->
-	<div id={chooseRandomFont()} class="flex cursor-pointer items-center justify-center text-2xl md:hidden">
-		ANGREZI ARCHIVE
-	</div>
+	<div id={chooseRandomFont()} class="flex items-center justify-center py-2 text-2xl md:hidden">ANGREZI ARCHIVE</div>
 </div>
