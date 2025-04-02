@@ -55,7 +55,7 @@
 		<!-- player -->
 		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
 		<!-- show progress in numbers -->
-		<div class="flex items-center justify-center p-4 md:w-50">
+		<div class="flex flex-shrink-0 items-center justify-center p-4 md:w-50">
 			<span id={chooseFont(1)}>19:00 - 20:30</span>
 		</div>
 	</div>
