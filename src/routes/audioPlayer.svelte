@@ -165,7 +165,7 @@
 		</div>
 	{/if}
 	<!-- show progress in numbers -->
-	<div class="flex items-center justify-center p-4 md:w-50">
+	<!-- <div class="flex items-center justify-center p-4 md:w-50">
 		<span id={randomFont}>{formatTime(currentTime)} / {formatTime(duration)}</span>
-	</div>
+	</div> -->
 </div>

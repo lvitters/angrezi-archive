@@ -1,6 +1,6 @@
 <script lang="ts">
 	import YearSlider from "./yearSlider.svelte";
-	import { chooseRandomFont } from "./RandomFont.svelte";
+	import { chooseRandomFont, chooseFont } from "./RandomFont.svelte";
 	import AudioPlayer from "./audioPlayer.svelte";
 	import Header from "./header.svelte";
 	import "$lib/css/fonts.css";
@@ -35,34 +35,94 @@
 <YearSlider bind:year={selectedYear}></YearSlider>
 
 <!-- display files -->
-{#if filteredAudioFiles.length > 0}
-	<!-- entire "table" -->
-	<div class="mx-7 mb-10 flex flex-col border-b border-black max-md:mx-4">
-		{#each audioFiles as file, index}
-			{#if file.year == selectedYear}
-				<!-- file row -->
-				<div
-					class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
-					<!-- date -->
-					<div
-						class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-						id={randomFonts[index]}>
-						{file.displayDate}
-					</div>
-					<!-- title -->
-					<div
-						class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-						id={randomFonts[index]}>
-						{file.title}
-					</div>
-					<!-- player -->
-					<AudioPlayer randomFont={randomFonts[index]} src={file.filePath} />
-				</div>
-			{/if}
-		{/each}
+<!-- entire "table" -->
+<div class="mx-7 mb-10 flex flex-col border-b border-black max-md:mx-4">
+	<!-- file row -->
+	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
+			id={chooseFont(1)}>
+			09 May
+		</div>
+		<!-- title -->
+		<div
+			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(1)}>
+			balzi dj b2b katze203
+		</div>
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(1)} />
+		<!-- show progress in numbers -->
+		<div class="flex items-center justify-center p-4 md:w-50">
+			<span id={chooseFont(1)}>19:00 - 20:30</span>
+		</div>
 	</div>
-{:else}
-	<p class="mx-7 justify-center border-r border-b border-l border-black p-3 max-md:mx-4" id={chooseRandomFont()}>
-		{selectedYear} does not have any uploads. Yet.
-	</p>
-{/if}
+	<!-- file row -->
+	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
+			id={chooseFont(2)}>
+			09 May
+		</div>
+		<!-- title -->
+		<div
+			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(2)}>
+			dj person
+		</div>
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(2)} />
+		<!-- show progress in numbers -->
+		<div class="flex items-center justify-center p-4 md:w-50">
+			<span id={chooseFont(2)}>20:30 - 21:30</span>
+		</div>
+	</div>
+	<!-- file row -->
+	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
+			id={chooseFont(3)}>
+			09 May
+		</div>
+		<!-- title -->
+		<div
+			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(3)}>
+			person die jayt
+		</div>
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(3)} />
+		<!-- show progress in numbers -->
+		<div class="flex items-center justify-center p-4 md:w-50">
+			<span id={chooseFont(3)}>21:30 - 22:30</span>
+		</div>
+	</div>
+	<!-- file row -->
+	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
+			id={chooseFont(4)}>
+			09 May
+		</div>
+		<!-- title -->
+		<div
+			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(4)}>
+			deejay persönlich
+		</div>
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(4)} />
+		<!-- show progress in numbers -->
+		<div class="flex items-center justify-center p-4 md:w-50">
+			<span id={chooseFont(4)}>21:30 - 22:30</span>
+		</div>
+	</div>
+</div>

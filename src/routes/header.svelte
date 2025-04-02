@@ -6,10 +6,10 @@
 <div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
 	<div class="animate-scroll-left mx-6">
 		<span>
-			Welcome to the Radio Angrezi Archive. Want to see your stuff here? <a
+			Welcome to the Radio Angrezi Archive. Please join us for the launch on <a
 				class="cursor-pointer underline"
 				href="mailto:radioangrezi@hfk-bremen.de">
-				Do a show!
+				09.05 at 7pm!
 			</a>
 		</span>
 	</div>
@@ -70,9 +70,9 @@
 	<!-- angrezi archive "logo" -->
 	<div
 		id={chooseRandomFont()}
-		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-2xl text-[black] outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
+		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-3xl text-[black] outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
 		style="box-shadow: 5px 5px;">
-		ANGREZI ARCHIVE
+		ARCHIVE
 	</div>
 	<!-- back button for mobile-->
 	<a

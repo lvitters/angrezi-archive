@@ -15,4 +15,11 @@
 		//console.log(font);
 		return font;
 	}
+
+	// choose a font from the array
+	export function chooseFont(i: string | number) {
+		let font = fonts[i];
+		//console.log(font);
+		return font;
+	}
 </script>
