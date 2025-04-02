@@ -48,12 +48,12 @@
 		</div>
 		<!-- title -->
 		<div
-			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+			class="flex w-full items-center border-y border-black p-4 whitespace-nowrap md:w-auto md:min-w-min md:border-y-0"
 			id={chooseFont(1)}>
 			balzi dj b2b katze203
 		</div>
 		<!-- player -->
-		<AudioPlayer randomFont={chooseFont(1)} />
+		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
 			<span id={chooseFont(1)}>19:00 - 20:30</span>
@@ -75,7 +75,7 @@
 			dj person
 		</div>
 		<!-- player -->
-		<AudioPlayer randomFont={chooseFont(2)} />
+		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
 			<span id={chooseFont(2)}>20:30 - 21:30</span>
@@ -87,20 +87,20 @@
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-			id={chooseFont(3)}>
+			id={chooseFont(6)}>
 			09 May
 		</div>
 		<!-- title -->
 		<div
 			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-			id={chooseFont(3)}>
+			id={chooseFont(6)}>
 			person die jayt
 		</div>
 		<!-- player -->
-		<AudioPlayer randomFont={chooseFont(3)} />
+		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(3)}>21:30 - 22:30</span>
+			<span id={chooseFont(6)}>21:30 - 22:30</span>
 		</div>
 	</div>
 	<!-- file row -->
@@ -109,20 +109,20 @@
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-			id={chooseFont(4)}>
+			id={chooseFont(5)}>
 			09 May
 		</div>
 		<!-- title -->
 		<div
 			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-			id={chooseFont(4)}>
+			id={chooseFont(5)}>
 			deejay persönlich
 		</div>
 		<!-- player -->
-		<AudioPlayer randomFont={chooseFont(4)} />
+		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(4)}>21:30 - 22:30</span>
+			<span id={chooseFont(5)}>21:30 - 22:30</span>
 		</div>
 	</div>
 </div>

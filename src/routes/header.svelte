@@ -1,9 +1,9 @@
 <script>
-	import { chooseRandomFont } from "./RandomFont.svelte";
+	import { chooseRandomFont, chooseFont } from "./RandomFont.svelte";
 </script>
 
 <!-- ticker -->
-<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseRandomFont()}>
+<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseFont(4)}>
 	<div class="animate-scroll-left mx-6">
 		<span>
 			Welcome to the Radio Angrezi Archive. Please join us for the launch on <a
@@ -69,10 +69,10 @@
 	</a>
 	<!-- angrezi archive "logo" -->
 	<div
-		id={chooseRandomFont()}
+		id={chooseFont(2)}
 		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-3xl text-[black] outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
 		style="box-shadow: 5px 5px;">
-		ARCHIVE
+		ARCHIVE LAUNCH
 	</div>
 	<!-- back button for mobile-->
 	<a
