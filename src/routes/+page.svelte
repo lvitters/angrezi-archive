@@ -39,6 +39,29 @@
 <div class="mx-7 mb-10 flex flex-col border-b border-black max-md:mx-4">
 	<!-- file row -->
 	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black text-2xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="-ml-px flex items-center justify-center border-r-0 border-black p-4 whitespace-nowrap italic md:w-30 md:min-w-30"
+			id={chooseFont(2)}>
+			date:
+		</div>
+		<!-- title -->
+		<!-- <div
+			class="flex w-full items-center border-y border-black p-4 whitespace-nowrap md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(2)}>
+			acts:
+		</div> -->
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
+		<!-- show progress in numbers -->
+		<div class="flex flex-shrink-0 items-center justify-center p-4 italic md:w-50">
+			<span id={chooseFont(2)}>time:</span>
+		</div>
+	</div>
+	<!-- file row -->
+	<!-- file row -->
+	<div
 		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 		<!-- date -->
 		<div
@@ -56,7 +79,7 @@
 		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
 		<!-- show progress in numbers -->
 		<div class="flex flex-shrink-0 items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(1)}>19:00 - 20:30</span>
+			<span id={chooseFont(1)}>7:00 PM</span>
 		</div>
 	</div>
 	<!-- file row -->
@@ -65,20 +88,20 @@
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-			id={chooseFont(2)}>
+			id={chooseFont(3)}>
 			09 May
 		</div>
 		<!-- title -->
 		<div
 			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-			id={chooseFont(2)}>
+			id={chooseFont(3)}>
 			dj person
 		</div>
 		<!-- player -->
 		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(2)}>20:30 - 21:30</span>
+			<span id={chooseFont(3)}>8:30 PM</span>
 		</div>
 	</div>
 	<!-- file row -->
@@ -87,20 +110,20 @@
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-			id={chooseFont(6)}>
+			id={chooseFont(5)}>
 			09 May
 		</div>
 		<!-- title -->
 		<div
 			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-			id={chooseFont(6)}>
+			id={chooseFont(5)}>
 			person die jayt
 		</div>
 		<!-- player -->
 		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(6)}>21:30 - 22:30</span>
+			<span id={chooseFont(5)}>9:30 PM</span>
 		</div>
 	</div>
 	<!-- file row -->
@@ -109,20 +132,20 @@
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-			id={chooseFont(5)}>
+			id={chooseFont(6)}>
 			09 May
 		</div>
 		<!-- title -->
 		<div
 			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-			id={chooseFont(5)}>
+			id={chooseFont(6)}>
 			deejay persönlich
 		</div>
 		<!-- player -->
 		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(5)}>21:30 - 22:30</span>
+			<span id={chooseFont(6)}>10:30 PM</span>
 		</div>
 	</div>
 </div>

@@ -3,10 +3,10 @@
 </script>
 
 <!-- ticker -->
-<div class="mx-7 mt-7 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseFont(4)}>
-	<div class="animate-scroll-left mx-6">
+<div class="mx-7 mt-13 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseFont(4)}>
+	<div class="mx-6 text-center">
 		<span>
-			Welcome to the Radio Angrezi Archive. Please join us for the launch on <a
+			Welcome to the Radio Angrezi Archive! Please join us for a launch celebration on <a
 				class="cursor-pointer underline"
 				href="mailto:radioangrezi@hfk-bremen.de">
 				09.05 at 7pm!
