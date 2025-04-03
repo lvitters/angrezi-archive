@@ -60,14 +60,35 @@
 		</div>
 	</div>
 	<!-- file row -->
+	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black italic first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
+			id={chooseFont(4)}>
+			May 09
+		</div>
+		<!-- title -->
+		<div
+			class="flex w-full items-center justify-center border-y border-black p-4 text-center whitespace-nowrap md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(4)}>
+			@ Radio Angrezi Studio / Chaos Office (if the weather plays along)
+		</div>
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
+		<!-- show progress in numbers -->
+		<div class="flex flex-shrink-0 items-center justify-center p-4 md:w-50">
+			<span id={chooseFont(4)}>6:00 PM</span>
+		</div>
+	</div>
 	<!-- file row -->
 	<div
-		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		class="flex flex-wrap border-t border-r border-l border-double border-black text-xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
 			id={chooseFont(1)}>
-			09 May
+			May 09
 		</div>
 		<!-- title -->
 		<div
@@ -84,12 +105,12 @@
 	</div>
 	<!-- file row -->
 	<div
-		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		class="flex flex-wrap border-t border-r border-l border-double border-black text-xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
 			id={chooseFont(3)}>
-			09 May
+			May 09
 		</div>
 		<!-- title -->
 		<div
@@ -106,12 +127,12 @@
 	</div>
 	<!-- file row -->
 	<div
-		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		class="flex flex-wrap border-t border-r border-l border-double border-black text-xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
 			id={chooseFont(5)}>
-			09 May
+			May 09
 		</div>
 		<!-- title -->
 		<div
@@ -128,7 +149,7 @@
 	</div>
 	<!-- file row -->
 	<div
-		class="flex flex-wrap border-t border-r border-l border-double border-black first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		class="flex flex-wrap border-t border-r border-l border-double border-black text-xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
