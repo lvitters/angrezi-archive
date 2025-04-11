@@ -6,9 +6,8 @@
 <div class="mx-7 mt-8 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseFont(4)}>
 	<div class="mx-6 text-center">
 		<span>
-			Welcome to the Radio Angrezi Archive! Join us for a launch celebration on <a
-				class="cursor-pointer text-[#FF0000] underline"
-				href="mailto:radioangrezi@hfk-bremen.de">
+			Welcome to the Radio Angrezi Archive! Join us for a launch celebration on
+			<a class="cursor-pointer text-2xl text-[#FF0000] underline" href="mailto:radioangrezi@hfk-bremen.de">
 				May 09 starting at 6pm!
 			</a>
 		</span>
