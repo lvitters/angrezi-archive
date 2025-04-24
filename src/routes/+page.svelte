@@ -109,6 +109,28 @@
 		<!-- date -->
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
+			id={chooseFont(3)}>
+			May 09
+		</div>
+		<!-- title -->
+		<div
+			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
+			id={chooseFont(3)}>
+			mightybrills
+		</div>
+		<!-- player -->
+		<AudioPlayer randomFont={chooseFont(0)} />
+		<!-- show progress in numbers -->
+		<div class="flex items-center justify-center p-4 md:w-50">
+			<span id={chooseFont(3)}>9:00 PM</span>
+		</div>
+	</div>
+	<!-- file row -->
+	<div
+		class="flex flex-wrap border-t border-r border-l border-double border-black text-xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
+		<!-- date -->
+		<div
+			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
 			id={chooseFont(4)}>
 			May 09
 		</div>
@@ -122,29 +144,7 @@
 		<AudioPlayer randomFont={chooseFont(0)} />
 		<!-- show progress in numbers -->
 		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(4)}>9:00 PM</span>
-		</div>
-	</div>
-	<!-- file row -->
-	<div
-		class="flex flex-wrap border-t border-r border-l border-double border-black text-xl first:border-t-0 max-md:border-y-1 max-md:first:border-t-1 md:flex-nowrap">
-		<!-- date -->
-		<div
-			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
-			id={chooseFont(3)}>
-			May 09
-		</div>
-		<!-- title -->
-		<div
-			class="flex w-full items-center border-y border-black p-4 md:w-auto md:min-w-min md:border-y-0"
-			id={chooseFont(3)}>
-			Mighty Brills?
-		</div>
-		<!-- player -->
-		<AudioPlayer randomFont={chooseFont(0)} />
-		<!-- show progress in numbers -->
-		<div class="flex items-center justify-center p-4 md:w-50">
-			<span id={chooseFont(3)}>10:00 PM</span>
+			<span id={chooseFont(4)}>10:00 PM</span>
 		</div>
 	</div>
 	<!-- file row -->

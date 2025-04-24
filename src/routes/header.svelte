@@ -6,9 +6,9 @@
 <div class="mx-7 mt-8 overflow-hidden border border-black px-1 pt-1 pb-0 text-lg max-md:hidden" id={chooseFont(4)}>
 	<div class="mx-6 text-center">
 		<span>
-			Welcome to the Radio Angrezi Archive! Join us for a launch celebration on
+			Welcome to the Radio Angrezi Archive! Join us for an archiving session on
 			<a class="cursor-pointer text-2xl text-[#FF0000] underline" href="mailto:radioangrezi@hfk-bremen.de">
-				May 09 starting at 6pm!
+				May 09 starting at 7pm!
 			</a>
 		</span>
 	</div>
@@ -69,17 +69,17 @@
 	<!-- angrezi archive "logo" -->
 	<div
 		id={chooseFont(2)}
-		class="box-border flex h-[60px] w-[300px] cursor-pointer items-center justify-center p-1 text-3xl text-[black] outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
+		class="box-border flex h-[60px] w-[320px] cursor-pointer items-center justify-center p-1 text-3xl text-[black] outline hover:text-[#0000ff] active:text-[#ff69b4] max-md:hidden"
 		style="box-shadow: 5px 5px;">
-		ARCHIVE LAUNCH
+		ARCHIVE SESSION
 	</div>
-	<!-- back button for mobile-->
+	<!-- back button for mobile -->
 	<a
 		id={"VG5000"}
 		href="http://radioangrezi.de"
 		class="absolute left-7 cursor-pointer items-center justify-center border-r border-black py-2 pr-3 text-2xl hover:text-[#0000ff] active:text-[#ff69b4] md:hidden">
 		&larr;
 	</a>
-	<!-- angrezi archive text for mobile-->
+	<!-- angrezi archive text for mobile -->
 	<div id={"VG5000"} class="flex items-center justify-center py-2 text-2xl md:hidden">ANGREZI ARCHIVE</div>
 </div>
