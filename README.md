@@ -30,14 +30,27 @@ The Radio Angrezi Archive can be deployed to a server running Node.js via Svelte
 ## Filling the database before the build step
 
 The archive serves files from a folder 'db/audio'. If new files are added before the build step, they can be added to the database via "npm populate-database".
-If there is no database for whatever reason, it can be created via "npm run push:db" and then filled via "npm run populate-database".
 
-The "populate-database" script will fill and sort files into the database according to the file names present in the folder db/audio. The scheme is "YYMMDD --- name of the file.mp3". To ensure proper file path handling, the file name should have NO special characters. These can be added later through the admin interface.
+If there is no database for whatever reason, it can be created via
+
+```bash
+npm run push:db
+```
+
+and then filled via
+
+```bash
+npm run populate-database
+```
+
+The `populate-database` script will fill and sort files into the database according to the file names present in the folder `db/audio`. The scheme is `YYMMDD --- name of the file.mp3`. To ensure proper file path handling, the file name should have NO special characters. These can be added later through the admin interface.
+
+The database was created using [SQLite and Drizzle ORM](https://omrecipes.dev/blog/sveltekit-crud-sqlite).
 
 ## Adding, editing and deleting files from the database through the admin interface (after building and deploying)
 
-The admin interface can be reached by http://37.221.194.86:3000/admin.
+The admin interface can be reached by `http://37.221.194.86:3000/admin`.
 With the correct password, the login should be valid for an hour.
-A new file can be added with the 'submit new file' button. Make sure the file name adheres to the schema mentioned above "YYMMDD --- name of the file.mp3", contains no special characters and is an MP3.
+A new file can be added with the 'submit new file' button. Make sure the file name adheres to the schema mentioned above `YYMMDD --- name of the file.mp3`, contains no special characters and is an MP3.
 A file can be deleted via the delete button.
 A file's display name (separate from the file name given to the file BEFORE uploading) can be changed by clicking into the file name field, typing the new name, and hitting enter. Here, special characters can be used.
