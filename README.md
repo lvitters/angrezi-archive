@@ -46,7 +46,7 @@ and then filled via
 npm run populate-database
 ```
 
-The `populate-database` script will fill and sort files into the database according to the file names present in the folder `db/audio`. The scheme is `YYMMDD --- name of the file.mp3`. To ensure proper file path handling, the file name should have NO special characters. These can be added later through the admin interface.
+The `populate-database` script will fill and sort files into the database according to the file names present in the folder `db/audio`. The scheme is `YYMMDD --- name of the file.mp3`. Make sure to adhere to the spaces as well as the three seperator dashes. To ensure proper file path handling, the file name should have NO special characters. These can be added later through the admin interface.
 
 The database was created using [SQLite and Drizzle ORM](https://omrecipes.dev/blog/sveltekit-crud-sqlite).
 
