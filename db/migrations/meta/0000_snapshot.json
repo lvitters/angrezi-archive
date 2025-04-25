@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "cc90e23c-9581-452a-9126-1513d021506f",
+  "id": "f102825a-7caf-4cb2-8cd9-ae4457b3bfe9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "audioFiles": {
@@ -21,8 +21,15 @@
           "notNull": true,
           "autoincrement": false
         },
-        "date": {
-          "name": "date",
+        "sortDate": {
+          "name": "sortDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "displayDate": {
+          "name": "displayDate",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

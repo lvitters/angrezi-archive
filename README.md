@@ -30,8 +30,7 @@ The Radio Angrezi Archive can be deployed to a server running Node.js via Svelte
 ## Filling the database before the build step
 
 The archive serves files from a folder 'db/audio'. If new files are added before the build step, they can be added to the database via "npm populate-database".
-If there is no database for whatever reason, it can be created via "npm run generate-migrations:db" then "npm run push:db" then "npm run populate-database".
-If the database schema changes, it can be applied by running "npm run generate-migrations:db" then "npm run migrate:db" "npm run push:db" then "npm run populate-database".
+If there is no database for whatever reason, it can be created via "npm run push:db" and then filled via "npm run populate-database".
 
 The "populate-database" script will fill and sort files into the database according to the file names present in the folder db/audio. The scheme is "YYMMDD --- name of the file.mp3". To ensure proper file path handling, the file name should have NO special characters. These can be added later through the admin interface.
 
