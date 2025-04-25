@@ -7,6 +7,7 @@
 	<div class="mx-6 text-center">
 		<span>
 			Welcome to the Radio Angrezi Archive! Join us for an archiving session on
+			<br />
 			<a class="cursor-pointer text-2xl text-[#FF0000] underline" href="mailto:radioangrezi@hfk-bremen.de">
 				May 09 starting at 7pm!
 			</a>

@@ -74,12 +74,12 @@
 			id={chooseFont(4)}>
 			@ Radio Angrezi Studio / Chaos Office (if the weather plays along)
 		</div>
-		<!-- player -->
+		<!-- player
 		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
-		<!-- show progress in numbers -->
 		<div class="flex flex-shrink-0 items-center justify-center p-4 md:w-50">
 			<span id={chooseFont(4)}>7:00 PM</span>
 		</div>
+		-->
 	</div>
 	<!-- file row -->
 	<div
