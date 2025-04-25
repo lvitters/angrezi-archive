@@ -54,6 +54,10 @@ Database migration can be done via `npm run generate-migrations:db` and `npm run
 The admin interface can be reached by `http://37.221.194.86:3000/admin`.
 
 With the correct password, the login should be valid for an hour.
-A new file can be added with the 'submit new file' button. Make sure the file name adheres to the schema mentioned above `YYMMDD --- name of the file.mp3`, contains no special characters and is an MP3.
-A file can be deleted via the delete button.
+
+A new file can be added with the `submit new file` button.
+Make sure the file name adheres to the schema mentioned above `YYMMDD --- name of the file.mp3`, contains no special characters and is an MP3.
+
+A file can be deleted via the `delete` button.
+
 A file's display name (separate from the file name given to the file BEFORE uploading) can be changed by clicking into the file name field, typing the new name, and hitting enter. Here, special characters can be used.
