@@ -54,7 +54,7 @@ Database migration can be done via `npm run generate-migrations:db` and `npm run
 
 ## Adding, editing and deleting files from the database through the admin interface (after building and deploying)
 
-The admin interface can be reached by `http://37.221.194.86:3000/admin` (or whatever the server's IP may be).
+The admin interface can be reached by `https://archive.radioangrezi.de/admin` (or whatever the server's IP may be).
 
 With the correct password, the login should be valid for an hour.
 
