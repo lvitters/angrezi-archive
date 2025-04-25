@@ -27,7 +27,8 @@ You can preview the production build with `npm run preview`.
 
 The Radio Angrezi Archive can be deployed to a server running Node.js via SvelteKit's [node adapter](https://svelte.dev/docs/kit/adapter-node).
 
-It is managed with [PM2](https://codepilotsf.medium.com/running-node-apps-in-production-with-pm2-simplified-c2c19c42ae45).
+It is managed with [PM2](https://codepilotsf.medium.com/running-node-apps-in-production-with-pm2-simplified-c2c19c42ae45)
+and deployed via a [reverse proxy](https://ryanschiang.com/how-to-deploy-sveltekit-app-to-nginx-reverse-proxy).
 
 ## Filling the database before the build step
 
