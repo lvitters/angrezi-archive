@@ -74,12 +74,11 @@
 			id={chooseFont(4)}>
 			@ Radio Angrezi Studio / Chaos Office (if the weather plays along)
 		</div>
-		<!-- player
+		<!-- player 
 		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
 		<div class="flex flex-shrink-0 items-center justify-center p-4 md:w-50">
 			<span id={chooseFont(4)}>7:00 PM</span>
-		</div>
-		-->
+		</div> -->
 	</div>
 	<!-- file row -->
 	<div
@@ -94,7 +93,7 @@
 		<div
 			class="flex w-full items-center border-y border-black p-4 whitespace-nowrap md:w-auto md:min-w-min md:border-y-0"
 			id={chooseFont(1)}>
-			balzi b2b katze203
+			Balzi DJ b2b katze203
 		</div>
 		<!-- player -->
 		<AudioPlayer randomFont={chooseFont(0)} src={audioFiles[0].filePath} />
@@ -154,7 +153,7 @@
 		<div
 			class="flex items-center justify-center border-r border-black p-4 whitespace-nowrap md:w-30 md:min-w-30"
 			id={chooseFont(2)}>
-			09 May
+			May 09
 		</div>
 		<!-- title -->
 		<div
