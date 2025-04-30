@@ -111,12 +111,12 @@
 						{/if}
 						<td
 							class="cursor-pointer border border-black p-2 text-center font-bold text-red-500 hover:bg-red-500 hover:text-white">
-							<form action="?/deleteEntry" id="deleteForm" method="post">
+							<form action="?/deleteEntry" id="deleteForm-{audioFile.id}" method="post">
 								<!-- hidden field to pass the ID -->
 								<input type="hidden" name="id" value={audioFile.id} />
 							</form>
 							<button
-								form="deleteForm"
+								form="deleteForm-{audioFile.id}"
 								class="ml-auto cursor-pointer font-bold"
 								type="submit"
 								onclick={confirmDelete}>
