@@ -66,4 +66,5 @@ A file can be deleted via the `delete` button.
 
 A file's display name (separate from the file name given to the file BEFORE uploading) can be changed by clicking into the file name field, typing the new name, and hitting enter. Here, special characters can be used.
 
-> Note: changing the file name here will be overridden whenever the `populate-database` script is rerun before the build step, as the script uses the file names as (placeholder) display names.
+> Note: changing the file names here will be overridden whenever the `populate-database` script is rerun before the build step, as the script uses the file names as (placeholder) display names.
+> A good practice would be to backup the `db/audio` folder and the `sqlite.db` file occasionally, or at least before ever redeploying the site.
