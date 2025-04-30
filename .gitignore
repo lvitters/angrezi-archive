@@ -1,7 +1,5 @@
 node_modules
 
-.vscode
-
 # Output
 .output
 .vercel
@@ -23,3 +21,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 *.mp3
 src/lib/server/db/sqlite.db
+/.vscode
