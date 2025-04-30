@@ -60,6 +60,7 @@ With the correct password, the login should be valid for an hour.
 
 A new file can be added with the `submit new file` button.
 Make sure the file name adheres to the schema mentioned above `YYMMDD --- name of the file.mp3`, contains no special characters and is an MP3.
+After choosing the file from your computer, hit the `submit` button. Wait for the file to upload, indicated by your browser tab's loading wheel. There is 2GB limit.
 
 A file can be deleted via the `delete` button.
 
