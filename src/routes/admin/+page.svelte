@@ -1,3 +1,5 @@
+<!-- Copyright © 2025 Lucca Vitters. All rights reserved -->
+
 <script>
 	// apparently this will automatically fetch all the data via the load function in +page.server.ts? this is why SSR is good (I hope it works)
 	let { data } = $props();

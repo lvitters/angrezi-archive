@@ -1,3 +1,5 @@
+<!-- Copyright © 2025 Lucca Vitters. All rights reserved -->
+
 <script>
 	import { chooseRandomFont } from "./RandomFont.svelte";
 </script>

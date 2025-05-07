@@ -1,3 +1,5 @@
+<!-- Copyright © 2025 Lucca Vitters. All rights reserved -->
+
 <script lang="ts" context="module">
 	// some random fonts from the regular radio website
 	let fonts: string[] = [

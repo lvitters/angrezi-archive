@@ -1,3 +1,5 @@
+// Copyright © 2025 Lucca Vitters. All rights reserved
+
 import { fail } from "@sveltejs/kit";
 import bcrypt from "bcrypt";
 import { existsSync, mkdirSync, writeFileSync } from "fs";

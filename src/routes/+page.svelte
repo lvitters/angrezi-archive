@@ -1,3 +1,5 @@
+<!-- Copyright © 2025 Lucca Vitters. All rights reserved -->
+
 <script lang="ts">
 	import YearSlider from "./yearSlider.svelte";
 	import { chooseRandomFont } from "./RandomFont.svelte";

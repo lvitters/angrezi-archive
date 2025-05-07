@@ -1,3 +1,5 @@
+<!-- Copyright © 2025 Lucca Vitters. All rights reserved -->
+
 <script lang="ts">
 	import { onMount } from "svelte";
 	import RangeSlider from "svelte-range-slider-pips";
