@@ -1,6 +1,6 @@
 # License
 
-Copyright © 2025 Lucca Vitters
+Copyright © 2026 Lucca Vitters
 
 All rights reserved.
 
